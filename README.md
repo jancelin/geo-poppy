@@ -1,4 +1,3 @@
-Welcome to the rpi-docker-lizmap wiki!
 
 Sorry for the English. This wiki is for the moment in French but all docker use are in english.
 
