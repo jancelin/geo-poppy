@@ -77,3 +77,7 @@ https://github.com/jancelin/rpi-docker-lizmap
 Vous pouvez aussi installer la version docker lizmap sur votre pc ou serveur : https://github.com/jancelin/docker-lizmap
 
 ____________________________________________________________________________
+
+Julien ANCELIN ( julien.ancelin@stlaurent.lusignan.inra.fr) 05/2015 INRA 
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
