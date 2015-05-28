@@ -3,7 +3,7 @@ Welcome to the rpi-docker-lizmap wiki!
 Sorry for the English. This wiki is for the moment in French.
 
 -------------------------------------------------------------------------------
-![rpi_lizmap](https://pbs.twimg.com/media/B6vkcZeIMAAS3Tp.jpg:large)
+![rpi_lizmap](https://cloud.githubusercontent.com/assets/6421175/7859239/41d9eaa6-053f-11e5-93d1-2056c6cff733.png)
 
 
 Tout d'abord à quoi ça sert ce truc?
