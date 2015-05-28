@@ -1,6 +1,6 @@
 Welcome to the rpi-docker-lizmap wiki!
 
-Sorry for the English. This wiki is for the moment in French.
+Sorry for the English. This wiki is for the moment in French but all docker use are in english.
 
 -------------------------------------------------------------------------------
 Tout d'abord à quoi ça sert ce truc?
@@ -8,6 +8,12 @@ Tout d'abord à quoi ça sert ce truc?
 > Le but est de disposer d'un serveur websig sans web et sans prise de courant.
 
 ![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859283/b57c4a6c-053f-11e5-8376-d9525aa7153c.png)
+
+______________________________________________________________________
+
+Comment le Fabriquer ?
+
+> https://github.com/jancelin/geo-poppy/wiki
 
 ______________________________________________________________________
 
