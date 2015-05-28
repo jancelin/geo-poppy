@@ -55,7 +55,7 @@ ________________________________________________________________________________
 
 **Programmes:**
 
-![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859283/b57c4a6c-053f-11e5-8376-d9525aa7153c.png)
+![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859301/e5f0d6d6-053f-11e5-94ec-e6d9361f1a35.png)
 
 
 * Ce projet est monté sur linux Debian avec Docker pour les containers logiciels. J'ai fait le choix de partir sur l'image crée par Hypriot (http://blog.hypriot.com/) qui intègre directement les deux tout en étant léger:
