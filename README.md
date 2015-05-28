@@ -44,7 +44,7 @@ Les Matériels retenus pour faire fonctionner les services webSIG sont :
 
 > prix env= 45€
 
-Un global, avec les câbles, adaptateurs pour env 110€, 62€ si pas besoin de batterie.
+Un global, avec les câbles, adaptateurs pour env 110€, 62€ sans batterie.
 
 ________________________________________________________________________________
 
