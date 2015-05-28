@@ -64,7 +64,7 @@ ________________________________________________________________________________
 http://blog.hypriot.com/downloads/
 ```
 
-* Pour la base de données, Docker Postgresql et postgis. Cette image viens du dépôt  kartoza/docker-postgis (https://github.com/kartoza/docker-postgis), et à été quelque peut modifié pour que ça tourne sur un Raspberry. J' ai également rajouté Slony (http://www.slony.fr/) pour la réplication master slave avec le serveur central:
+* Pour la base de données, Docker Postgresql et postgis. Cette image viens du dépôt  kartoza/docker-postgis (https://github.com/kartoza/docker-postgis), et à été quelque peut modifié pour que ça tourne sur un Raspberry.
 
 ```
 https://github.com/jancelin/docker-postgis-rpi
