@@ -11,12 +11,6 @@ Tout d'abord à quoi ça sert ce truc?
 
 ______________________________________________________________________
 
-Comment le Fabriquer ?
-
-> https://github.com/jancelin/geo-poppy/wiki
-
-______________________________________________________________________
-
 Mais pour quoi faire ?
 
 > * Imaginons que nous voulons cartographier et quantifier la population de coquelicot et de bleuet sur une zone de 1200 km2.
@@ -81,6 +75,12 @@ https://github.com/jancelin/rpi-docker-lizmap
 '''
 
 Vous pouvez aussi installer la version docker lizmap sur votre pc ou serveur : https://github.com/jancelin/docker-lizmap
+
+______________________________________________________________________
+
+Comment le Fabriquer ?
+
+> https://github.com/jancelin/geo-poppy/wiki
 
 ____________________________________________________________________________
 
