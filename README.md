@@ -3,12 +3,13 @@ Welcome to the rpi-docker-lizmap wiki!
 Sorry for the English. This wiki is for the moment in French.
 
 -------------------------------------------------------------------------------
-![rpi_lizmap](https://cloud.githubusercontent.com/assets/6421175/7859239/41d9eaa6-053f-11e5-93d1-2056c6cff733.png)
-
-
 Tout d'abord à quoi ça sert ce truc?
 
 > Le but est de disposer d'un serveur websig sans web et sans prise de courant.
+
+![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859283/b57c4a6c-053f-11e5-8376-d9525aa7153c.png)
+
+______________________________________________________________________
 
 Mais pour quoi faire?
 
@@ -26,8 +27,8 @@ Mais pour quoi faire?
 
 > * Que les données soit synchronisées vers une base centrale quand le serveur dispose d'une connexion sécurisé en ethernet.
 
-___________________________________________________________________________________
 
+___________________________________________________________________________________
 **Matériel**
 
 Les Matériels retenus pour faire fonctionner les services webSIG sont:
@@ -53,6 +54,9 @@ Un global, avec les cables, adapteurs pour env: 110€, 62€ si pas besoin de b
 ________________________________________________________________________________
 
 **Programmes:**
+
+![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859283/b57c4a6c-053f-11e5-8376-d9525aa7153c.png)
+
 
 * Ce projet est monté sur linux Debian avec Docker pour les containers logiciels. J'ai fait le choix de partir sur l'image crée par Hypriot (http://blog.hypriot.com/) qui intègre directement les deux tout en étant léger:
 
