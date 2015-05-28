@@ -54,21 +54,21 @@ ________________________________________________________________________________
 
 * Ce projet est monté sur linux Debian avec Docker pour les containers logiciels. J'ai fait le choix de partir sur l'image crée par Hypriot (http://blog.hypriot.com/) qui intègre directement les deux tout en étant léger :
 
-```
+
 http://blog.hypriot.com/downloads/
-```
+
 
 * Pour la base de données, Docker Postgresql et postgis. Cette image vient du dépôt kartoza/docker-postgis (https://github.com/kartoza/docker-postgis), et à été quelque peu modifié pour que ça tourne sur un Raspberry.
 
-```
+
 https://github.com/jancelin/docker-postgis-rpi
-```
+
 
 * Le serveur websig est basé sur Qgis Qgis-server (http://www.qgis.org/fr/site/) et Lizmap (http://www.3liz.com/lizmap.html). J'ai fabriqué une image docker contenant les deux :
 
-```
+
 https://github.com/jancelin/rpi-docker-lizmap
-```
+
 
 Vous pouvez aussi installer la version docker lizmap sur votre pc ou serveur : https://github.com/jancelin/docker-lizmap
 
