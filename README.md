@@ -82,5 +82,5 @@ Comment le fabriquer ?
 
 ____________________________________________________________________________
 
-Julien ANCELIN / julien.ancelin@stlaurent.lusignan.inra.fr / INRA 
+Julien ANCELIN / julien.ancelin@stlaurent.lusignan.inra.fr / INRA     
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
