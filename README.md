@@ -80,6 +80,9 @@ Comment le fabriquer ?
 
 ***https://github.com/jancelin/geo-poppy/wiki***
 
+![geo-poppy-wiki](https://cloud.githubusercontent.com/assets/6421175/12889497/6c3a926e-ce7f-11e5-8391-de6b205307e2.png)
+
+
 ____________________________________________________________________________
 
 Julien ANCELIN / julien.ancelin@stlaurent.lusignan.inra.fr / INRA 
