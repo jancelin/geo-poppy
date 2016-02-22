@@ -1,4 +1,7 @@
 
+**Géo Poppy est expérimental, la mise en production demande donc des compétences en bricolage...**
+
+
 Tout d'abord à quoi ça sert ce truc ?
 
 > Le but est de disposer d'un serveur websig sans web et sans prise de courant.
