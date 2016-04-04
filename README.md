@@ -31,7 +31,7 @@ ________________________________________________________________________________
 
 Les Matériels retenus pour faire fonctionner les services webSIG sont :
 
-* un Raspberry Pi 2.
+* un Raspberry Pi 2 ou 3.
 
 > Pourquoi ? Parce que il y a une grande communauté de bidouilleurs, et Debian et Docker fonctionnent très bien sur les puces armhf, donc on peut installer à peu près tous les logiciels présents sur un serveur Linux classique. Prix env 35€
 
