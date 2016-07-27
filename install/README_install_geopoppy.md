@@ -11,6 +11,7 @@ sudo dd bs=1M if=/home/jancelin/Bureau/hypriotos-rpi-v0.8.0.img of=/dev/mmcblk0
 ```
 
 * agrandir la partition avec gparted
+
 ----------------------
 
 * insère la sd dans le raspberry
