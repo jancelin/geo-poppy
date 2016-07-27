@@ -2,8 +2,8 @@
 
 * télécharge l'os (hypriot Barbossa 0.8.0) : https://downloads.hypriot.com/hypriotos-rpi-v0.8.0.img.zip
 * dézip sur ton bureau
-* insère ta sd dans le pc
-* repère tes partitions et démonte :
+* insère ta microSD dans le pc
+* repère et démonte tes partitions, copie l'OS sur la microSD :
 
 ```
 df-h
@@ -12,7 +12,7 @@ umount /dev/mmcblk0p2
 sudo dd bs=1M if=/home/jancelin/Bureau/hypriotos-rpi-v0.8.0.img of=/dev/mmcblk0
 ```
 
-* agrandir la partition avec gparted
+* agrandir la partition de la microSD au max avec gparted
 
 ----------------------
 
