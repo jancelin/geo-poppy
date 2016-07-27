@@ -1,4 +1,4 @@
-""Géopoppy""
+**Géopoppy installation simple et démo pour Raspberry Pi 3**
 
 
 * télécharge l'os (hypriot Barbossa 0.8.0) : https://downloads.hypriot.com/hypriotos-rpi-v0.8.0.img.zip
