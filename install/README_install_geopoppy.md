@@ -41,8 +41,11 @@ wget -P /home/pirate wget https://raw.githubusercontent.com/jancelin/geo-poppy/m
 c'est fini, un message à la fin (env 30 min) te dira:
 
 "Geopoppy redémare pour l'activation du wifi..."
+
 "Connecter vous ensuite au réseau wifi GéoPoppy_Pi3"
+
 "mot de passe: geopoppy"
+
 " et tapper l'adresse 172.24.1.1 dans votre navigateur web"
 
 puis le raspberry redémarera.
