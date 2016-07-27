@@ -5,12 +5,12 @@
 * insère ta sd dans le pc
 * repère tes partitions et démonte :
 
-'''
+```
 df-h
 umount /dev/mmcblk0p1
 umount /dev/mmcblk0p2
 sudo dd bs=1M if=/home/jancelin/Bureau/hypriotos-rpi-v0.8.0.img of=/dev/mmcblk0
-'''
+```
 
 * agrandir la partition avec gparted
 
@@ -21,24 +21,24 @@ sudo dd bs=1M if=/home/jancelin/Bureau/hypriotos-rpi-v0.8.0.img of=/dev/mmcblk0
 * allume.
 * connecte toi en ssh (attention l'utilisateur à changé):
 
-'''
+```
 ssh pirate@"ton ip"
-'''
+```
 
 mot de passe : hypriot
 
 ------------------------
 * maintenant passe en root
 
-'''
+```
 sudo -s
-'''
+```
 
 * et lance la commande :
 
-'''
+```
 wget -P /home/pirate wget https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh; chmod +x /home/pirate/auto_install_geopoppy.sh; bash -x /home/pirate/auto_install_geopoppy.sh
-'''
+```
 
 c'est fini, un message à la fin (env 30-40 min):
 
@@ -59,9 +59,9 @@ Si pas de service ...
 * connecte toi en ssh
 * lance un :
 
-'''
+```
 docker-compose up -d
-'''
+```
 
 Et tes conteneurs se refabriqueront automatiquement.
 
@@ -70,13 +70,13 @@ ________________________________________________________________________________
 Liste des améliorations de GéoPoppy
 
 * utilisation de la dernière version d'Hypriot OS: "Barbossa"
-Linux kernel 4.4.10
-Docker Engine 1.11.1
-Docker Compose 1.7.1
-Docker Machine 0.7.0
-Docker Swarm 1.2.2
-Cluster-Lab 0.2.12
-device-init 0.1.7
+      Linux kernel 4.4.10
+      Docker Engine 1.11.1
+      Docker Compose 1.7.1
+      Docker Machine 0.7.0
+      Docker Swarm 1.2.2
+      Cluster-Lab 0.2.12
+      device-init 0.1.7
 * utilisation du wifi interne au raspberry pi 3
 * si il est connecté en ethernet il fait borne wifi ouverte sur le web.
 * le hotplug eternet fonctionne.
@@ -84,8 +84,8 @@ device-init 0.1.7
 * il contiens une base de donnée et un projet démo carto pour tester les fonctionalités
 * il utilise Docker-compose qui permet d'orchestrer ses conteneur grâce à un fichier .yml situé dans /home/pirate
 * il contiens les conteneurs :
-qgis-server 2.14.4 lizmap 3.0.1
-postgresql 9.5 postgis 2.2
+    qgis-server 2.14.4 lizmap 3.0.1
+    postgresql 9.5 postgis 2.2
 * ...
 
 Amusez-vous bien. Et faites remonter les bugs...
