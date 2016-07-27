@@ -1,5 +1,7 @@
 **Géopoppy installation simple et démo pour Raspberry Pi 3**
 
+![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859239/41d9eaa6-053f-11e5-93d1-2056c6cff733.png)
+
 * télécharge l'os (hypriot Barbossa 0.8.0) : https://downloads.hypriot.com/hypriotos-rpi-v0.8.0.img.zip
 * dézip sur ton bureau
 * insère ta microSD dans le pc
