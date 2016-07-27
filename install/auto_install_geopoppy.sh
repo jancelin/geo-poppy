@@ -17,9 +17,10 @@ tar xvfz /home/pi/geopoppy_base.tar --preserve --same-owner -C /  &&
 cp /home/GeoPoppy/docker-compose.yml /home/pirate/ &&
 docker-compose up -d &&
 sleep 5
-echo "Geopoppy redémare pour l'activation du wifi..."
+echo "Redémarer le raspberry pour l'activation du wifi : sudo reboot"
 echo "Connecter vous ensuite au réseau wifi GéoPoppy_Pi3"
 echo "mot de passe: geopoppy"
 echo " et tapper l'adresse 172.24.1.1 dans votre navigateur web"
-echo "connection postgis sur la même ip, port 5432, login et mot de passe: docker"
+echo "Connection postgis sur la même ip, port 5432, login et mot de passe: docker"
+echo "Construire ses projets qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles"
 
