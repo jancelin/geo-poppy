@@ -1,3 +1,6 @@
+""Géopoppy""
+
+
 * télécharge l'os (hypriot Barbossa 0.8.0) : https://downloads.hypriot.com/hypriotos-rpi-v0.8.0.img.zip
 * dézip sur ton bureau
 * insère ta sd dans le pc
@@ -62,3 +65,21 @@ docker-compose up -d
 ```
 
 et tes conteneur se refabriquerons automatiquement.
+
+_________________________________________________________________________________
+
+Liste des améliorations de GéoPoppy
+
+* utilisation de la dernière version d'Hypriot OS: "Barbossa"
+* utilisation du wifi interne au raspberry pi 3
+* si il est connecté en ethernet il fait borne wifi ouverte sur le web.
+* il contiens l'arborescence de fichier necessaire au fonctionnement de postgresql/postgis et qgis-serveur/lizmap
+* il contiens une base de donnée et un projet démo carto pour tester les fonctionalités
+* il utilise Docker-compose qui permet d'orchestrer ses conteneur grâce à un fichier .yml situé dans /home/pirate
+* ...
+
+Amuszez vous bien. et faites remonter les bug...
+
+
+
+
