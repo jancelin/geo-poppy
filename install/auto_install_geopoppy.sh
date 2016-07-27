@@ -27,6 +27,6 @@ echo " "
 echo "Connection postgis sur la même ip, port 5432, login et mot de passe: docker"
 echo "Construire ses projets qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles"
 echo " "
-echo "Sources: Julien ANCELIN "
+echo "Julien ANCELIN "
 echo "https://github.com/jancelin/geo-poppy"
 
