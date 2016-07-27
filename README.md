@@ -81,6 +81,14 @@ ______________________________________________________________________
 
 Comment le fabriquer ?
 
+Nouvelle version: 
+Méthode rapide seulement pour Rasberry Pi 3 
+
+***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
+
+
+Sinon
+
 ***https://github.com/jancelin/geo-poppy/wiki***
 
 ![geo-poppy-wiki](https://cloud.githubusercontent.com/assets/6421175/12889497/6c3a926e-ce7f-11e5-8391-de6b205307e2.png)
