@@ -21,4 +21,5 @@ echo "Geopoppy redémare pour l'activation du wifi..."
 echo "Connecter vous ensuite au réseau wifi GéoPoppy_Pi3"
 echo "mot de passe: geopoppy"
 echo " et tapper l'adresse 172.24.1.1 dans votre navigateur web"
+echo "connection postgis sur la même ip, port 5432, login et mot de passe: docker"
 
