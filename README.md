@@ -35,7 +35,7 @@ Les Matériels retenus pour faire fonctionner les services webSIG sont :
 
 > Pourquoi ? Parce que il y a une grande communauté de bidouilleurs, et Debian et Docker fonctionnent très bien sur les puces armhf, donc on peut installer à peu près tous les logiciels présents sur un serveur Linux classique. Prix env 35€
 
-* un dongle wifi Edimax. Pour communiquer avec le Raspberry en wifi : EW-7811Un
+* un dongle wifi Edimax (pour le raspberry pi2). Pour communiquer avec le Raspberry en wifi : EW-7811Un
 
 > C'est petit, pas cher, ça marche bien pour du wifi direct avec peu de paramétrage côté serveur. Prix env 11 €
 
