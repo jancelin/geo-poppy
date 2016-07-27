@@ -42,13 +42,14 @@ wget -P /home/pirate wget https://raw.githubusercontent.com/jancelin/geo-poppy/m
 
 c'est fini, un message à la fin (env 30-40 min):
 
->"Geopoppy redémare pour l'activation du wifi..."
-
->"Connecter vous ensuite au réseau wifi GéoPoppy_Pi3"
-
->"mot de passe : geopoppy"
-
->" et tapper l'adresse 172.24.1.1 dans votre navigateur web"
+> * Redémarer le raspberry pour l'activation du wifi : sudo reboot
+> 
+> * Connectez-vous ensuite au réseau wifi GeoPoppy_Pi3
+> Mot de passe: geopoppy
+> Puis tapper l'adresse 172.24.1.1 dans votre navigateur web pour accéder à la démo
+> 
+> * Connection Data Base avec PgAdminIII ou Qgis sur la même ip, port 5432, login et mot de passe: docker
+> * Construire ses projets Qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles
 
 * redemarer le raspberry.
 ```reboot```
