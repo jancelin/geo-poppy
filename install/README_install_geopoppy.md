@@ -52,11 +52,13 @@ c'est fini, un message à la fin (env 30-40 min):
 > * Construire ses projets Qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles
 
 * redemarer le raspberry.
-```reboot```
 
+```
+reboot
+```
 ________________________________________________________________________________
 
-Si pas de service ...
+Si pas de service...
 
 * connecte toi en ssh
 * lance un :
