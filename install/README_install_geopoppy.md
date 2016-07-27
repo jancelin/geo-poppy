@@ -41,15 +41,15 @@ sudo -s
 wget -P /home/pirate wget https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh; chmod +x /home/pirate/auto_install_geopoppy.sh; bash -x /home/pirate/auto_install_geopoppy.sh
 ```
 
-c'est fini, un message à la fin (env 30 min) te dira:
+c'est fini, un message à la fin (env 30-40 min):
 
-"Geopoppy redémare pour l'activation du wifi..."
+>"Geopoppy redémare pour l'activation du wifi..."
 
-"Connecter vous ensuite au réseau wifi GéoPoppy_Pi3"
+>"Connecter vous ensuite au réseau wifi GéoPoppy_Pi3"
 
-"mot de passe: geopoppy"
+>"mot de passe: geopoppy"
 
-" et tapper l'adresse 172.24.1.1 dans votre navigateur web"
+>" et tapper l'adresse 172.24.1.1 dans votre navigateur web"
 
 puis le raspberry redémarera.
 
