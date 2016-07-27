@@ -14,5 +14,5 @@ wget -P /home/pi https://github.com/jancelin/geo-poppy/raw/master/install/geopop
 wget -P /home/pi https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_base.tar &&
 tar xvfz /home/pi/geopoppy_sig.tar --preserve --same-owner -C /  &&
 tar xvfz /home/pi/geopoppy_base.tar --preserve --same-owner -C /  &&
-mv /home/Geopoppy/docker-compose.yml /home/pirate/docker-compose.yml
+mv /home/Geopoppy/docker-compose.yml /home/pirate/docker-compose.yml &&
 docker-compose up -d
