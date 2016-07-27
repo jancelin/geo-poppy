@@ -14,5 +14,12 @@ wget -P /home/pi https://github.com/jancelin/geo-poppy/raw/master/install/geopop
 wget -P /home/pi https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_base.tar &&
 tar xvfz /home/pi/geopoppy_sig.tar --preserve --same-owner -C /  &&
 tar xvfz /home/pi/geopoppy_base.tar --preserve --same-owner -C /  &&
-mv /home/Geopoppy/docker-compose.yml /home/pirate/docker-compose.yml &&
-docker-compose up -d
+cp /home/GeoPoppy/docker-compose.yml /home/pirate/ &&
+docker-compose up -d &&
+sleep 5
+echo "Geopoppy redémare pour l'activation du wifi..."
+echo "Connecter vous ensuite au réseau wifi GéoPoppy_Pi3"
+echo "mot de passe: geopoppy"
+echo " et tapper l'adresse 172.24.1.1 dans votre navigateur web"
+sleep 2
+reboot
