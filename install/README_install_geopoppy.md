@@ -70,12 +70,12 @@ ________________________________________________________________________________
 Liste des améliorations de GéoPoppy
 
 * utilisation de la dernière version d'Hypriot OS: "Barbossa"
-      Linux kernel 4.4.10
-      Docker Engine 1.11.1
-      Docker Compose 1.7.1
-      Docker Machine 0.7.0
-      Docker Swarm 1.2.2
-      Cluster-Lab 0.2.12
+      * Linux kernel 4.4.10
+      * Docker Engine 1.11.1
+      * Docker Compose 1.7.1
+      * Docker Machine 0.7.0
+      * Docker Swarm 1.2.2
+      * Cluster-Lab 0.2.12
       device-init 0.1.7
 * utilisation du wifi interne au raspberry pi 3
 * si il est connecté en ethernet il fait borne wifi ouverte sur le web.
@@ -84,8 +84,8 @@ Liste des améliorations de GéoPoppy
 * il contiens une base de donnée et un projet démo carto pour tester les fonctionalités
 * il utilise Docker-compose qui permet d'orchestrer ses conteneur grâce à un fichier .yml situé dans /home/pirate
 * il contiens les conteneurs :
-    qgis-server 2.14.4 lizmap 3.0.1
-    postgresql 9.5 postgis 2.2
+    * qgis-server 2.14.4 lizmap 3.0.1
+    * postgresql 9.5 postgis 2.2
 * ...
 
 Amusez-vous bien. Et faites remonter les bugs...
