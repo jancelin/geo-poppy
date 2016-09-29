@@ -23,7 +23,7 @@ echo "* Connection Data Base avec PgAdminIII ou Qgis sur la même ip, port 5432,
 echo "* Construire ses projets Qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles"
 echo " "
 echo "Julien ANCELIN "
-echo "https://github.com/jancelin/geo--no-check-certificate -Poppy"
+echo "https://github.com/jancelin/geo-poppy"
 
 ###_____________________________________________________________________________
 ## Commande de sauvegarde du dossier data
