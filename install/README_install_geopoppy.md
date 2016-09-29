@@ -2,19 +2,28 @@
 
 ![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859239/41d9eaa6-053f-11e5-93d1-2056c6cff733.png)
 
-* télécharge l'os (hypriot Barbossa 1.0.0) : https://downloads.hypriot.com/hypriotos-rpi-v1.0.0.img.zip
-* dézip sur ton bureau
-* insère ta microSD dans le pc
-* repère et démonte tes partitions, copie l'OS sur la microSD :
+
+
+* prépare SD: télécharge et installe flash
 
 ```
-df-h
-umount /dev/mmcblk0p1
-umount /dev/mmcblk0p2
-sudo dd bs=1M if=/home/jancelin/Bureau/hypriotos-rpi-v0.8.0.img of=/dev/mmcblk0
+sudo apt-get install -y pv curl python-pip unzip hdparm
+sudo pip install awscli
+curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
+chmod +x flash
+sudo mv flash /usr/local/bin/flash
 ```
 
-* agrandir la partition de la microSD au max avec gparted
+* flasher la sd avec l'OS Hypriot: Raspbian + Docker (http://blog.hypriot.com/downloads/)
+
+```
+flash https://downloads.hypriot.com/hypriotos-rpi-v1.0.0.img.zip  << USERINPUT
+mmcblk0
+yes
+USERINPUT
+
+```
+
 
 ----------------------
 
