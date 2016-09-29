@@ -30,5 +30,5 @@ echo "https://github.com/jancelin/geo-poppy"
 ## tar zcvf /home/pi/geopoppy.tar /home/GeoPoppy
 
 ### Commande de restauration du dossier data
-## tar xvfz /home/pi/geopoppy.tar ---no-check-certificate -Preserve --same-owner -C /
+## tar xvfz /home/pi/geopoppy.tar ---no-check-certificate -p --same-owner -C /
 #___________________________________________________________________
