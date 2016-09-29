@@ -5,8 +5,8 @@
 
 wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/install_wifi_direct_rpi3.sh; chmod +x /home/pirate/install_wifi_direct_rpi3.sh; bash -x /home/pirate/install_wifi_direct_rpi3.sh &&
 mkdir /home/pi &&
-wget --no-check-certificate -P /home/pi https://github.com/jancelin/geo--no-check-certificate -Poppy/raw/master/install/geopoppy_sig.tar &&
-wget --no-check-certificate -P /home/pi https://github.com/jancelin/geo--no-check-certificate -Poppy/raw/master/install/geopoppy_base.tar &&
+wget --no-check-certificate -P /home/pi https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_sig.tar &&
+wget --no-check-certificate -P /home/pi https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_base.tar &&
 tar xvfz /home/pi/geopoppy_sig.tar ---no-check-certificate -Preserve --same-owner -C /  &&
 tar xvfz /home/pi/geopoppy_base.tar ---no-check-certificate -Preserve --same-owner -C /  &&
 cp /home/GeoPoppy/docker-compose.yml /home/pirate/ &&
