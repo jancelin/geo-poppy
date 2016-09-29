@@ -1,4 +1,7 @@
-lizmap:
+version: '2'
+
+services:
+  lizmap:
     image: jancelin/geopoppy:qgis-lizmap
     restart: always
     ports:
@@ -9,7 +12,7 @@ lizmap:
      - "/home/GeoPoppy/lizmap/project/tmp:/tmp"
 
 
-postgis:
+  postgis:
     image: jancelin/geopoppy:postgis
     restart: always
     ports:
