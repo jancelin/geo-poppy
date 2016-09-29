@@ -13,7 +13,7 @@ wget --no-check-certificate -P /home/pirate/ https://raw.githubusercontent.com/j
 docker-compose up -d &&
 sleep 5
 echo " "
-echo "* Redémarer le raspberry pour l'activation du wifi : sudo reboot"
+echo "* Redémarrer le raspberry pour l'activation du wifi : sudo reboot"
 echo " "
 echo "* Connectez-vous ensuite au réseau wifi GeoPoppy_Pi3"
 echo "Mot de passe: geopoppy"
