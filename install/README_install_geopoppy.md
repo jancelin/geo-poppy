@@ -24,13 +24,26 @@ USERINPUT
 
 ```
 
-
-----------------------
-
 * insère la sd dans le raspberry
 * connecte l'ethernet
 * allume.
 * connecte toi en ssh (attention l'utilisateur à changé):
+
+```
+ssh pirate@"ton ip"
+```
+
+mot de passe : hypriot
+
+* Rebooter (indispensable sinon ça marche pas)
+
+```
+sudo reboot
+```
+
+----------------------
+
+* Re-connecte toi en ssh (attention l'utilisateur à changé):
 
 ```
 ssh pirate@"ton ip"
