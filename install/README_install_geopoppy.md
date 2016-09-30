@@ -13,8 +13,8 @@ curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
 chmod +x flash
 sudo mv flash /usr/local/bin/flash
 ```
-
-* flasher la sd avec l'OS Hypriot: Raspbian + Docker (http://blog.hypriot.com/downloads/)
+* insère la sd dans le pc
+* flasher la sd avec l'OS Hypriot Blackbeard: Raspbian + Docker (http://blog.hypriot.com/downloads/)
 
 ```
 flash https://downloads.hypriot.com/hypriotos-rpi-v1.0.0.img.zip  << USERINPUT
@@ -23,11 +23,12 @@ yes
 USERINPUT
 
 ```
+> il est possible aussi de le télécharger et de remplacer le https://downloads.hypriot... par le chemin du fichier.
 
 * insère la sd dans le raspberry
 * connecte l'ethernet
 * allume.
-* connecte toi en ssh (attention l'utilisateur à changé):
+* connecte toi en ssh:
 
 ```
 ssh pirate@"ton ip"
@@ -35,7 +36,7 @@ ssh pirate@"ton ip"
 
 mot de passe : hypriot
 
-* Rebooter (indispensable sinon ça marche pas)
+* Rebooter, ça permet de redimenssionner la carte sd, et c'est indispensable sinon ça marche pas ensuite (problème session root)
 
 ```
 sudo reboot
@@ -43,7 +44,7 @@ sudo reboot
 
 ----------------------
 
-* Re-connecte toi en ssh (attention l'utilisateur à changé):
+* Re-connecte toi en ssh:
 
 ```
 ssh pirate@"ton ip"
@@ -75,7 +76,7 @@ c'est fini, un message à la fin (env 40-50 min):
 > * Connection Data Base avec PgAdminIII ou Qgis sur la même ip, port 5432, login et mot de passe: docker
 > * Construire ses projets Qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles
 
-* redemarer le raspberry.
+* redémarrer le raspberry.
 
 ```
 reboot
@@ -91,13 +92,19 @@ Si pas de service...
 docker-compose up -d
 ```
 
-Et tes conteneurs se refabriqueront automatiquement.
+Pour refabriquer les containers:
 
+```
+docker-compose kill
+docker-compose rm
+docker-compose up -d
+```
 _________________________________________________________________________________
 
 Liste des améliorations de GéoPoppy
 
-* utilisation de la dernière version d'Hypriot OS
+* utilisation de la dernière version d'Hypriot OS Blackbeard:
+     Latest Docker Engine 1.12.1 with Swarm Mode
 * utilisation du wifi interne du raspberry pi 3.
 * si connection en ethernet il fait borne wifi ouverte sur le web.
 * le hotplug eternet fonctionne.
