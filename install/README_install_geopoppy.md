@@ -23,7 +23,8 @@ yes
 USERINPUT
 
 ```
-> il est possible aussi de le télécharger et de remplacer le https://downloads.hypriot... par le chemin du fichier.
+> il est aussi possible  de le télécharger et de remplacer le https://downloads.hypriot... par le chemin du fichier : /home/...
+> lien pour plus d'info sur flash: https://github.com/hypriot/flash
 
 * insère la sd dans le raspberry
 * connecte l'ethernet
@@ -34,7 +35,7 @@ USERINPUT
 ssh pirate@"ton ip"
 ```
 
-mot de passe : hypriot
+> mot de passe : hypriot
 
 * Rebooter, ça permet de redimenssionner la carte sd, et c'est indispensable sinon ça marche pas ensuite (problème session root)
 
@@ -49,8 +50,6 @@ sudo reboot
 ```
 ssh pirate@"ton ip"
 ```
-
-mot de passe : hypriot
 
 ------------------------
 * maintenant passe en root
