@@ -64,7 +64,7 @@ sudo -s
 wget --no-check-certificate -P /home/pirate wget https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh; chmod +x /home/pirate/auto_install_geopoppy.sh; sh /home/pirate/auto_install_geopoppy.sh
 ```
 
-c'est fini, un message à la fin (env 40-50 min):
+c'est fini, un message à la fin (env 30 min):
 
 > * Redémarer le raspberry pour l'activation du wifi : sudo reboot
 > 
