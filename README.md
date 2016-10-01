@@ -1,14 +1,5 @@
 
-**Géo Poppy est expérimental, la mise en production demande donc des compétences en bricolage...**
-
-
-Tout d'abord à quoi ça sert ce truc ?
-
-> Le but est de disposer d'un serveur websig autonome et offline.
-
-Méthode rapide d'installation pour Rasberry Pi 3 
-
-***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
+![Installation sur Raspberry pi 3](https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md)
 
 ![geo-poppy](https://github.com/jancelin/geo-poppy/blob/master/docs/Project%206_1.jpg?raw=true)
 
