@@ -10,7 +10,7 @@ Méthode rapide d'installation pour Rasberry Pi 3
 
 ***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
 
-![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859283/b57c4a6c-053f-11e5-8376-d9525aa7153c.png)
+![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/12889497/6c3a926e-ce7f-11e5-8391-de6b205307e2.png)
 
 ______________________________________________________________________
 
@@ -35,23 +35,13 @@ ________________________________________________________________________________
 
 Les Matériels retenus pour faire fonctionner les services webSIG sont :
 
-* un Raspberry Pi 2 ou 3.
+* un Raspberry Pi 3 (ou 2 ou zero ).
 
 > Pourquoi ? Parce que il y a une grande communauté de bidouilleurs, et Debian et Docker fonctionnent très bien sur les puces armhf, donc on peut installer à peu près tous les logiciels présents sur un serveur Linux classique. Prix env 35€
-
-* un dongle wifi Edimax (pour le raspberry pi2). Pour communiquer avec le Raspberry en wifi : EW-7811Un
-
-> C'est petit, pas cher, ça marche bien pour du wifi direct avec peu de paramétrage côté serveur. Prix env 11 €
 
 * une carte microSDHC 16 Go classe 10 indice 3. Pour le système d'exploitation et les composants logiciels
 
 > Il y a de la place et ça va vite. Prix env 16€
-
-* batterie usb 10400 mAh. Pour alimenter l'ensemble. Fonctionne aussi avec un allume-cigare voiture, un port USB...
-
-> Prix env= 45€
-
-Un global, avec les câbles, adaptateurs pour env 110€, 62€ sans batterie.
 
 ________________________________________________________________________________
 
@@ -94,9 +84,6 @@ Méthode rapide seulement pour Rasberry Pi 3
 Installation détaillée sur:
 
 ***https://github.com/jancelin/geo-poppy/wiki***
-
-![geo-poppy-wiki](https://cloud.githubusercontent.com/assets/6421175/12889497/6c3a926e-ce7f-11e5-8391-de6b205307e2.png)
-
 
 ____________________________________________________________________________
 
