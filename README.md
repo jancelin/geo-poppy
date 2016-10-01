@@ -4,7 +4,7 @@
 
 Tout d'abord à quoi ça sert ce truc ?
 
-> Le but est de disposer d'un serveur websig sans web et sans prise de courant.
+> Le but est de disposer d'un serveur websig autonome et offline.
 
 Méthode rapide d'installation pour Rasberry Pi 3 
 
