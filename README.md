@@ -10,25 +10,7 @@ Méthode rapide d'installation pour Rasberry Pi 3
 
 ***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
 
-![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/12889497/6c3a926e-ce7f-11e5-8391-de6b205307e2.png)
-
-______________________________________________________________________
-
-Mais pour quoi faire ?
-
-> * Imaginons que nous voulons cartographier et quantifier la population de coquelicots et de bleuets sur une zone de 1200 km2.
-
-> * Que nous ne disposons pas de couverture réseau (wifi ou 3G/4G) sur cette zone.
-
-> * Que nous souhaitons utiliser la même technologie que notre serveur cartographique centralisé afin de faciliter les transferts de données et de ne former les utilisateurs/intégrateurs qu'à une même méthode de saisie.
-
-> * Que des non géomaticiens (stagiaire, technicien, main d'œuvre...) puissent être autonomes dans la saisie des données en 10 min.
-
-> * Que ce serveur carto soit autonome, petit, léger, simple d'utilisation pour être emmené dans la poche ou un sac à dos.
-
-> * Que la visualisation et l'intégration des données se fassent sur une tablette, smartphone, pc ; sans client lourd, et en wifi direct.
-
-> * Que les données soit synchronisées vers une base centrale quand le serveur dispose d'une connexion sécurisée en ethernet.
+![geo-poppy](geo-poppy/docs/Project 6_1.jpg)
 
 ___________________________________________________________________________________
 **Matériel**
