@@ -6,6 +6,10 @@ Tout d'abord à quoi ça sert ce truc ?
 
 > Le but est de disposer d'un serveur websig sans web et sans prise de courant.
 
+Méthode rapide d'installation pour Rasberry Pi 3 
+
+***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
+
 ![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859283/b57c4a6c-053f-11e5-8376-d9525aa7153c.png)
 
 ______________________________________________________________________
@@ -96,5 +100,5 @@ Installation détaillée sur:
 
 ____________________________________________________________________________
 
-Julien ANCELIN / julien.ancelin@stlaurent.lusignan.inra.fr / INRA 
+Julien ANCELIN
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
