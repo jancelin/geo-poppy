@@ -66,6 +66,8 @@
 			Reveal.initialize({
 				history: true,
 				hideAddressBar: true,
+				width: 1500,
+				height: 844,
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
