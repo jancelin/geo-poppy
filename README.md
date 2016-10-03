@@ -1,7 +1,7 @@
 
 ![Installation sur Raspberry pi 3](https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md)
 
-![geo-poppy](https://github.com/jancelin/geo-poppy/blob/master/docs/Project%206_1.jpg?raw=true)
+![geo-poppy](https://github.com/jancelin/geo-poppy/blob/master/docs/images/1.png?raw=true)
 
 ___________________________________________________________________________________
 **Matériel**
