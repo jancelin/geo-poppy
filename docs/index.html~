@@ -60,8 +60,14 @@
 					<section data-background-image="images/1.png" data-background-size="120%" data-background-position="35% 63%" >
 					</section>
 
-					<section>
-					<iframe data-src="http://blog.hypriot.com/downloads/" width="70%" height="800" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:3px solid #666; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
+					<section data-background-iframe="http://blog.hypriot.com/downloads/"> 
+					</section>
+
+					<section data-markdown="images/install.md"  
+						 data-separator="^\n\n\n"  
+						 data-separator-vertical="^\n\n"  
+						 data-separator-notes="^Note:"  
+						 data-charset="iso-8859-15">
 					</section>
 
 				</section>
