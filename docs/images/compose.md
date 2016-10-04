@@ -1,3 +1,4 @@
+```
 version: '2'
 
 services:
@@ -19,3 +20,4 @@ services:
      - "5432:5432"
     volumes:
      - "/home/GeoPoppy/postgres_data:/var/lib/postgresql"
+```
