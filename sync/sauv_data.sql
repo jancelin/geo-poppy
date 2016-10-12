@@ -28,8 +28,17 @@ BEGIN
     	RETURN NULL; -- le résultat est ignoré car il s'agit d'un trigger AFTER
 END;
 $sauv$ language plpgsql;
-
-CREATE TRIGGER sauv
-  AFTER INSERT OR DELETE OR UPDATE ON parcelle
-  FOR EACH ROW  
-  EXECUTE PROCEDURE sauv_data(); 
+----------------------------------------------------------
+SELECT
+    'CREATE TRIGGER sauv AFTER INSERT OR DELETE OR UPDATE ON ' 
+    || tbl_name.tab_name
+    || ' FOR EACH ROW EXECUTE PROCEDURE sauv_data();'AS trigger_creation_query
+FROM (
+    SELECT
+        quote_ident(table_schema) || '.' || quote_ident(table_name) as tab_name
+    FROM
+        information_schema.tables
+    WHERE
+        table_schema NOT IN ('pg_catalog', 'information_schema')
+        AND table_schema NOT LIKE 'pg_toast%'
+) AS tbl_name;
