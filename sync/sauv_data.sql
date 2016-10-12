@@ -19,7 +19,7 @@ BEGIN
         INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,TG_OP, json_build_array(OLD.*);
         RETURN OLD;
     	ELSIF (TG_OP = 'UPDATE') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,TG_OP, json_build_array(OLD.*);
+        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,TG_OP, json_build_array(NEW.*);
         RETURN NEW;
     	ELSIF (TG_OP = 'INSERT') THEN
         INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,TG_OP, json_build_array(NEW.*);
