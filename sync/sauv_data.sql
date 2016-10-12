@@ -41,6 +41,9 @@ BEGIN
 	    'CREATE TRIGGER sauv AFTER INSERT OR DELETE OR UPDATE ON ' 
 	    || tbl_name.tab_name
 	    || ' FOR EACH ROW EXECUTE PROCEDURE sauv_data();'AS trigger_creation_query
+	    --'DROP TRIGGER sauv ON ' 
+	    --|| tbl_name.tab_name
+	    --||';' AS trigger_creation_query
 	FROM (
 	    SELECT
 		quote_ident(table_schema) || '.' || quote_ident(table_name) as tab_name
@@ -49,11 +52,11 @@ BEGIN
 	    WHERE
 		table_schema NOT IN ('pg_catalog', 'information_schema')
 		AND table_schema NOT LIKE 'pg_toast%'
-		AND table_name NOT IN (SELECT viewname FROM pg_views WHERE schemaname NOT IN('information_schema', 'pg_catalog'))
+		AND table_name NOT IN (SELECT viewname FROM pg_views WHERE schemaname NOT IN('information_schema','pg_catalog'))
 		AND table_name != 'sauv_data'
 	) AS tbl_name
 	LOOP
-		EXECUTE	query;
+	  EXECUTE query;
 	END LOOP;
 END;
 $$;
