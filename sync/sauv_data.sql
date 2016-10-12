@@ -15,7 +15,6 @@ CREATE TABLE sauv_data
 
 CREATE OR REPLACE FUNCTION sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
-
 	IF (TG_OP = 'DELETE') THEN
         INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,TG_OP, json_build_array(OLD.*);
         RETURN OLD;
