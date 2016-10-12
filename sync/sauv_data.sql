@@ -1,7 +1,7 @@
-
-
+--SAVE EDITION DATA FOR REPLAY ON A REPLICATED DATABASE
+--Maintainer: Julien Ancelin
+-----------------------------------------------------
 --Create audit table to store all modifications of database
---for delete table: DROP TABLE sauv_data
 CREATE TABLE sauv_data
 (
   integrateur character varying,
@@ -11,9 +11,9 @@ CREATE TABLE sauv_data
   actio character varying,
   sauv json
 );
+--for delete table: DROP TABLE sauv_data
 ------------------------------------------------------
 -- Create function: sauv_data() to store on sauv_data table all db tables modifications
--- For delete: DROP FUNCTION sauv_data();
 CREATE OR REPLACE FUNCTION sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
 	IF (TG_OP = 'DELETE') THEN
@@ -29,6 +29,7 @@ BEGIN
     	RETURN NULL; -- le résultat est ignoré car il s'agit d'un trigger AFTER
 END;
 $sauv$ language plpgsql;
+-- For delete: DROP FUNCTION sauv_data();
 ----------------------------------------------------------
 --create trigger sauv (Function: sauv_data()) for all tables in the database, less views and table sauv_data
 DO
