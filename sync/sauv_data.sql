@@ -50,7 +50,7 @@ BEGIN
 		table_schema NOT IN ('pg_catalog', 'information_schema')
 		AND table_schema NOT LIKE 'pg_toast%'
 		AND table_name NOT IN (SELECT viewname FROM pg_views WHERE schemaname NOT IN('information_schema', 'pg_catalog'))
-		AND table_name IS NOT sauv_data
+		AND table_name != 'sauv_data'
 	) AS tbl_name
 	LOOP
 		EXECUTE	query;
