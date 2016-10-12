@@ -1,4 +1,6 @@
---audit table to store all modifications of database
+
+
+--Create audit table to store all modifications of database
 --for delete table: DROP TABLE sauv_data
 CREATE TABLE sauv_data
 (
@@ -10,7 +12,7 @@ CREATE TABLE sauv_data
   sauv json
 );
 ------------------------------------------------------
--- Function: sauv_data() store to sauv_data table all db modification
+-- Create function: sauv_data() to store on sauv_data table all db tables modifications
 -- For delete: DROP FUNCTION sauv_data();
 CREATE OR REPLACE FUNCTION sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
@@ -59,3 +61,4 @@ BEGIN
 	END LOOP;
 END;
 $$;
+--Now, when you edit a table, modifications are store in sauv_data table and you can replay on another db with replay_data.sql
