@@ -28,3 +28,8 @@ BEGIN
     	RETURN NULL; -- le résultat est ignoré car il s'agit d'un trigger AFTER
 END;
 $sauv$ language plpgsql;
+
+CREATE TRIGGER sauv
+  AFTER INSERT OR DELETE OR UPDATE ON parcelle
+  FOR EACH ROW  
+  EXECUTE PROCEDURE sauv_data(); 
