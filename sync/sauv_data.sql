@@ -1,4 +1,5 @@
 --audit table to store all modifications of database
+--for delete table: DROP TABLE sauv_data
 CREATE TABLE sauv_data
 (
   integrateur character varying,
@@ -7,12 +8,10 @@ CREATE TABLE sauv_data
   tbl character varying,
   actio character varying,
   sauv json
-)
+);
 ------------------------------------------------------
 -- Function: sauv_data() store to sauv_data table all db modification
-
--- DROP FUNCTION sauv_data();
-
+-- For delete: DROP FUNCTION sauv_data();
 CREATE OR REPLACE FUNCTION sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
 	IF (TG_OP = 'DELETE') THEN
