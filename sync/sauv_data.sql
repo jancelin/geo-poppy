@@ -8,8 +8,11 @@ CREATE TABLE sauv_data
   ts timestamp with time zone,
   schema_bd character varying,
   tbl character varying,
-  actio character varying,
-  sauv json
+  action1 character varying,
+  sauv json,
+  pk character varying,
+  action2 character varying,
+  action3 character varying
 );
 --for delete table: DROP TABLE sauv_data
 ------------------------------------------------------
@@ -17,13 +20,16 @@ CREATE TABLE sauv_data
 CREATE OR REPLACE FUNCTION sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
 	IF (TG_OP = 'DELETE') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,TG_OP, json_build_array(OLD.*);
+        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'DELETE FROM ', json_build_array(OLD.*),
+	(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME), ' WHERE ';
         RETURN OLD;
     	ELSIF (TG_OP = 'UPDATE') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,TG_OP, json_build_array(NEW.*);
+        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT INTO ', json_build_array(NEW.*),
+	(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME),' ON CONFLICT ', ' DO UPDATE ' ;
         RETURN NEW;
     	ELSIF (TG_OP = 'INSERT') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,TG_OP, json_build_array(NEW.*);
+        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT INTO ', json_build_array(NEW.*),
+	(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME);
         RETURN NEW;
     	END IF;
     	RETURN NULL; -- le résultat est ignoré car il s'agit d'un trigger AFTER
