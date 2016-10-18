@@ -7,9 +7,9 @@ Ce script vous permet de piloter quelques fonctions de base directement sur le R
 Fonctions:
 
 * Press: affiche un memo des fonctions
+* Haut: Docker-compose up (reconstruction des services BD et websig)
 * Droit: Reboot
 * Bas: Shutdown
-* Haut: Docker-compose up (reconstruction des services BD et websig)
 * Gauche: Affiche l'IP
 
 ![sensehat](https://cloud.githubusercontent.com/assets/6421175/19476680/bd946978-953a-11e6-9a9e-8cc5e0315c41.png)
