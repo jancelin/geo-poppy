@@ -45,7 +45,7 @@ sudo nano /etc/rc.local
 >Rajouter avant le exit0
 
 ```
-python /home/pirate/sensehat/command.py
+python /home/pirate/command.py
 ```
 
 * 5. Redémarrer
