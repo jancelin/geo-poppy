@@ -16,6 +16,8 @@ Les Matériels retenus pour faire fonctionner les services webSIG sont :
 
 > Il y a de la place et ça va vite. Prix env 16€
 
+* Un sense Hat: qui permet de faire quelques commandes de base sur le raspberry sans allumer une console : https://github.com/jancelin/geo-poppy/blob/master/sense-hat/command.md
+
 ________________________________________________________________________________
 
 **Programmes:**
