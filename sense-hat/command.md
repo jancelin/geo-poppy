@@ -19,4 +19,20 @@ sudo wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.c
 sudo chmod +x /home/pirate/command.py
 ```
 
-* Editer le 
+* Editer le /etc/rc.local pour lancer le command.py au démarrage
+
+```
+sudo nano /etc/rc.local
+```
+
+>Rajouter avant le exit0
+
+```
+python /home/pirate/sensehat/shutdown.py
+```
+
+*Redémarrer
+
+```.
+sudo reboot
+```
