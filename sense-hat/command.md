@@ -1,5 +1,7 @@
 **Utiliser SENSE HAT pour gérer GéoPoppy**
 
+![gp](https://cloud.githubusercontent.com/assets/6421175/19477013/7c34ac70-953c-11e6-93ea-7f4f46eae5bd.gif)
+
 Ce script vous permet de piloter quelques fonctions de base directement sur le Raspberry Pi avec le joystick du sense-hat, le résultat de la commande est affiché sur l'afficheur LED.
 
 Fonction
@@ -12,7 +14,6 @@ Fonction
 
 ![sensehat](https://cloud.githubusercontent.com/assets/6421175/19476680/bd946978-953a-11e6-9a9e-8cc5e0315c41.png)
 ![ip](https://cloud.githubusercontent.com/assets/6421175/19476929/051a0964-953c-11e6-9fdd-db5c2fad2e5b.gif)
-![gp](https://cloud.githubusercontent.com/assets/6421175/19477013/7c34ac70-953c-11e6-93ea-7f4f46eae5bd.gif)
 
 ------------------------------------------
 
