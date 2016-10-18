@@ -2,9 +2,9 @@
 
 ![gp](https://cloud.githubusercontent.com/assets/6421175/19477013/7c34ac70-953c-11e6-93ea-7f4f46eae5bd.gif)
 
-Ce script vous permet de piloter quelques fonctions de base directement sur le Raspberry Pi avec le joystick du sense-hat, le résultat de la commande est affiché sur l'afficheur LED.
+Ce script vous permet de piloter quelques fonctions de base directement sur le Raspberry Pi avec le joystick du sense-hat. Le résultat de la commande est affiché sur l'afficheur LED.
 
-Fonction
+Fonctions:
 
 * Press: affiche un memo des fonctions
 * Droit: Reboot
