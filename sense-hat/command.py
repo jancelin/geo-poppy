@@ -19,11 +19,11 @@ e = [0,0,0]     # E pour Empty  (donc eteind)
 question_mark = [
 e, b, i, b, b, b, b, e,
 e, e, b, b, b, b, e, e,
-y, y, e, b, b, e, g, g,
+y, y, e, e, e, e, g, g,
 y, e, y, e, e, g, e, g,
 y, y, y, e, e, g, e, g,
 y, e, e, e, e, e, g, g,
-y, e, r, e, e, r, e, e,
+e, e, r, e, e, r, e, e,
 e, e, e, r, r, e, e, e
 ]
 
