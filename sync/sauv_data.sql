@@ -10,9 +10,7 @@ CREATE TABLE sauv_data
   tbl character varying,
   action1 character varying,
   sauv json,
-  pk character varying,
-  action2 character varying,
-  action3 character varying
+  pk character varying
 );
 --for delete table: DROP TABLE sauv_data
 ------------------------------------------------------
@@ -20,16 +18,16 @@ CREATE TABLE sauv_data
 CREATE OR REPLACE FUNCTION sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
 	IF (TG_OP = 'DELETE') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'DELETE FROM ', json_build_array(OLD.*),
-	(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME), ' WHERE ';
+        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'DELETE',
+	json_build_array(OLD.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME);
         RETURN OLD;
     	ELSIF (TG_OP = 'UPDATE') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT INTO ', json_build_array(NEW.*),
-	(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME),' ON CONFLICT ', ' DO UPDATE ' ;
+        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'UPDATE',
+	json_build_array(NEW.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME);
         RETURN NEW;
     	ELSIF (TG_OP = 'INSERT') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT INTO ', json_build_array(NEW.*),
-	(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME);
+        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT',
+	json_build_array(NEW.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME);
         RETURN NEW;
     	END IF;
     	RETURN NULL; -- le résultat est ignoré car il s'agit d'un trigger AFTER
