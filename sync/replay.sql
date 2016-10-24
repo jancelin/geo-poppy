@@ -2,33 +2,36 @@ DO
 LANGUAGE plpgsql
 $$
 DECLARE
-replay text;
+query text;
 BEGIN
-  FOR replay IN
-
-	IF ((SELECT action1 FROM sauv_data) = 'INSERT') THEN
+FOR query IN
+  SELECT
+	CASE
+	WHEN action1 = 'INSERT' THEN
 		--insert
-		SELECT 'INSERT INTO ' || schema_bd || '.' || tbl
-		|| ' SELECT * FROM json_populate_recordset(null::' ||schema_bd || '.' || tbl || ',''' || sauv || ''')' --tableau json
-		||' ON CONFLICT ('|| pk ||') DO UPDATE set '|| pk ||'=DEFAULT;'
-		FROM sauv_data
+		'INSERT INTO ' || schema_bd || '.' || tbl
+		|| ' SELECT * FROM json_populate_recordset(null::' ||schema_bd || '.' || tbl || ',''' || sauv || ''')' --json
+		||' ON CONFLICT ('|| pk ||') DO UPDATE set '|| pk ||'=DEFAULT;' --new id pk
 
-	ELSIF ((SELECT action1 FROM sauv_data) = 'UPDATE') THEN
+		
+	WHEN action1 = 'UPDATE' THEN
 		--update
-		SELECT 'INSERT INTO ' || schema_bd || '.' || tbl
-		|| ' SELECT * FROM json_populate_recordset(null::' ||schema_bd || '.' || tbl || ',''' || sauv || ''')' --tableau json
+		'INSERT INTO ' || schema_bd || '.' || tbl
+		|| ' SELECT * FROM json_populate_recordset(null::' ||schema_bd || '.' || tbl || ',''' || sauv || ''')'--json
 		||' ON CONFLICT ('|| pk ||') DO UPDATE set '|| pk || '='
-		|| ((json_array_elements(sauv)->>pk)::TEXT::NUMERIC ) ||';'--récupère la valeur id pk
-		FROM sauv_data
-	ELSIF ((SELECT action1 FROM sauv_data) = 'DELETE') THEN
+		|| ((json_array_elements(sauv)->>pk)::TEXT::NUMERIC ) ||';'--old id pk
+
+		
+	WHEN action1 = 'DELETE' THEN
 		--delete
-		SELECT 'DELETE FROM ' || schema_bd || '.' || tbl
+		'DELETE FROM ' || schema_bd || '.' || tbl
 		||' WHERE ' || pk || '=' || 
-		((json_array_elements(sauv)->>pk)::TEXT::NUMERIC ) ||';'--récupère la valeur id pk
-		FROM sauv_data
-	END IF
+		((json_array_elements(sauv)->>pk)::TEXT::NUMERIC ) ||';'--old id pk	
+	END
+  FROM sauv_data
 	LOOP
-	  EXECUTE replay;
+	  EXECUTE query;
 	END LOOP;
 END;
 $$;
+
