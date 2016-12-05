@@ -27,6 +27,7 @@ FOR query IN
 		((json_array_elements(sauv)->>pk)::TEXT::NUMERIC ) ||';'--old id pk	
 	END
   FROM sauv_data
+  ORDER BY ts asc
 	LOOP
 	  EXECUTE query;
 	END LOOP;
