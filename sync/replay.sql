@@ -1,6 +1,6 @@
-CREATE OR REPLACE FUNCTION public.replay()
-  RETURNS trigger AS
-$BODY$
+DO
+LANGUAGE plpgsql
+$$
 DECLARE
 query text;
 BEGIN
@@ -32,9 +32,4 @@ FOR query IN
 	  EXECUTE query;
 	END LOOP;
 END;
-$BODY$
-  LANGUAGE plpgsql VOLATILE
-  COST 100;
-ALTER FUNCTION public.replay()
-  OWNER TO postgres;
-
+$$
