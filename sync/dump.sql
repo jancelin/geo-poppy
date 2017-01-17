@@ -1,3 +1,4 @@
+--db_serveur connect to one or more GeoPoppy for dumping data on his sauv_data table
 SELECT
 dblink_connect('geo','host=172.24.1.1 port=5432
  user=docker
