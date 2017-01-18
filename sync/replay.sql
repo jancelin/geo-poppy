@@ -18,11 +18,11 @@ FOR query IN
 		'INSERT INTO ' || schema_bd || '.' || tbl
 		|| ' SELECT * FROM json_populate_recordset(null::' ||schema_bd || '.' || tbl || ',''' || sauv || ''')'--json
 		||' ON CONFLICT ('|| pk ||') DO UPDATE set'||
-		'(' ||
-		'SELECT ''(''||' ||' string_agg(s.j, '','')'||'||'')'' from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
-		||') = ('||
-		'SELECT ''(EXCLUDED.''||' ||' string_agg(s.j, '',EXCLUDED.'')'||'||'')'' from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
-		||');'
+		--'(' ||
+		' ''(''||' ||' string_agg(s.j, '','')'||'||'')'' from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
+		||' = '||
+		' ''(EXCLUDED.''||' ||' string_agg(s.j, '',EXCLUDED.'')'||'||'')'' from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
+		||';'
 		--|| ((json_array_elements(sauv)->>pk)::TEXT::NUMERIC ) ||';'--old id pk	
 
 	WHEN action1 = 'DELETE' THEN
