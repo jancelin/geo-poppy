@@ -41,9 +41,9 @@ SELECT
 CASE
 WHEN action1 = 'UPDATE' THEN
 '(' ||
-(select string_agg(s.j, ',') from (select json_object_keys((select json_array_elements(sauv) from sauv_data)) j ) s)
-||')=(EXCLUDED.'||
-(select string_agg(s.j, ',EXCLUDED.') from (select json_object_keys((select json_array_elements(sauv) from sauv_data)) j ) s)
+'SELECT ''(''||' ||' string_agg(s.j, '','')'||'||'')'' from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
+||'='||
+'SELECT ''(EXCLUDED.''||' ||' string_agg(s.j, '',EXCLUDED.'')'||'||'')'' from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
 ||');'
 END
   FROM sauv_data
