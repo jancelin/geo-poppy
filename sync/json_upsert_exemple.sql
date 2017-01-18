@@ -21,6 +21,15 @@ select json_object_keys((select json_array_elements(sauv) from sauv_data)) j
 select string_agg(s.j, ' , ') from (select json_object_keys((select json_array_elements(sauv) from sauv_data)) j ) s
 -----------------------------------------------------------------------------------------------------------------------
 
+--base extract: [{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]
+select json_array_elements(sauv) from sauv_data 
+--rajoute ' avt & aps []
+select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]') 
+-- là ça marche: "cla_id , cla_transect2 , cla_gps2 , cla_moy_gps"
+select string_agg(s.j, ',') from (select json_object_keys((select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]'))) j ) s 
+--modif pour replay.sql mais faut rajouter les (), je creuse...
+'select string_agg(s.j, '','') from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
+
 --ecriture UPSERT postgresql pour integration script replay.sql
 SELECT
 CASE
