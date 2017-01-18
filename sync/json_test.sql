@@ -21,7 +21,7 @@ select json_object_keys((select json_array_elements(sauv) from sauv_data)) j
 select string_agg(s.j, ' , ') from (select json_object_keys((select json_array_elements(sauv) from sauv_data)) j ) s
 -----------------------------------------------------------------------------------------------------------------------
 
---ecriture pour integration script replay.sql
+--ecriture UPSERT postgresql pour integration script replay.sql
 SELECT
 CASE
 WHEN action1 = 'UPDATE' THEN
