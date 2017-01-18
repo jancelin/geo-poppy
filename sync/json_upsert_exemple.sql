@@ -28,9 +28,12 @@ select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":
 -- là ça marche: "cla_id , cla_transect2 , cla_gps2 , cla_moy_gps"
 select string_agg(s.j, ',') from (select json_object_keys((select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]'))) j ) s 
 --rajouter des ()
-select '('|| string_agg(s.j, ',') || ')' from (select json_object_keys((select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]'))) j ) s 
+select '('|| string_agg(s.j, ',') || ')' from (select json_object_keys((select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]'))) j ) s;
+select '(EXCLUDED.'|| string_agg(s.j, ',EXCLUDED.') || ')' from (select json_object_keys((select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]'))) j ) s 
+
 --modif pour replay.sql 
 'SELECT ''(''||' ||' string_agg(s.j, '','')'||'||'')'' from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
+'SELECT ''(EXCLUDED.''||' ||' string_agg(s.j, '',EXCLUDED.'')'||'||'')'' from (select json_object_keys((select json_array_elements('''|| sauv ||'''))) j ) s'
 
 
 --ecriture UPSERT postgresql pour integration script replay.sql
