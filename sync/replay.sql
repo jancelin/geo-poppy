@@ -23,8 +23,8 @@ FOR query IN
 		((json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC)||';'					--old id pk	
 	END
   FROM 	sauv_data s, 												--CALL the sauv_data table
-	(select e.ts, string_agg(e.json, ',') f,								--list of fields for update
-	 string_agg(e.json,',EXCLUDED.') g 									--list of fileds for update + EXCLUDED.
+	(select e.ts, string_agg(e.json, ',') f,								--list of fields for upsert 
+	 string_agg(e.json,',EXCLUDED.') g 									--list of fileds for upsert + EXCLUDED.
 	 from (select ts, json_object_keys(d.json) json								--list fields on json
 	      from 
 	      (select ts, json_array_elements(sauv) json 							--read ts & json array
