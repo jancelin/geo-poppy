@@ -12,19 +12,19 @@ SELECT x.query FROM (												--Keep only the replay query
 		'INSERT INTO '||s.schema_bd||'.'||s.tbl
 		||' SELECT * FROM json_populate_recordset(null::'||s.schema_bd ||'.'||s.tbl||','''||s.sauv||''')'--json
 		||' ON CONFLICT ('||s.pk||') DO UPDATE set '||s.pk||'=DEFAULT;'					--new id pk
-		||' UPDATE sauv_data SET replay = false WHERE ts = '''||s.ts||''';'				--check TRUE on sauv_data when replay
+		||' UPDATE sauv_data SET replay = TRUE WHERE ts = '''||s.ts||''';'				--check TRUE on sauv_data when replay
 
 	WHEN action1 = 'UPDATE' THEN 										--Writes the data update procedure
 		'INSERT INTO '||s.schema_bd||'.'||s.tbl
 		||' SELECT * FROM json_populate_recordset(null::'||schema_bd||'.'||tbl||','''||sauv||''')'	--json
 		||' ON CONFLICT ('||s.pk||') DO UPDATE set ('||f.f||') = (EXCLUDED.'||f.g||');'	 		-- list of fields
-		||' UPDATE sauv_data SET replay = false WHERE ts = '''||s.ts||''';'				--check TRUE on sauv_data when replay
+		||' UPDATE sauv_data SET replay = TRUE WHERE ts = '''||s.ts||''';'				--check TRUE on sauv_data when replay
 
 	WHEN action1 = 'DELETE' THEN 										--Writes the data delete procedure
 		'DELETE FROM '||s.schema_bd||'.'||s.tbl
 		||' WHERE '||s.pk||'='|| 
 		((json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC)||';'					--old id pk
-		||' UPDATE sauv_data SET replay = false WHERE ts = '''||s.ts||''';'				--check TRUE on sauv_data when replay
+		||' UPDATE sauv_data SET replay = TRUE WHERE ts = '''||s.ts||''';'				--check TRUE on sauv_data when replay
 	END query
 	, s.ts													--s.ts for order by timestamp
   FROM 	sauv_data  s, 												--CALL the sauv_data table
