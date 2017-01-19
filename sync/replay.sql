@@ -1,6 +1,5 @@
-DO
-LANGUAGE plpgsql
-$$
+CREATE OR REPLACE FUNCTION replay() RETURNS TABLE(query text) AS
+$BODY$
 DECLARE
 query text;
 BEGIN
@@ -41,8 +40,11 @@ SELECT x.query FROM (												--Keep only the replay query
 ) x
 	LOOP
 	  EXECUTE query;
+	  RETURN NEXT;
 	END LOOP;
 END;
-$$
-
+$BODY$
+LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;
 
