@@ -36,7 +36,7 @@ SELECT x.query FROM (												--Keep only the replay query
 	       from sauv_data) d 
 	     ) e
 	 group by e.ts) f 											--CALL list of fields
-  WHERE s.ts = f.ts AND s.replay = TRUE
+  WHERE s.ts = f.ts AND s.replay = FALSE
   ORDER BY s.ts ASC
 ) x
 	LOOP
