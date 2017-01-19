@@ -31,6 +31,7 @@ FOR query IN
 	       from sauv_data) d 
 	     ) e
 	 group by e.ts) f 											--CALL list of fields
+  WHERE s.ts = f.ts
 
 	LOOP
 	  EXECUTE query;
