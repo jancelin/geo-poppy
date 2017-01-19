@@ -31,7 +31,16 @@ select string_agg(s.j, ',') from (select json_object_keys((select json_array_ele
 select '('|| string_agg(s.j, ',') || ')' from (select json_object_keys((select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]'))) j ) s;
 select '(EXCLUDED.'|| string_agg(s.j, ',EXCLUDED.') || ')' from (select json_object_keys((select json_array_elements('[{"cla_id":5,"cla_transect2":"1-10-test","cla_gps2":null,"cla_moy_gps":null}]'))) j ) s 
 
---modif pour replay.sql 
+--créer une entrée From pour l'insérer dans le replay.sql
+select e.ts, string_agg(e.json, ',') f,								  --list of fields for update
+	 string_agg(e.json,',EXCLUDED.') g 									    --list of fileds for update + EXCLUDED.
+	 from (select ts, json_object_keys(d.json) json	--list fields on json
+	      from 
+	      (select ts, json_array_elements(sauv) json--read ts & json array
+	       from sauv_data) d 
+	     ) e
+	 group by e.ts
+
 
 
 
