@@ -1,10 +1,11 @@
-CREATE OR REPLACE FUNCTION replay() RETURNS TABLE(query text) AS
+DROP FUNCTION replay();
+CREATE OR REPLACE FUNCTION replay() RETURNS table(f1 boolean) AS
 $BODY$
 DECLARE
-query text;
+req text;
 BEGIN
-FOR query IN
-SELECT x.query FROM (												--Keep only the replay query
+FOR req IN
+SELECT x.q FROM (												--Keep only the replay req
   SELECT distinct												--for grouping
 	CASE													--Choice of action
 	WHEN action1 = 'INSERT' THEN 										--Writes the data insert procedure 
@@ -24,7 +25,7 @@ SELECT x.query FROM (												--Keep only the replay query
 		||' WHERE '||s.pk||'='|| 
 		((json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC)||';'					--old id pk
 		||' UPDATE sauv_data SET replay = TRUE WHERE ts = '''||s.ts||''';'				--check TRUE on sauv_data when replay
-	END query
+	END q
 	, s.ts													--s.ts for order by timestamp
   FROM 	sauv_data  s, 												--CALL the sauv_data table
 	(select e.ts, string_agg(e.json, ',') f,								--list of fields for upsert update
@@ -39,12 +40,12 @@ SELECT x.query FROM (												--Keep only the replay query
   ORDER BY s.ts ASC
 ) x
 	LOOP
-	  EXECUTE query;
-	  RETURN NEXT;
+	  EXECUTE req;												--looped query INSERT UPDATE DELETE
+	  raise INFO 'ACTION:  %',req;										--messages logs
+	  return next;												--number of lines
 	END LOOP;
 END;
 $BODY$
 LANGUAGE plpgsql VOLATILE
   COST 100
   ROWS 1000;
-
