@@ -40,9 +40,24 @@ select e.ts, string_agg(e.json, ',') f,								  --list of fields for update
 	       from sauv_data) d 
 	     ) e
 	 group by e.ts
-
-
-
+	 
+--test pour insertion dans repaly.sql
+SELECT distinct 												--for grouping
+	CASE	
+WHEN action1 = 'UPDATE' THEN 											--Writes the data update procedure
+		'INSERT INTO '||s.schema_bd||'.'||s.tbl
+		||' SELECT * FROM json_populate_recordset(null::'||schema_bd||'.'||tbl||','''||sauv||''')'	--json
+		||' ON CONFLICT ('||s.pk||') DO UPDATE set ('||f.f||') = (EXCLUDED.'||f.g||');'			-- list of fields	
+	END
+FROM 	sauv_data s, 												--CALL the sauv_data table
+	(select e.ts, string_agg(e.json, ',') f,								--list of fields for update
+	 string_agg(e.json,',EXCLUDED.') g 									--list of fileds for update + EXCLUDED.
+	 from (select ts, json_object_keys(d.json) json								--list fields on json
+	      from 
+	      (select ts, json_array_elements(sauv) json 							--read ts & json array
+	       from sauv_data) d 
+	     ) e
+	 group by e.ts) f 											--CALL list of fields
 
 
 --test replay sur une ligne: working
