@@ -10,7 +10,17 @@
 		WHERE replay = FALSE AND action1 = 'UPDATE' OR action1 = 'DELETE'
 		GROUP BY pk, id
 		HAVING count(pk)>1 --garde seulement les entrées en doublon
-		) egal
-	WHERE al.pk = egal.pk AND al.id = egal.id
-	ORDER BY al.id , al.ts ASC
+		) egal,
+		( --sous-select entités éditées plusieurs fois par la même personne.
+		SELECT distinct pk, (json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC id, integrateur i
+		FROM sauv_data s
+		WHERE replay = FALSE AND action1 = 'UPDATE' OR action1 = 'DELETE'
+		GROUP BY pk, id, i
+		HAVING count(integrateur)>1
+		) own
+
+	WHERE 	al.pk = egal.pk AND al.id = egal.id 
+	AND egal.id != own.id --enlève du résultat les entités modifiées par la même personne.
 	
+
+ORDER BY al.id , al.ts ASC
