@@ -1,6 +1,7 @@
+
 SELECT al.*  --selectionne les données modifiées/supprimées par 1 à n utilisateurs
 
-FROM    (--sous select : tout les pk,id,ts
+FROM    (--sous select : toute les données + pk value
 	SELECT *,(json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC id
 	FROM
 	sauv_data s 
