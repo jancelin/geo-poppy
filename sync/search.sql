@@ -1,4 +1,4 @@
-
+--Gestion des conflits du update delete d'une même entité lors d'un replay
 SELECT al.*  --selectionne les données modifiées/supprimées par 1 à n utilisateurs
 
 FROM    (--sous select : toute les données + pk value
