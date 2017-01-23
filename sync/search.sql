@@ -12,5 +12,5 @@
 		HAVING count(pk)>1 --garde seulement les entrées en doublon
 		) egal
 	WHERE al.pk = egal.pk AND al.id = egal.id
-	ORDER BY al.id ASC
+	ORDER BY al.id , al.ts ASC
 	
