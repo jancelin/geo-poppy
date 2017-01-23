@@ -1,4 +1,4 @@
-SELECT al.*  --selectionne le ts des données modifié/supprimé par plusieurs utilisateurs
+SELECT al.*  --selectionne les données modifiées/supprimées par 1 à n utilisateurs
 
 FROM    (--sous select : tout les pk,id,ts
 	SELECT *,(json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC id
