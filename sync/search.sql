@@ -1,6 +1,6 @@
 
 --------------------------------------------------------------------------------------------------------------------
--- Recherche toutes les données sans conflit à rejouer dans replay
+-- Vue de toutes les données sans conflit à rejouer dans replay
 --	filtres:
 --		* selection de la dernière entrée utilisateur si plusieurs modification  de la meme donnée.
 --		* si une donnée à été modifié par plusieurs utilisateur elle est exclue. Jouer conflict.sql pour les trouver et les résoudre.
