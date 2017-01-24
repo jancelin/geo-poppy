@@ -9,6 +9,7 @@
 -- 2.lancer search.sql pour créer le tableau.
 -- 3.Jouer replay.sql pour lancer la synchro des données
 --------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE VIEW public.search AS
 SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay
 FROM
 ( --liste toutes les données sans les multi edition utilisateur.
