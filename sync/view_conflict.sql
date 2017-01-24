@@ -6,6 +6,7 @@
 --		* Retrouve une donnée qui a été modifié par plusieurs utilisateurs
 --A utiliser avec search.sql
 --------------------------------------------------------------------------------------------------------------------
+CREATE OR REPLACE VIEW public.conflict AS
 SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay
 FROM
 ( --liste toutes les données sans les multi edition utilisateur.
