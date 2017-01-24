@@ -1,4 +1,11 @@
---recherche toutes les données sans conflit à rejouer dans replay
+
+--------------------------------------------------------------------------------------------------------------------
+--Recherche toutes les données sans conflit à rejouer dans replay
+--	filtres:
+--		* selection de la dernière entrée utilisateur si plusieurs modification  de la meme donnée.
+--		* si une donnée à été modifié par plusieurs utilisateur elle est exclue. Jouer conflict.sql pour les trouver et les résoudre.
+--
+--------------------------------------------------------------------------------------------------------------------
 SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay
 FROM
 ( --liste toutes les données sans les multi edition utilisateur.
@@ -26,7 +33,7 @@ FROM
 			)
 ) al
 WHERE al.id IN	
-(--liste les single pouvant être inséré tout de suite, si changement du "having" possibilité de trouver les doublons d'edition.
+(--liste les single id pouvant être inséré tout de suite, si changement du "having" possibilité de trouver les doublons d'edition.
 	SELECT distinct (json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC id
 		FROM sauv_data s
 		WHERE ts NOT IN (
