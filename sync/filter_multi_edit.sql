@@ -19,5 +19,5 @@ SELECT * FROM sauv_data WHERE ts NOT IN (
 				SELECT pk,(json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC id,  max(ts) ts
 				FROM sauv_data s
 				GROUP BY id,pk
-			    ) d) (-- il faudra rajouter un insert boolean exclusion dans replay!!!!!!!!!!!!!!!!!!!!!!!!)
+			    ) d) --il faudra rajouter un insert boolean exclusion dans replay!!!!!!!!!!!!!!!!!!!!!!!!
 	)
