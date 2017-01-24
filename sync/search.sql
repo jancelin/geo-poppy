@@ -5,7 +5,9 @@
 --		* selection de la dernière entrée utilisateur si plusieurs modification  de la meme donnée.
 --		* si une donnée à été modifié par plusieurs utilisateur elle est exclue. Jouer conflict.sql pour les trouver et les résoudre.
 --
--- Utiliser conflict.sql pour résoudre les doublon data utilisateur, puis lancer search.sql pour créer le tableau à rejouer (replay.sql)
+-- 1.Utiliser conflict.sql pour résoudre les doublons data utilisateur,
+-- 2.lancer search.sql pour créer le tableau.
+-- 3.Jouer replay.sql pour lancer la synchro des données
 --------------------------------------------------------------------------------------------------------------------
 SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay
 FROM
