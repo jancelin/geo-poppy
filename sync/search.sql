@@ -1,7 +1,7 @@
 --recherche toutes les données sans conflit à rejouer dans replay
 SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay
 FROM
-	( --liste toutes les données sans les multi edition utilisateur.
+( --liste toutes les données sans les multi edition utilisateur.
 		SELECT (json_array_elements(sauv)->>pk)::TEXT::NUMERIC id,* FROM sauv_data WHERE ts NOT IN (
 		--select last update 
 		SELECT ts
@@ -24,7 +24,7 @@ FROM
 					GROUP BY id,pk
 				    ) d) --il faudra rajouter un insert boolean exclusion dans replay!!!!!!!!!!!!!!!!!!!!!!!!
 			)
-	) al
+) al
 WHERE al.id IN	
 (--liste les single pouvant être inséré tout de suite, si changement du "having" possibilité de trouver les doublons d'edition.
 	SELECT distinct (json_array_elements(s.sauv)->>pk)::TEXT::NUMERIC id
@@ -56,5 +56,7 @@ WHERE al.id IN
 			AND replay = FALSE
 		GROUP BY pk, id
 		having count(pk)=1 -- =1 donne les entrées uniques & >1 donne les doublons rentrant en conflit d'edition
-);
+)
+ORDER BY ts ASC
+;
  
