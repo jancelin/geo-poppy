@@ -1,10 +1,11 @@
 
 --------------------------------------------------------------------------------------------------------------------
---Recherche toutes les données sans conflit à rejouer dans replay
+-- Recherche toutes les données sans conflit à rejouer dans replay
 --	filtres:
 --		* selection de la dernière entrée utilisateur si plusieurs modification  de la meme donnée.
 --		* si une donnée à été modifié par plusieurs utilisateur elle est exclue. Jouer conflict.sql pour les trouver et les résoudre.
 --
+-- Utiliser conflict.sql pour résoudre les doublon data utilisateur, puis lancer search.sql pour créer le tableau à rejouer (replay.sql)
 --------------------------------------------------------------------------------------------------------------------
 SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay
 FROM
