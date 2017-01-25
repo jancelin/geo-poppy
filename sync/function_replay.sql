@@ -42,7 +42,7 @@ SELECT x.q FROM (												--Keep only the replay req
 		||' UPDATE sauv_data SET replay = TRUE WHERE ts = '''||s.ts||''';'				--check TRUE on sauv_data when replay
 	END q
 	, s.ts													--s.ts for order by timestamp
-  FROM 	search  s, 												--CALL the sauv_data table
+  FROM 	search  s, 												--CALL the search view
 	(select e.ts, string_agg(e.json, ',') f,								--list of fields for upsert update
 	 string_agg(e.json,',EXCLUDED.') g 									--list of fileds for upsert update + EXCLUDED.
 	 from (select ts, json_object_keys(d.json) json								--list fields on json
