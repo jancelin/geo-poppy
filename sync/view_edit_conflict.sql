@@ -1,11 +1,12 @@
 --------------------------------------------------------------------------------------------------------------------
 --Recherche et édite les données en conflit
+-- !!!!!!Pensez à lancer la function no_replay() avant!!!!!!!!
 --	filtres:
 --		* selection de la dernière entrée utilisateur si plusieurs modification  de la meme donnée.
 --		* Retrouve une donnée qui a été modifié par plusieurs utilisateurs
 --	Edition: 
 --		*Ouvrir la table et cocher les données à supprimer dans la première colonne "supprime".
---A utiliser avec search.sql
+--
 --------------------------------------------------------------------------------------------------------------------
 --DROP VIEW IF EXISTS public.conflict;
 --CREATE OR REPLACE VIEW public.conflict AS
