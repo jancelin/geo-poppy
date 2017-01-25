@@ -1,3 +1,20 @@
+--------------------------------------
+CREATE TABLE public.sauv_data
+(
+  integrateur character varying,
+  ts timestamp with time zone,
+  schema_bd character varying,
+  tbl character varying,
+  action1 character varying,
+  sauv json,
+  pk character varying,
+  replay boolean DEFAULT false,
+  no_replay integer
+);
+----------------------------------------
+
+
+
 DROP FUNCTION replay();
 CREATE OR REPLACE FUNCTION replay() RETURNS table(f1 boolean) AS
 $BODY$
