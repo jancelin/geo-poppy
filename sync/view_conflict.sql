@@ -1,13 +1,15 @@
-
 --------------------------------------------------------------------------------------------------------------------
---Recherche toutes les données en conflit 
+--Recherche et édite les données en conflit
 --	filtres:
 --		* selection de la dernière entrée utilisateur si plusieurs modification  de la meme donnée.
 --		* Retrouve une donnée qui a été modifié par plusieurs utilisateurs
+--	Edition: 
+--		*Ouvrir la table et cocher les données à supprimer dans la première colonne "supprime".
 --A utiliser avec search.sql
 --------------------------------------------------------------------------------------------------------------------
-CREATE OR REPLACE VIEW public.conflict AS
-SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay,no_replay
+--DROP VIEW IF EXISTS public.conflict;
+--CREATE OR REPLACE VIEW public.conflict AS
+SELECT  boolean 'f' supprime ,tbl,pk,(json_array_elements(sauv)->>pk)::TEXT::NUMERIC id,integrateur,ts,schema_bd,action1,sauv,replay,no_replay
 FROM
 ( --liste toutes les données sans les multi edition utilisateur.
 		SELECT (json_array_elements(sauv)->>pk)::TEXT::NUMERIC id,* FROM sauv_data WHERE ts NOT IN (
@@ -66,7 +68,7 @@ WHERE al.id IN
 		having count(pk)>1 -- =1 donne les entrées uniques & >1 donne les doublons rentrant en conflit d'edition
 )
 AND replay = 'FALSE'
-ORDER BY ts ASC
+ORDER BY (json_array_elements(sauv)->>pk)::TEXT::NUMERIC ASC
 ;
 ---------------------------------------
 --function resolve_conflict: edite la première colonne en true pour ne pas rejouer la ligne et donc arreter le conflit.
@@ -79,13 +81,13 @@ IF (TG_OP = 'UPDATE') THEN
 UPDATE sauv_data SET
 integrateur = OLD.integrateur,
 ts = NEW.ts,
-schema_bd = OLD.ts,
-tbl = OLD.ts,
-action1 = OLD.ts,
+schema_bd = OLD.schema_bd,
+tbl = OLD.tbl,
+action1 = OLD.action1,
 sauv = OLD.sauv,
 pk = OLD.pk,
 replay = TRUE,
-no_replay = 2 
+no_replay = 2 --identifiant des conflits supprimés
 where ts = OLD.ts;
 RETURN NEW;
 
