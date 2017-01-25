@@ -65,6 +65,7 @@ WHERE al.id IN
 		GROUP BY pk, id
 		having count(pk)>1 -- =1 donne les entrées uniques & >1 donne les doublons rentrant en conflit d'edition
 )
+AND replay = 'FALSE'
 ORDER BY ts ASC
 ;
  
