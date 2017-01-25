@@ -68,4 +68,33 @@ WHERE al.id IN
 AND replay = 'FALSE'
 ORDER BY ts ASC
 ;
- 
+---------------------------------------
+--function resolve_conflict: edite la première colonne en true pour ne pas rejouer la ligne et donc arreter le conflit.
+----------------------------------------
+
+CREATE OR REPLACE FUNCTION resolve_conflict() RETURNS TRIGGER AS $$
+BEGIN
+
+IF (TG_OP = 'UPDATE') THEN
+UPDATE sauv_data SET
+integrateur = OLD.integrateur,
+ts = NEW.ts,
+schema_bd = OLD.ts,
+tbl = OLD.ts,
+action1 = OLD.ts,
+sauv = OLD.sauv,
+pk = OLD.pk,
+replay = TRUE,
+no_replay = 2 
+where ts = OLD.ts;
+RETURN NEW;
+
+END IF;
+       RETURN NEW;
+	
+	END;
+	$$ LANGUAGE plpgsql;
+	
+	CREATE TRIGGER update_conflict_sauv_data
+INSTEAD OF  UPDATE  ON conflict
+FOR EACH ROW EXECUTE PROCEDURE resolve_conflict();
