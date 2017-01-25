@@ -7,7 +7,7 @@
 --A utiliser avec search.sql
 --------------------------------------------------------------------------------------------------------------------
 CREATE OR REPLACE VIEW public.conflict AS
-SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay
+SELECT integrateur,ts,schema_bd,tbl,action1,sauv,pk,replay,no_replay
 FROM
 ( --liste toutes les données sans les multi edition utilisateur.
 		SELECT (json_array_elements(sauv)->>pk)::TEXT::NUMERIC id,* FROM sauv_data WHERE ts NOT IN (
