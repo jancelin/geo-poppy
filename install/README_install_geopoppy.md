@@ -108,7 +108,7 @@ Liste des améliorations de GéoPoppy
 * il contiens une base de donnée et un projet démo carto pour tester les fonctionalités.
 * il utilise Docker-compose qui permet d'orchestrer ses conteneur grâce à un fichier docker-compose.yml situé dans /home/pirate.
 * il contiens les conteneurs :
-    * qgis-server 2.14.7 lizmap 3.0.3
+    * qgis-server 2.14LTR lizmap 3.1rc1
     * postgresql 9.5 postgis 2.2
 * ...
 
