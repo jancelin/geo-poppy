@@ -2,7 +2,7 @@ version: '2'
 
 services:
   lizmap:
-    image: jancelin/geopoppy:qgis-lizmap
+    image: jancelin/geopoppy:qgis2.14-lizmap3.1
     restart: always
     ports:
      - "80:80"
