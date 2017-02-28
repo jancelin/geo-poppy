@@ -1,6 +1,6 @@
 version: '2'
-
 services:
+#---WEBSIG-------------------------------------
   lizmap:
     image: jancelin/geopoppy:qgis2.14-lizmap3.1
     restart: always
@@ -10,8 +10,7 @@ services:
      - "/home/GeoPoppy/lizmap/project:/home"
      - "/home/GeoPoppy/lizmap/project/var:/var/www/websig/lizmap/var"
      - "/home/GeoPoppy/lizmap/project/tmp:/tmp"
-
-
+#---Bases de données----------------------------------
   postgis:
     image: jancelin/geopoppy:postgis
     restart: always
@@ -19,3 +18,11 @@ services:
      - "5432:5432"
     volumes:
      - "/home/GeoPoppy/postgres_data:/var/lib/postgresql"
+#---Outils--------------------------------------------   
+  portainer:
+    image: portainer/portainer:linux-arm
+    restart: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
