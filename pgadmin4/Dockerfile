@@ -1,5 +1,5 @@
 FROM hypriot/rpi-alpine
-MAINTAINER julien ancelin from thaJeztah
+MAINTAINER julien ancelin from thaJeztah https://github.com/thaJeztah/pgadmin4-docker
 ENV PGADMIN_VERSION=1.3 \ 
     PYTHONDONTWRITEBYTECODE=1
 RUN apk add --no-cache py-pip python python-dev alpine-sdk postgresql-dev \ 
