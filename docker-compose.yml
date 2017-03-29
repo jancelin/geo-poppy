@@ -26,3 +26,11 @@ services:
       - "9000:9000"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
+      
+  pgadmin4:
+    image: jancelin/geopoppy:pgadmin4-beta1
+    ports:
+     - 5050:5050
+    volumes:
+     - "/home/GeoPoppy/pgadmin4/pgadmin_data:/pgadmin"   
+   
