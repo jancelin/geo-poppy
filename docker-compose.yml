@@ -32,4 +32,5 @@ services:
     ports:
      - "5050:5050"
     volumes:
+    #--ne pas oublier de créer le dossier  mkdir /home/GeoPoppy/pgadmin4/pgadmin_data
      - "/home/GeoPoppy/pgadmin4/pgadmin_data:/pgadmin"
