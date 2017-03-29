@@ -30,7 +30,6 @@ services:
   pgadmin4:
     image: jancelin/geopoppy:pgadmin4-beta1
     ports:
-     - 5050:5050
+     - "5050:5050"
     volumes:
-     - "/home/GeoPoppy/pgadmin4/pgadmin_data:/pgadmin"   
-   
+     - "/home/GeoPoppy/pgadmin4/pgadmin_data:/pgadmin"
