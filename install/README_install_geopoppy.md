@@ -4,7 +4,7 @@
 
 
 
-* prépare SD: télécharge et installe flash
+* prépare SD: installation de flash
 
 ```
 sudo apt-get install -y pv curl python-pip unzip hdparm
