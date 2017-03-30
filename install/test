@@ -5,7 +5,7 @@ wget --no-check-certificate -P /home/jancelin/Bureau/test \
 https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_sig.tar &&
 
 wget --no-check-certificate -P /home/jancelin/Bureau/test \
-https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_base.tar
+https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_base.tar &&
 
 mkdir /home/jancelin/Bureau/test/deploy &&
 tar xvfz /home/pi/geopoppy_sig.tar -p --same-owner -C /home/jancelin/Bureau/test/deploy  &&
