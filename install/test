@@ -1,1 +1,3 @@
 
+wget --no-check-certificate -P /home/jancelin/Bureau/test https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_sig.tar &&
+wget --no-check-certificate -P /home/jancelin/Bureau/test https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_base.tar
