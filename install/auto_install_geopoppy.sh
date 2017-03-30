@@ -1,5 +1,5 @@
 #!/bin/sh 
-#
+set -e
 # Commande d'installation
 ### curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh | sh
 
