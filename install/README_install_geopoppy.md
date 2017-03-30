@@ -58,7 +58,8 @@ sudo -s
 * et lance la commande :
 
 ```
-wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh; chmod +x /home/pirate/auto_install_geopoppy.sh; sh /home/pirate/auto_install_geopoppy.sh
+curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh | sh
+
 ```
 
 c'est fini, un message à la fin (env 30 min):
@@ -70,6 +71,7 @@ c'est fini, un message à la fin (env 30 min):
 > Puis tapper l'adresse 172.24.1.1 dans votre navigateur web pour accéder à la démo
 > 
 > * Connection Data Base avec PgAdminIII ou Qgis sur la même ip, port 5432, login et mot de passe: docker
+> * Connection Data Base avec PgAdmin4 interne: activer le container dans 172.24.1.1:9000 et acceder à pgadmin4 172.24.1.1:5050
 > * Construire ses projets Qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles
 
 * redémarrer le raspberry.
