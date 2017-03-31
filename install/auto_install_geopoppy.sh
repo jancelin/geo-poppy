@@ -25,11 +25,17 @@ echo "* Connection Data Base avec PgAdminIII ou Qgis sur la même ip, port 5432,
 echo "* Connection Data Base avec PgAdmin4 interne: activer le container dans 172.24.1.1:9000 et acceder à pgadmin4 172.24.1.1:5050"
 echo "* Construire ses projets Qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles"
 echo " "
+echo " en wifi direct: "
+echo " 172.24.1.1       >> lizmap "
+echo " 172.24.1.1:5432  >> postgresql "
+echo " 172.24.1.1: 9000 >> portainerio "
+echo " 172.24.1.1:5050  >> PgAdmin4 "
+echo " "
 echo "Julien ANCELIN "
 echo "https://github.com/jancelin/geo-poppy"
 
 ###_____________________________________________________________________________
-## Commande de sauvegarde du dossier data
+ ## Commande de sauvegarde du dossier data
 ## tar zcvf /home/pi/geopoppy.tar /home/GeoPoppy
 
 ### Commande de restauration du dossier data
