@@ -13,7 +13,7 @@ mkdir /home/GeoPoppy/pgadmin4 && mkdir /home/GeoPoppy/pgadmin4/pgadmin_data &&
 chown -R 1000:50 -R /home/GeoPoppy/pgadmin4 &&
 wget --no-check-certificate -P /home/pirate/ https://raw.githubusercontent.com/jancelin/geo-poppy/master/docker-compose.yml &&
 docker-compose up -d &&
-sleep 15
+sleep 300
 echo " "
 echo "* Redémarrer le raspberry pour l'activation du wifi : sudo reboot"
 echo " "
