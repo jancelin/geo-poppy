@@ -33,12 +33,6 @@ ssh pirate@"ton ip"
 
 > mot de passe : hypriot
 
-* Rebooter, ça permet de redimenssionner la carte sd, et c'est indispensable sinon ça marche pas ensuite (problème session root)
-
-```
-sudo reboot
-```
-
 ----------------------
 
 * Re-connecte toi en ssh:
