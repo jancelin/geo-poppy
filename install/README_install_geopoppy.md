@@ -86,22 +86,6 @@ docker-compose kill
 docker-compose rm
 docker-compose up -d
 ```
-_________________________________________________________________________________
-
-Liste des améliorations de GéoPoppy
-
-* utilisation de la dernière version d'Hypriot OS Blackbeard:
-     Latest Docker Engine 1.12.1 with Swarm Mode
-* utilisation du wifi interne du raspberry pi 3.
-* si connection en ethernet il fait borne wifi ouverte sur le web.
-* le hotplug eternet fonctionne.
-* il contiens l'arborescence de fichier necessaire au fonctionnement de postgresql/postgis et qgis-serveur/lizmap.
-* il contiens une base de donnée et un projet démo carto pour tester les fonctionalités.
-* il utilise Docker-compose qui permet d'orchestrer ses conteneur grâce à un fichier docker-compose.yml situé dans /home/pirate.
-* il contiens les conteneurs :
-    * qgis-server 2.14.11LTR lizmap 3.1rc1
-    * postgresql 9.5 postgis 2.2
-* ...
 
 Amusez-vous bien. Et faites remonter les bugs...
 
