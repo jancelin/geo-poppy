@@ -35,14 +35,6 @@ ssh pirate@"ton ip"
 
 ----------------------
 
-* Re-connecte toi en ssh:
-
-```
-ssh pirate@"ton ip"
-```
-
-------------------------
-
 * install:
 
 ```
