@@ -54,6 +54,8 @@ curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/a
 >> en mode adresse courte:
 
 ```
+sudo -s
+
 curl -fsSL https://git.io/vScQo | sh
 ```
 
