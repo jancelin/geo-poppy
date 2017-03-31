@@ -17,11 +17,7 @@ sudo mv flash /usr/local/bin/flash
 * flasher la sd avec l'OS Hypriot Blackbeard: Raspbian + Docker (http://blog.hypriot.com/downloads/)
 
 ```
-flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypriotos-rpi-v1.4.0.img.zip  << USERINPUT
-mmcblk0
-yes
-USERINPUT
-
+flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypriotos-rpi-v1.4.0.img.zip
 ```
 > il est aussi possible  de le télécharger et de remplacer le https://downloads.hypriot... par le chemin du fichier : /home/...
 > lien pour plus d'info sur flash: https://github.com/hypriot/flash
