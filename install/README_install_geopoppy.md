@@ -48,22 +48,17 @@ ssh pirate@"ton ip"
 ```
 
 ------------------------
-* maintenant passe en root
+
+* install (password: hypriot):
 
 ```
-sudo -s
-```
-
-* et lance la commande :
-
-```
-curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh | sh
+sudo curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh | sh
 
 ```
 >> en mode adresse courte:
 
 ```
-curl -fsSL https://git.io/vScQo  | sh
+sudo curl -fsSL https://git.io/vScQo | sh
 ```
 
 * c'est fini, un message à la fin (env 30 min):
