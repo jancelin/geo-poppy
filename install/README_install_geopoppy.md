@@ -49,7 +49,7 @@ ssh pirate@"ton ip"
 
 ------------------------
 
-* install (password: hypriot):
+* install:
 
 ```
 sudo curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh | sh
