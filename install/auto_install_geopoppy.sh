@@ -9,7 +9,7 @@ wget --no-check-certificate -P /home/pi https://github.com/jancelin/geo-poppy/ra
 wget --no-check-certificate -P /home/pi https://github.com/jancelin/geo-poppy/raw/master/install/geopoppy_base.tar &&
 tar xvfz /home/pi/geopoppy_sig.tar -p --same-owner -C /  &&
 tar xvfz /home/pi/geopoppy_base.tar -p --same-owner -C /  &&
-mkdir /home/GeoPoppy/pgadmin4/pgadmin_data &&
+mkdir /home/GeoPoppy/pgadmin4 &&
 wget --no-check-certificate -P /home/pirate/ https://raw.githubusercontent.com/jancelin/geo-poppy/master/docker-compose.yml &&
 docker-compose up -d &&
 sleep 5
