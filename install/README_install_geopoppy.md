@@ -60,8 +60,13 @@ sudo -s
 curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy.sh | sh
 
 ```
+>> en mode adresse courte:
 
-c'est fini, un message à la fin (env 30 min):
+```
+curl -fsSL https://git.io/vScQo  | sh
+```
+
+* c'est fini, un message à la fin (env 30 min):
 
 > * Redémarer le raspberry pour l'activation du wifi : sudo reboot
 > 
