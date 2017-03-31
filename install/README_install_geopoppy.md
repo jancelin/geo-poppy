@@ -66,26 +66,9 @@ curl -fsSL https://git.io/vScQo | sh
 * redémarrer le raspberry.
 
 ```
-reboot
+sudo reboot
 ```
 ________________________________________________________________________________
-
-Si pas de service...
-
-* connecte toi en ssh
-* lance un :
-
-```
-docker-compose up -d
-```
-
-Pour refabriquer les containers:
-
-```
-docker-compose kill
-docker-compose rm
-docker-compose up -d
-```
 
 Amusez-vous bien. Et faites remonter les bugs...
 
