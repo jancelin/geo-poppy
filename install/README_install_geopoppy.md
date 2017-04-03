@@ -51,7 +51,7 @@ sudo -s
 curl -fsSL https://git.io/vScQo | sh
 ```
 
-* c'est presque fini, un message à la fin (env 30 min):
+* c'est presque fini, un message à la fin (env 15 min):
 
 > * Redémarer le raspberry pour l'activation du wifi : sudo reboot
 > 
