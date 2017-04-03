@@ -35,7 +35,7 @@ ssh pirate@"ton ip"
 
 ----------------------
 
-* install:
+* install GeoPoppy:
 
 ```
 sudo -s
