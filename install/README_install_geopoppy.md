@@ -51,7 +51,7 @@ sudo -s
 curl -fsSL https://git.io/vScQo | sh
 ```
 
-* c'est fini, un message à la fin (env 30 min):
+* c'est presque fini, un message à la fin (env 30 min):
 
 > * Redémarer le raspberry pour l'activation du wifi : sudo reboot
 > 
@@ -63,8 +63,7 @@ curl -fsSL https://git.io/vScQo | sh
 > * Connection Data Base avec PgAdmin4 interne: activer le container dans 172.24.1.1:9000 et acceder à pgadmin4 172.24.1.1:5050
 > * Construire ses projets Qgis dans le répertoire /home/GeoPoppy/lizmap/project pour les rendre accessibles
 
-* redémarrer le raspberry.
-
+* enfin redémarrer le raspberry pour activer le wifi direct
 ```
 sudo reboot
 ```
