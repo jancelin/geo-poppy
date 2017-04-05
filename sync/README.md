@@ -20,7 +20,7 @@ Il garde la modifications et les métadonnées sur cette modification :
 - il renseigne un attribut no_replay :   
 	- reste à 1 si c'est des mises à jours intervenants sur un objet édité plusieurs fois par le même utilisateur sur la même base terrain. On ne veut traiter que les dernières mises à jour d'un utilisateur.
     - passe à NULL si c'est une mise à jour (la dernière) qui doit être intégrée.
-	- passe à 2 quand il y a un conflit, c'est à dire update multi-utilisateur sur le même objet (repéré par le triplet <schema_bd, tbl, pk>.
+	- passe à 2 quand il y a un conflit, c'est à dire update multi-utilisateur sur le même objet (repéré par le triplet <schema_bd, tbl, pk>).
 
 ## En pratique
 
@@ -31,7 +31,7 @@ Initialiser l'environnement : créer la table sauv_data, les triggers et les vue
     - **sync.replay** contient les lignes qui seront finalement intégrées dans la base de données serveur
     - **sync.no_replay** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par le même utilisateur (contrôle sur integrateur).
     - **sync.conflict** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par différents utilisateurs (contrôle sur integrateur) et qui présentent donc un conflit. La vue conflit peut être éditée par l'utilisateur pour résoudre les conflits en passant supprime_data à une valeur true pour toutes les valeurs qu'on ne souhaite pas garder pour la fusion. 
-3. Exécuter les function sync.no_replay() et sync.replay() 
+3. Exécuter les function sync.no_replay() et sync.replay() pour rejouer les données
 
 En production sur votre serveur : 
 
@@ -88,7 +88,7 @@ select sync.replay();
 
 
 
-##Licence
+## Licence
 
 Logiciel diffusé sous licence open-source AGPL
 
