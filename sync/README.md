@@ -33,7 +33,7 @@ Initialiser l'environnement : créer la table sauv_data, les triggers et les vue
     - **sync.conflict** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par différents utilisateurs (contrôle sur integrateur) et qui présentent donc un conflit. La vue conflit peut être éditée par l'utilisateur pour résoudre les conflits en passant supprime_data à une valeur true pour toutes les valeurs qu'on ne souhaite pas garder pour la fusion. 
 3. Exécuter les function sync.no_replay() et sync.replay() pour rejouer les données
 
-En production sur votre serveur : 
+## En production sur votre serveur : 
 
 1. Supprimer les entrées de la table sauv_data (plus tard, ce sera fait automatiquement)
 ``` 
