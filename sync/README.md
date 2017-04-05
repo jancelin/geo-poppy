@@ -35,12 +35,7 @@ Initialiser l'environnement : créer la table sauv_data, les triggers et les vue
 
 ## En production sur votre serveur : 
 
-1. Supprimer les entrées de la table sauv_data (plus tard, ce sera fait automatiquement)
-``` 
-delete from sync.sauv_data;
-```
-
-2. Récupérer les mises à jour des bases terrain par un lien (db_link) vers ces bases de données : elles sont copiées dans sauv_data.
+1. Récupérer les mises à jour des bases terrain par un lien (db_link) vers ces bases de données : elles sont copiées dans sauv_data.
 Exemple pour deux bases terrain 'terrain1' et 'terrain2' ayant chacune un utilisateur différent 'user1' et 'user2'
 ``` 
 -- Première BDD terrain1
@@ -75,13 +70,14 @@ SELECT dblink_disconnect('linkterrain2');
 
 ```
 
-
-3. Jouer no_replay() 
+2. Jouer no_replay() 
 ``` 
 select sync.no_replay();
 ```
-4. Vérifier et résoudre à la main les conflits : ouvrir la vue conflict et modifier supprime_data à true pour les valeurs à ne pas garder 
-5. Jouer replay()
+
+3. Vérifier et résoudre à la main les conflits : ouvrir la vue conflict et modifier supprime_data à true pour les valeurs à ne pas garder.
+
+4. Jouer replay()
 ``` 
 select sync.replay();
 ```
