@@ -8,18 +8,18 @@ Il ne s'agit pas de réplication de données comme fait SLONY (http://www.slony.
 Sync historise dans le schema **sync** dans une table **sync.sauv_data** via un trigger toutes les modifications faites sur les bases terrain. 
 
 Il garde la modifications et les métadonnées sur cette modification : 
-le nom qui identifie la base du terrain qui sera un traceur de la base de données de provenance : **integrateur**
-le timestamp avec time zone : **ts**
+- le nom qui identifie la base du terrain qui sera un traceur de la base de données de provenance : **integrateur**
+- le timestamp avec time zone : **ts**
 - le nom du schema surveillé : **schema_bd**
 - le nom de la table : **tbl**
 - l'action (update, delete, insert) : **ACTION1**
 - nom de la PK sur la table modifiée: **pk**
 - il encapsule le tuple qui a été modifié en json : **sauv**
 - il renseigne un attribut **replay** : FALSE avant analyse des éventuels conflits, TRUE ensuite
-- il renseigne un attribut **no_replay** :   
-    -- passe à NULL si c'est une mise à jour (la dernière) qui doit être intégrée.
-    -- passe à 1 si c'est des mises à jours intervenants sur un objet édité plusieurs fois par le même utilisateur sur la même base terrain. On ne veut traiter que les dernières mises à jour d'un utilisateur.
-    -- passe à 2 quand il y a un conflit, c'est à dire une mise à jour par plusieurs utilisateurs sur le même objet (repéré par le triplet <schema_bd, tbl, pk>).
+- il renseigne un attribut **no_replay** :
+    - passe à NULL si c'est une mise à jour (la dernière) qui doit être intégrée.
+    - passe à 1 si c'est des mises à jours intervenants sur un objet édité plusieurs fois par le même utilisateur sur la même base terrain. On ne veut traiter que les dernières mises à jour d'un utilisateur.
+    - passe à 2 quand il y a un conflit, c'est à dire une mise à jour par plusieurs utilisateurs sur le même objet (repéré par le triplet <schema_bd, tbl, pk>).
 - il renseigne un attribut mis à jour lors de l'édition manuelle des conflits : **supprime_data** qui vaut TRUE si c'est une donnée qu'on ne souhaite pas garder à la fusion, FALSE sinon
 
 
