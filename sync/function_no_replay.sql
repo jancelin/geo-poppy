@@ -1,6 +1,6 @@
 
 --------------------------------------------------------------
---Fonction d'exclusion des données multi edité par l'intégrateur durant une meme session d'edition
+--Fonction d'exclusion des données multi editées par l'intégrateur durant une meme session d'edition
 --La vue no_replay doit être créée avant.
 --
 --------------------------------------------------------------
