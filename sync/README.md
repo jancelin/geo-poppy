@@ -2,36 +2,36 @@
 
 Sync est un module développé en SQL au dessus de Postgres 9.5 minimum pour faciliter la synchronisation de bases de données terrains (multiples) avec une base serveur. Les bases de données partagent le même schéma. 
 Il ne s'agit pas de réplication de données comme fait SLONY (http://www.slony.info/), mais de fusion de données multi-sources (ici les bases de données terrain). 
-Chaque utilisateur doit se connecter avec un login différent suivant la base terrain : par exemple, toto utilise l'utilisateur 'user1' lorsqu'il utilise la base de données 'terrain1', et l'utilisateur 'user2' lorsqu'il utilise la base de données 'terrain2'.
 
 ## Comment ça marche
 
 Sync historise dans le schema **sync** dans une table **sync.sauv_data** via un trigger toutes les modifications faites sur les bases terrain. 
 
 Il garde la modifications et les métadonnées sur cette modification : 
-- le login utilisateur (integrateur) qui sera un traceur de l'utilisateur postgresql *et* de la machine lors du dblink
-- le timestamp (ts) avec time zone
-- le nom du schema (schema_bd)
-- le nom de la table (tbl)
-- l'action (update, delete, insert) : ACTION1
-- nom de la PK sur la table modifiée: pk
-- il encapsule le tuple qui a été modifié en json : sauv
-- il renseigne un attribut replay : FALSE avant analyse des éventuels conflits, TRUE ensuite
-- il renseigne un attribut no_replay :   
-	- reste à 1 si c'est des mises à jours intervenants sur un objet édité plusieurs fois par le même utilisateur sur la même base terrain. On ne veut traiter que les dernières mises à jour d'un utilisateur.
-    - passe à NULL si c'est une mise à jour (la dernière) qui doit être intégrée.
-	- passe à 2 quand il y a un conflit, c'est à dire update multi-utilisateur sur le même objet (repéré par le triplet <schema_bd, tbl, pk>).
+le nom qui identifie la base du terrain qui sera un traceur de la base de données de provenance : **integrateur**
+le timestamp avec time zone : **ts**
+- le nom du schema surveillé : **schema_bd**
+- le nom de la table : **tbl**
+- l'action (update, delete, insert) : **ACTION1**
+- nom de la PK sur la table modifiée: **pk**
+- il encapsule le tuple qui a été modifié en json : **sauv**
+- il renseigne un attribut **replay** : FALSE avant analyse des éventuels conflits, TRUE ensuite
+- il renseigne un attribut **no_replay** :   
+    -- passe à NULL si c'est une mise à jour (la dernière) qui doit être intégrée.
+    -- passe à 1 si c'est des mises à jours intervenants sur un objet édité plusieurs fois par le même utilisateur sur la même base terrain. On ne veut traiter que les dernières mises à jour d'un utilisateur.
+    -- passe à 2 quand il y a un conflit, c'est à dire une mise à jour par plusieurs utilisateurs sur le même objet (repéré par le triplet <schema_bd, tbl, pk>).
+- il renseigne un attribut mis à jour lors de l'édition manuelle des conflits : **supprime_data** qui vaut TRUE si c'est une donnée qu'on ne souhaite pas garder à la fusion, FALSE sinon
+
 
 ## En pratique
 
-Initialiser l'environnement : créer la table sauv_data, les triggers et les vues afférentes. 
+Initialiser l'environnement : créer la table **sauv_data**, les triggers et les vues afférentes. 
 
-1. Exécuter function_sauv_data.sql sur votre base de données terrain
-2. Exécuter  sync_server.sql qui créent 3 vues et 3 fonctions :  
+1. Exécuter **function_sauv_data.sql** sur votre base de données terrain
+2. Exécuter  **sync_server.sql** qui crée 3 vues et 3 fonctions :  
     - **sync.replay** contient les lignes qui seront finalement intégrées dans la base de données serveur
     - **sync.no_replay** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par le même utilisateur (contrôle sur integrateur).
     - **sync.conflict** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par différents utilisateurs (contrôle sur integrateur) et qui présentent donc un conflit. La vue conflit peut être éditée par l'utilisateur pour résoudre les conflits en passant supprime_data à une valeur true pour toutes les valeurs qu'on ne souhaite pas garder pour la fusion. 
-3. Exécuter les function sync.no_replay() et sync.replay() pour rejouer les données
 
 ## En production sur votre serveur : 
 
