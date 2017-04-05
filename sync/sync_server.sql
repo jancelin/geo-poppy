@@ -97,7 +97,7 @@ Edition:
 */
 
 CREATE OR REPLACE VIEW sync.conflict AS
-SELECT  boolean 'f',tbl,pk,(json_array_elements(sauv)->>pk)::TEXT::NUMERIC id,integrateur,ts,schema_bd,action1,sauv,replay,no_replay
+SELECT  boolean 'f' supprime_data,tbl,pk,(json_array_elements(sauv)->>pk)::TEXT::NUMERIC id,integrateur,ts,schema_bd,action1,sauv,replay,no_replay
 FROM ( --liste toutes les données sans les multi edition utilisateur.
 	SELECT (json_array_elements(sauv)->>pk)::TEXT::NUMERIC id,* 
 	FROM sync.sauv_data
