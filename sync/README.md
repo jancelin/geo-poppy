@@ -29,8 +29,8 @@ Initialiser l'environnement : créer la table sauv_data, les triggers et les vue
 1. Exécuter function_sauv_data.sql sur votre base de données terrain
 2. Exécuter  view_search.sql, view_no_replay.sql, view_edit_conflict.sql qui créent 3 vues :  
     - **search** contient les lignes qui seront finalement intégrées dans la base de données serveur
-    - **no_replay** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par le même utilisateur (contrôle sur <integrateur>).
-    - **conflict** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par différents utilisateurs (contrôle sur <integrateur>) et qui présentent donc un conflit. La vue conflit peut être éditée par l'utilisateur pour résoudre les conflits en passant no_replay à une valeur quelconque (sauf != null) pour toutes les valeurs qu'on ne souhaite pas garder pour la fusion. 
+    - **no_replay** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par le même utilisateur (contrôle sur integrateur).
+    - **conflict** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par différents utilisateurs (contrôle sur integrateur) et qui présentent donc un conflit. La vue conflit peut être éditée par l'utilisateur pour résoudre les conflits en passant no_replay à une valeur quelconque (sauf != null) pour toutes les valeurs qu'on ne souhaite pas garder pour la fusion. 
 3. Exécuter les function_replay.sql et function_no_replay.sql
 
 ![warning](./warning30x30.png) pour l'instant, tout est dans le schéma **public** : on pense aussi à mettre dans le schéma **history**! 
@@ -85,7 +85,7 @@ select no_replay();
 4. Vérifier et résoudre à la main les conflits : ouvrir la vue conflict et modifier no_replay à 2 par exemple pour les valeurs à ne pas garder (![warning](./warning30x30.png)  c'est bien cela ?)
 5. Jouer replay()
 ``` 
-select no_replay();
+select replay();
 ```
 
 

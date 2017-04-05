@@ -4,7 +4,7 @@
 --La vue no_replay doit être créée avant.
 --
 --------------------------------------------------------------
-DROP FUNCTION no_replay();
+DROP FUNCTION IF EXISTS no_replay();
 CREATE OR REPLACE FUNCTION no_replay() RETURNS table(f1 boolean) AS
 $BODY$
 DECLARE

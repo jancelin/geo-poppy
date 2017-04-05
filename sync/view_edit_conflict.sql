@@ -9,7 +9,7 @@
 --
 --------------------------------------------------------------------------------------------------------------------
 --DROP VIEW IF EXISTS public.conflict;
---CREATE OR REPLACE VIEW public.conflict AS
+CREATE OR REPLACE VIEW public.conflict AS
 SELECT  boolean 'f' supprime ,tbl,pk,(json_array_elements(sauv)->>pk)::TEXT::NUMERIC id,integrateur,ts,schema_bd,action1,sauv,replay,no_replay
 FROM
 ( --liste toutes les données sans les multi edition utilisateur.

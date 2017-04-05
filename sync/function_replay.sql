@@ -12,8 +12,8 @@ CREATE TABLE public.sauv_data
   no_replay integer
 );
 ----------------------------------------
---créer les vues serch et conflict avent de créer la fonction
-DROP FUNCTION replay();
+--créer les vues search et conflict avent de créer la fonction
+DROP FUNCTION IF EXISTS replay();
 CREATE OR REPLACE FUNCTION replay() RETURNS table(f1 boolean) AS
 $BODY$
 DECLARE
