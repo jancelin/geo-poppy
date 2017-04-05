@@ -6,10 +6,10 @@ Chaque utilisateur doit se connecter avec un login différent suivant la base te
 
 ## Comment ça marche
 
-Sync historise dans une table **sauv_data** via un trigger toutes les modifications faites sur les bases terrain. 
+Sync historise dans le schema **sync** dans une table **sync.sauv_data** via un trigger toutes les modifications faites sur les bases terrain. 
 
 Il garde la modifications et les métadonnées sur cette modification : 
-- le login utilisateur (integrateur) qui sera un traceur *et* de la machine *et* de l'utilisateur postgresql (![warning](./warning30x30.png) ce qui peut être source de bugs)
+- le login utilisateur (integrateur) qui sera un traceur de l'utilisateur postgresql *et* de la machine lors du dblink
 - le timestamp (ts) avec time zone
 - le nom du schema (schema_bd)
 - le nom de la table (tbl)
@@ -37,7 +37,7 @@ En production sur votre serveur :
 
 1. Supprimer les entrées de la table sauv_data (plus tard, ce sera fait automatiquement)
 ``` 
-delete from sauv_data;
+delete from sync.sauv_data;
 ```
 
 2. Récupérer les mises à jour des bases terrain par un lien (db_link) vers ces bases de données : elles sont copiées dans sauv_data.
@@ -52,7 +52,7 @@ dblink_connect('linkterrain1','host=127.0.0.1 port=5432
 -- "OK"
 
 INSERT INTO sauv_data 
-SELECT * from dblink('linkterrain1', 'select * from sauv_data;') as t(integrateur text, ts timestamp with time zone, schema_bd text, tbl text, action1 text, sauv json, pk text);
+SELECT * from dblink('linkterrain1', 'select ''linkterrain1'', ts, schema_bd, tbl, action1, sauv, pk from sauv_data;') as t( integrateur text, ts timestamp with time zone, schema_bd text, tbl text, action1 text, sauv json, pk text);
 -- Query returned successfully: one row affected, 11 msec execution time.
 
 SELECT dblink_disconnect('linkterrain1');
@@ -68,7 +68,7 @@ dblink_connect('linkterrain2','host=127.0.0.1 port=5432
 -- "OK"
 
 INSERT INTO sauv_data 
-SELECT * from dblink('linkterrain2', 'select * from sauv_data;') as t(integrateur text, ts timestamp with time zone, schema_bd text, tbl text, action1 text, sauv json, pk text);
+SELECT * from dblink('linkterrain2', 'select ''linkterrain2'', ts, schema_bd, tbl, action1, sauv, pk from sauv_data;') as t( integrateur text, ts timestamp with time zone, schema_bd text, tbl text, action1 text, sauv json, pk text);
 -- Query returned successfully: one row affected, 11 msec execution time.
 
 SELECT dblink_disconnect('linkterrain2');
@@ -78,12 +78,12 @@ SELECT dblink_disconnect('linkterrain2');
 
 3. Jouer no_replay() 
 ``` 
-select no_replay();
+select sync.no_replay();
 ```
-4. Vérifier et résoudre à la main les conflits : ouvrir la vue conflict et modifier no_replay à 2 par exemple pour les valeurs à ne pas garder (![warning](./warning30x30.png)  c'est bien cela ?)
+4. Vérifier et résoudre à la main les conflits : ouvrir la vue conflict et modifier supprime_data à true pour les valeurs à ne pas garder 
 5. Jouer replay()
 ``` 
-select replay();
+select sync.replay();
 ```
 
 
