@@ -67,5 +67,5 @@ ____________________________________________________________________________
 Julien ANCELIN / UE INRA de Saint Laurent de la Prée
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
 
-INRA ![INRA](https://github.com/jancelin/geo-poppy/blob/master/docs/images/INRA_logo_small.jpg)
+ ![INRA](https://github.com/jancelin/geo-poppy/blob/master/docs/images/INRA_logo_small.jpg)
 
