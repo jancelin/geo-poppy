@@ -4,8 +4,13 @@
 
 
 
-* prépare SD: installation de flash
+* préparer la SD sous Linux
 
+> Formater sa micro SD en EXT4
+
+> Extraire La SD
+
+* Installation de flash sur le PC (ou utiliser un autre système de flashage de SD)
 ```
 sudo apt-get install -y pv curl python-pip unzip hdparm
 sudo pip install awscli
@@ -13,7 +18,7 @@ curl -O https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash
 chmod +x flash
 sudo mv flash /usr/local/bin/flash
 ```
-* insère la sd dans le pc
+* ré-insèrer la micro SD dans le pc
 * flasher la sd avec l'OS Hypriot: Raspbian + Docker (http://blog.hypriot.com/downloads/)
 
 ```
