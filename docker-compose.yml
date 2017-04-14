@@ -6,6 +6,7 @@ services:
     restart: always
     ports:
      - "80:80"
+     - "443:443"
     volumes:
      - "/home/GeoPoppy/lizmap/project:/home"
      - "/home/GeoPoppy/lizmap/project/var:/var/www/websig/lizmap/var"
