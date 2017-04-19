@@ -1,0 +1,21 @@
+version: '2'
+services:
+     
+  postgiscollec:
+    image: jancelin/geopoppy:postgis
+    restart: always
+#    ports:
+#     - "5433:5432"
+    expose:
+      - 5432
+    volumes:
+     - "/home/pirate/collec/postgres_data_collec:/var/lib/postgresql"
+       
+  collec:
+    image: jancelin/geopoppy:collec-0.1
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - postgiscollec:postgiscollec
