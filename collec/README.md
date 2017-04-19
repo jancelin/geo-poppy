@@ -1,7 +1,5 @@
 FROM Irstea/collec pour une utilisation sur le terrain en mode déconnecté avec GéoPoppy
 
-Projet Expérimental !!!!
-
 **https://github.com/Irstea/collec**
 
 COLLEC
