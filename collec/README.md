@@ -1,4 +1,6 @@
-FROM **https://github.com/Irstea/collec**
+FROM Irstea/collec
+
+**https://github.com/Irstea/collec**
 
 COLLEC
 ============
