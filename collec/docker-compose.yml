@@ -23,3 +23,7 @@ services:
       - 443:443
     links:
       - postgiscollec:postgiscollec
+      
+# Collec est accessible à cette adresse: https://mon_ip/collec-master
+# Login: admin
+# Password: Password
