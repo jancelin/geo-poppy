@@ -9,7 +9,10 @@ services:
     expose:
       - 5432
     volumes:
-    # ne pas oublier de créer le répertoire postgres_data_collec avant !!!!!!
+#          Pensez a installer le dossier des data avant !!!!
+#          wget --no-check-certificate -P /home/pirate https://github.com/jancelin/geo-poppy/blob/master/collec/postgres_data_collec.tar
+#          tar xvfz /home/pi/postgres_data_collec.tar ---no-check-certificate -p --same-owner -C /
+#
      - "/home/pirate/collec/postgres_data_collec:/var/lib/postgresql"
        
   collec:
