@@ -6,6 +6,7 @@ create database osm
 create cache for lizmap:
 
 ```
+docker exec -it pirate_lizmap_1 bash
 cd /var/www/websig/
 php lizmap/scripts/script.php lizmap~wmts:capabilities  geopoppy osm1
 php lizmap/scripts/script.php lizmap~wmts:seeding -v -f  geopoppy osm1 osm EPSG:3857 0 17
