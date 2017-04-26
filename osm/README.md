@@ -1,3 +1,8 @@
+create database osm
+
+**https://imposm.org/docs/imposm/latest/tutorial.html#create-database**
+
+
 create cache for lizmap:
 
 ```
