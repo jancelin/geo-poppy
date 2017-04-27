@@ -34,6 +34,8 @@ flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypr
 
 ```
 ssh pirate@"ton ip"
+ou
+ssh pirate@lack-pearl.local
 ```
 
 > mot de passe : hypriot
