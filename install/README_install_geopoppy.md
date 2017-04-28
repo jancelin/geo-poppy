@@ -26,6 +26,7 @@ flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypr
 ```
 > il est aussi possible  de le télécharger et de remplacer le https://downloads.hypriot... par le chemin du fichier : /home/...
 > lien pour plus d'info sur flash: https://github.com/hypriot/flash
+> Sous Windows, télécharger l'image Hypriot et flasher la SD avec win32DiskImager 
 
 * insère la sd dans le raspberry
 * connecte l'ethernet
@@ -33,9 +34,12 @@ flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypr
 * connecte toi en ssh:
 
 ```
-ssh pirate@"ton ip"
-ou
 ssh pirate@black-pearl.local
+```
+ou 
+
+```
+ssh pirate@"ton ip"
 ```
 
 > mot de passe : hypriot
