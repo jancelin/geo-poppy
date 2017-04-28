@@ -25,7 +25,9 @@ sudo mv flash /usr/local/bin/flash
 flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypriotos-rpi-v1.4.0.img.zip
 ```
 > il est aussi possible  de le télécharger et de remplacer le https://downloads.hypriot... par le chemin du fichier : /home/...
+
 > lien pour plus d'info sur flash: https://github.com/hypriot/flash
+
 > Sous Windows, télécharger l'image Hypriot et flasher la SD avec win32DiskImager 
 
 * insère la sd dans le raspberry
