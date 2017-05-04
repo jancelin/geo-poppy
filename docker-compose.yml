@@ -2,15 +2,25 @@ version: '2'
 services:
 #---WEBSIG-------------------------------------
   lizmap:
-    image: jancelin/geopoppy:qgis2.14-lizmap3.1
+    image: jancelin/geopoppy:lizmap-3.1.1
     restart: always
     ports:
-     - "80:80"
-     - "443:443"
+     - 80:80
+     - 443:443
     volumes:
-     - "/home/GeoPoppy/lizmap/project:/home"
-     - "/home/GeoPoppy/lizmap/project/var:/var/www/websig/lizmap/var"
-     - "/home/GeoPoppy/lizmap/project/tmp:/tmp"
+     - /home/GeoPoppy/lizmap/project:/home
+     - /home/GeoPoppy/lizmap/project/var:/var/www/websig/lizmap/var
+     - /home/GeoPoppy/lizmap/project/tmp:/tmp
+    links:
+     - qgiserver:qgiserver
+
+  qgiserver:
+    image: jancelin/geopoppy:qgis-server2.14LTR-0.1
+    restart: always
+    volumes:
+      - /home/GeoPoppy/lizmap/project:/home
+    expose:
+      - 80
 #---Bases de données----------------------------------
   postgis:
     image: jancelin/geopoppy:postgis
