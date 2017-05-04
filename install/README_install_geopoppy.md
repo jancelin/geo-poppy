@@ -80,6 +80,13 @@ curl -fsSL https://git.io/vScQo | sh
 ```
 sudo reboot
 ```
+
+!!!!!!! Il faut modifier le chemin de l'URL WMS dans le back-office de Lizmap: !!!!!!!!!!!!!!!!!!!
+
+dans http://172.24.1.1/websig/lizmap/www/admin.php/admin/config/editServices changer URL du serveur WMS par:
+
+http://qgiserver/cgi-bin/qgis_mapserv.fcgi
+
 ________________________________________________________________________________
 
 Amusez-vous bien. Et faites remonter les bugs...
