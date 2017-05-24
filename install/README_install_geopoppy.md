@@ -28,7 +28,7 @@ flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypr
 
 > lien pour plus d'info sur flash: https://github.com/hypriot/flash
 
-> Sinon utilisez ETCHER https://etcher.io/ c'est surper simple (windows, Mac & Linux)
+> Sinon utilisez ETCHER https://etcher.io/ c'est super simple d'utilisation (windows, Mac & Linux): Télécharger l'image hypriotOS, insérer sa carte SD dans le pc et appuyer sur flash.
 
 * insère la sd dans le raspberry
 * connecte l'ethernet
