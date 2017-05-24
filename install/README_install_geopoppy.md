@@ -28,7 +28,7 @@ flash https://github.com/hypriot/image-builder-rpi/releases/download/v1.4.0/hypr
 
 > lien pour plus d'info sur flash: https://github.com/hypriot/flash
 
-> Sinon utilisez ETCHER https://etcher.io/ c'est sur simple (windows, Mac & Linux)
+> Sinon utilisez ETCHER https://etcher.io/ c'est surper simple (windows, Mac & Linux)
 
 * insère la sd dans le raspberry
 * connecte l'ethernet
