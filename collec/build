@@ -1,0 +1,1 @@
+docker build -t  collec-master git://github.com/jancelin/geo-poppy/tree/master/collec/BuildCollec
