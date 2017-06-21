@@ -27,8 +27,8 @@ RUN command addgroup --system 'ssl-cert'
 RUN usermod -a -G ssl-cert www-data
 
 # Install Collec
-#ADD https://github.com/Irstea/collec/archive/master.zip /var/www/html && unzip /var/www/html/master.zip && rm /var/www/html/master.zip
-ADD collec-master.zip /var/www/html/ 
+ADD https://github.com/Irstea/collec/archive/master.zip /var/www/html 
+#ADD collec-master.zip /var/www/html/ 
 RUN unzip /var/www/html/collec-master.zip -d /var/www/html/ && \
     rm /var/www/html/collec-master.zip
 
