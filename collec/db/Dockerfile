@@ -1,9 +1,7 @@
 FROM jancelin/geopoppy:postgis
 
 MAINTAINER  Julien Ancelin - Christine Plumejeaud \
-            db test for IRSTEA/Collec \
-            blabla
-
+            auto create db for IRSTEA/Collec 
 
 RUN apt-get update
 RUN apt-get install postgresql-contrib-9.6
