@@ -11,7 +11,7 @@ services:
     volumes:
 #          Pensez a installer le dossier des data avant !!!!
 
-     - "/home/pirate/collec/postgres_data_collec:/var/lib/postgresql"
+     - "/home/pi/collec/postgres_data_collec:/var/lib/postgresql"
        
   collec:
     image: jancelin/geopoppy:collec-0.3
