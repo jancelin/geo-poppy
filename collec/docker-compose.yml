@@ -2,16 +2,14 @@ version: '2'
 services:
      
   postgiscollec:
-    image: jancelin/geopoppy:postgiscollec-0.3
+    #image: jancelin/geopoppy:postgiscollec-0.3
+    build: https://github.com/jancelin/geo-poppy.git#master:/collec/db
     restart: always
 #    ports:
 #     - "5433:5432"
     expose:
       - 5432
     volumes:
-#          Pensez a installer le dossier des data avant !!!!
-#          wget --no-check-certificate -P /home/pi https://github.com/jancelin/geo-poppy/blob/master/collec/db/postgres_data_collec_auto.tar
-#          tar xvfz /home/pi/postgres_data_collec_auto.tar ---no-check-certificate -p --same-owner -C /
      - "/home/pi/collec/postgres_data_collec_auto:/var/lib/postgresql"
        
   collec:
