@@ -2,7 +2,7 @@ version: '2'
 services:
      
   postgiscollec:
-    image: jancelin/geopoppy:postgis
+    image: jancelin/geopoppy:postgiscollec-0.3
     restart: always
 #    ports:
 #     - "5433:5432"
@@ -10,13 +10,11 @@ services:
       - 5432
     volumes:
 #          Pensez a installer le dossier des data avant !!!!
-#          wget --no-check-certificate -P /home/pirate https://github.com/jancelin/geo-poppy/blob/master/collec/postgres_data_collec.tar
-#          tar xvfz /home/pi/postgres_data_collec.tar ---no-check-certificate -p --same-owner -C /
-#
+
      - "/home/pirate/collec/postgres_data_collec:/var/lib/postgresql"
        
   collec:
-    image: jancelin/geopoppy:collec-0.1
+    image: jancelin/geopoppy:collec-0.3
     restart: always
     ports:
       - 80:80
@@ -25,5 +23,5 @@ services:
       - postgiscollec:postgiscollec
       
 # Collec est accessible à cette adresse: https://mon_ip/collec-master
-# Login: admin
-# Password: Password
+# Login: admindemo
+# Password: admin_007
