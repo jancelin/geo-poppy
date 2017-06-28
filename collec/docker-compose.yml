@@ -10,8 +10,9 @@ services:
       - 5432
     volumes:
 #          Pensez a installer le dossier des data avant !!!!
-
-     - "/home/pi/collec/postgres_data_collec:/var/lib/postgresql"
+#          wget --no-check-certificate -P /home/pi https://github.com/jancelin/geo-poppy/blob/master/collec/db/postgres_data_collec_auto.tar
+#          tar xvfz /home/pi/postgres_data_collec_auto.tar ---no-check-certificate -p --same-owner -C /
+     - "/home/pi/collec/postgres_data_collec_auto:/var/lib/postgresql"
        
   collec:
     image: jancelin/geopoppy:collec-0.3
