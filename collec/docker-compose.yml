@@ -22,6 +22,8 @@ services:
     links:
       - postgiscollec:postgiscollec
       
-# Collec est accessible à cette adresse: https://mon_ip/collec-feature_metadata
+# Collec est accessible à cette adresse après 2 minutes (construction de la base de donnée):
+#                   https://mon_ip/collec-feature_metadata
+
 # Login: admindemo
 # Password: admin_007
