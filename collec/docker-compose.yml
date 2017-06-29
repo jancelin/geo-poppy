@@ -13,8 +13,8 @@ services:
      - "/home/pi/collec/postgres_data_collec_auto:/var/lib/postgresql"
        
   collec:
-    #image: jancelin/geopoppy:collec-0.3
-    build: https://github.com/jancelin/geo-poppy.git#master:/collec/build
+    image: jancelin/geopoppy:collec-0.3
+    #build: https://github.com/jancelin/geo-poppy.git#master:/collec/build
     restart: always
     ports:
       - 80:80
@@ -22,6 +22,6 @@ services:
     links:
       - postgiscollec:postgiscollec
       
-# Collec est accessible à cette adresse: https://mon_ip/collec-master
+# Collec est accessible à cette adresse: https://mon_ip/collec-feature_metadata
 # Login: admindemo
 # Password: admin_007
