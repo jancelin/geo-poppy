@@ -1,9 +1,14 @@
-FROM Irstea/collec pour une utilisation sur le terrain en mode déconnecté avec GéoPoppy
+
+COLLEC RPI
+============
+
+FROM Irstea/collec pour une utilisation sur le terrain en mode déconnecté 
 
 **https://github.com/Irstea/collec**
 
+
 INSTALLATION sur RASPBERRY PI 3 from scratch
-============
+------------
 
 * Télécharger RASPBIAN jessie Lite : https://downloads.raspberrypi.org/raspbian_lite_latest
 
