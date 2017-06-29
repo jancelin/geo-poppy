@@ -5,7 +5,17 @@ FROM Irstea/collec pour une utilisation sur le terrain en mode déconnecté avec
 INSTALLATION sur RASPBERRY PI 3 from scratch
 ============
 
+* Télécharger RASPBIAN jessie Lite : https://downloads.raspberrypi.org/raspbian_lite_latest
+
 * Flasher raspbian jessie sur une Micro SD avec ETCHER: https://etcher.io/
+
+* Se connecter en ssh au raspberry
+
+```
+ssh pi@raspberry.local
+```
+
+> MDP: raspberry
 
 * Installer docker engine: https://docs.docker.com/engine/installation/
 
@@ -25,14 +35,6 @@ INSTALLATION sur RASPBERRY PI 3 from scratch
 sudo apt-get install python-pip
 sudo pip install docker-compose
 ```
-
-* Se connecter en ssh au raspberry
-
-```
-ssh pi@raspberry.local
-```
-
-> MDP: raspberry
 
 * Créer le répertoire de stockage des données
 
@@ -55,8 +57,10 @@ docker-compose up -d
 * Attendre 2 minutes que la base soit générer et se rendre sur https://raspberry.local/collec-feature_metadata pour accéder aux données démo.
 
 > Login: admindemo
-> MDP: edamin_007
 
+> MDP: admin_007
+
+--------------------------------------------------------------------------------
 
 COLLEC
 ============
