@@ -14,6 +14,8 @@ INSTALLATION sur RASPBERRY PI 3 from scratch
 
 * Flasher raspbian jessie sur une Micro SD avec ETCHER: https://etcher.io/
 
+* Insérer la micro SD dans le raspberry pi3, connecter un cable ethernet, allumer.
+
 * Se connecter en ssh au raspberry
 
 ```
