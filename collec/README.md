@@ -61,7 +61,7 @@ wget --no-check-certificate -P /home/pi https://raw.githubusercontent.com/jancel
 docker-compose up -d
 ```
 
-* Attendre 2 minutes que la base soit générer et se rendre sur https://raspberry.local/collec-feature_metadata pour accéder aux données démo.
+* Attendre 2 minutes que la base soit généré et se rendre sur https://raspberry.local/collec-feature_metadata pour accéder à la démo.
 
 > Login: admindemo
 
