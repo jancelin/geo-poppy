@@ -2,6 +2,62 @@ FROM Irstea/collec pour une utilisation sur le terrain en mode déconnecté avec
 
 **https://github.com/Irstea/collec**
 
+INSTALLATION sur RASPBERRY PI 3 from scratch
+============
+
+* Flasher raspbian jessie sur une Micro SD avec ETCHER: https://etcher.io/
+
+* Installer docker engine: https://docs.docker.com/engine/installation/
+
+```
+  sudo apt-get update
+  sudo apt-get install curl 
+  curl -fsSL https://get.docker.com/ | sh
+  sudo systemctl enable docker
+  sudo service docker start
+  sudo groupadd docker
+  sudo usermod -aG docker $USER
+```
+
+* Installer docker compose: https://docs.docker.com/compose/install/
+
+```
+sudo apt-get install python-pip
+sudo pip install docker-compose
+```
+
+* Se connecter en ssh au raspberry
+
+```
+ssh pi@raspberry.local
+```
+
+> MDP: raspberry
+
+* Créer le répertoire de stockage des données
+
+```
+mkdir /home/pirate/collec/postgres_data_collec_auto
+```
+
+* Récupérer le fichier docker-compose.yml sur /home/pi
+
+```
+wget --no-check-certificate -P /home/pi https://raw.githubusercontent.com/jancelin/geo-poppy/master/collec/docker-compose.yml
+```
+
+* Enfin lancer l'installation
+
+```
+docker-compose up -d
+```
+
+* Attendre 2 minutes que la base soit générer et se rendre sur https://raspberry.local/collec-feature_metadata pour accéder aux données démo.
+
+> Login: admindemo
+> MDP: edamin_007
+
+
 COLLEC
 ============
 Collec est un logiciel destiné à gérer les collections d'échantillons prélevés sur le terrain.
