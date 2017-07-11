@@ -16,7 +16,7 @@ services:
 ##Pensez à changer l'URL WMS dans le back-office de lizmap: http://qgiserver/cgi-bin/qgis_mapserv.fcgi
 
   qgiserver:
-    image: jancelin/geopoppy:qgis-server2.14LTR-0.1
+    image: jancelin/geopoppy:qgis-server2.14LTR-0.2
     restart: always
     volumes:
       - /home/GeoPoppy/lizmap/project:/home
