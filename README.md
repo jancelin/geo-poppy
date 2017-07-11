@@ -39,11 +39,6 @@ ________________________________________________________________________________
 * Le serveur websig est basé sur Qgis Qgis-server (http://www.qgis.org/fr/site/) et Lizmap (http://www.3liz.com/lizmap.html). J'ai fabriqué une image docker contenant les deux :
 
 
-**https://github.com/jancelin/rpi-docker-lizmap**
-
-
-Vous pouvez aussi installer la version docker lizmap sur votre pc ou serveur :
-
 **https://github.com/jancelin/docker-lizmap**
 
 ______________________________________________________________________
