@@ -6,7 +6,8 @@ dblink_connect('geo1','host=0.0.0.0 port=5432
  dbname=framboise_entomo');
 
 INSERT INTO sync.sauv_data 
-SELECT * from dblink('geo1', 'select  ''geo1'', ts, schema_bd, tbl, action1, sauv, pk from sauv_data;') as t( integrateur text, ts timestamp with time zone, schema_bd text, tbl text, action1 text, sauv json, pk text);
+SELECT * FROM dblink('geo1', 'select  ''geo1'', ts, schema_bd, tbl, action1, sauv, pk from sauv_data;')
+              as t( integrateur text, ts timestamp with time zone, schema_bd text, tbl text, action1 text, sauv json, pk text);
 
 SELECT dblink_disconnect('geo1');
 
@@ -17,7 +18,8 @@ dblink_connect('geo2','host=0.0.0.0 port=5432
  dbname=framboise_entomo');
 
 INSERT INTO sync.sauv_data 
-SELECT * from dblink('geo2', 'select  ''geo2'', ts, schema_bd, tbl, action1, sauv, pk from sauv_data;') as t(integrateur text, ts timestamp with time zone, schema_bd text, tbl text, action1 text, sauv json, pk text);
+SELECT * FROM dblink('geo2', 'select  ''geo2'', ts, schema_bd, tbl, action1, sauv, pk from sauv_data;')
+              as t(integrateur text, ts timestamp with time zone, schema_bd text, tbl text, action1 text, sauv json, pk text);
 
 SELECT dblink_disconnect('geo2');
 
