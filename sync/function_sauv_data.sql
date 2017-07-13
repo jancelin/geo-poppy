@@ -13,7 +13,7 @@ COMMENT ON SCHEMA sync
   IS 'sync schema for multi bases synchro';
 
 --Create audit table to store all modifications of database
-CREATE TABLE sync.sauv_data
+CREATE TABLE sauv_data
 (
   integrateur character varying,
   ts timestamp with time zone,
@@ -36,7 +36,7 @@ CREATE TABLE sync.login
   ip character varying,
   port integer,
   utilisateur character varying,
-  mdp chkpass,
+  mdp character varying,
   dbname character varying
 );
 
