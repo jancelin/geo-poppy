@@ -4,40 +4,35 @@
 --Diffusé sous licence open-source AGPL
 ---------------------------------
 
+--exemple: select sync.rpi2server('nom_connexion','ip','host','port','user','password','database');
 
---connect dblink server
-SELECT dblink_connect('geo1','host=0.0.0.0 port=5434
-				 user=geomatik
-				 password=geomatik
-				 dbname=test');
-
-DO
-LANGUAGE plpgsql
-$$
+DROP FUNCTION IF EXISTS sync.rpi2server();
+CREATE OR REPLACE FUNCTION sync.rpi2server(n text, h text, p integer, u text, pw text, db text ) RETURNS table(f1 boolean) AS
+$BODY$
 DECLARE
-query text;
+query text :=''; 
 BEGIN
-FOR query IN
-			SELECT 'SELECT dblink_exec(''geo1'',''INSERT INTO sync.sauv_data values ('''
-			|| '''moi_a'''||''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');'
-			from sauv_data
-LOOP
+--connect dblink remote server
+PERFORM dblink_connect(''||n||'','host='||h||' port='||p||' user='||u||' password='||pw||' dbname='||db||'');
+raise NOTICE 'connection: %',''||n||'';
+
+	FOR query IN
+	--get data and execute INSERT INTO in remote server
+	SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values ('''
+	|| '''moi_a'''||''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');'
+	from sauv_data
+	LOOP
 	  EXECUTE query;
+	  raise NOTICE 'ACTION:  %',query;	--messages logs
+	  return next; 				--number of lines
 	END LOOP;
---disconnect dblink server
-SELECT dblink_disconnect('geo1');
+
+--disconnect dblink remote server
+PERFORM dblink_disconnect(''||n||'');
+raise NOTICE 'déconnection: %',''||n||'';
+
 END;
-$$;
-
-
-
-
-
---SELECT dblink_exec('geo1','INSERT INTO sync.sauv_data  values (''moi_4'',''2017-04-05 06:50:23.989936+00'',''public'',''operateur_utilisateur'',''UPDATE'',''[{"ope_id":1,"ope_initiales":"5401","ope_nom":null,"ope_prenom":null,"ope_fonction":null,"ope_annee":null,"ope_nom_pre":null}]'',''ope_id'')');
-
-
---SELECT dblink_is_busy('geo1'); --fin d'exécution de la requête se vérifie
-
-
-
---SELECT * from dblink_get_result('geo1'); --résultats sont finalement récupérés marche pas
+$BODY$
+LANGUAGE plpgsql VOLATILE
+COST 100
+ROWS 1000;
