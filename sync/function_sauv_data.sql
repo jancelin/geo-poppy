@@ -27,15 +27,17 @@ CREATE TABLE sync.sauv_data
 
 
 --create login table to store remote server dblink parameter
+CREATE EXTENSION chkpass; --http://docs.postgresql.fr/9.5/chkpass.html
+
 CREATE TABLE sync.login
 (
   id serial,
-  name character varying,
+  nom character varying,
   ip character varying,
   port integer,
-  user character varying,
-  password chkpass, --http://docs.postgresql.fr/9.5/chkpass.html
-  dbname character varying,
+  utilisateur character varying,
+  mdp chkpass,
+  dbname character varying
 );
 
 ------------------------------------------------------
