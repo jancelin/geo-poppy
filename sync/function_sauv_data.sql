@@ -1,8 +1,19 @@
+------------------------------------------------------
 --SAVE EDITION DATA FOR REPLAY ON A REPLICATED DATABASE
 --Maintainer: Julien Ancelin
+--Diffusé sous licence open-source AGPL
 -----------------------------------------------------
+-----Création schema sync-----
+/*
+Ce schema contiendra une table et des vues pour la gestion votre synchronisation
+*/
+DROP SCHEMA IF EXISTS sync CASCADE;
+CREATE SCHEMA IF NOT EXISTS sync AUTHORIZATION postgres;
+COMMENT ON SCHEMA sync
+  IS 'sync schema for multi bases synchro';
+
 --Create audit table to store all modifications of database
-CREATE TABLE sauv_data
+CREATE TABLE sync.sauv_data
 (
   integrateur character varying,
   ts timestamp with time zone,
@@ -13,6 +24,20 @@ CREATE TABLE sauv_data
   pk character varying
 );
 --for delete table: DROP TABLE sauv_data
+
+
+--create login table to store remote server dblink parameter
+CREATE TABLE sync.login
+(
+  id serial,
+  name character varying,
+  ip character varying,
+  port integer,
+  user character varying,
+  password chkpass, --http://docs.postgresql.fr/9.5/chkpass.html
+  dbname character varying,
+);
+
 ------------------------------------------------------
 -- Create function: sauv_data() to store on sauv_data table all db tables modifications
 CREATE OR REPLACE FUNCTION sauv_data() RETURNS TRIGGER AS $sauv$
