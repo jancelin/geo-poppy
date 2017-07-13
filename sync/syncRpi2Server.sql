@@ -1,9 +1,15 @@
+---------------------------------
+--Synchronisation des données entre Geopoppy et un serveur central
+--Julien ANCELIN
+--Diffusé sous licence open-source AGPL
+---------------------------------
 
 
+--connect dblink server
 SELECT dblink_connect('geo1','host=0.0.0.0 port=5434
 				 user=geomatik
 				 password=geomatik
-				 dbname=framboise_entomo');
+				 dbname=test');
 
 DO
 LANGUAGE plpgsql
@@ -18,10 +24,12 @@ FOR query IN
 LOOP
 	  EXECUTE query;
 	END LOOP;
+--disconnect dblink server
+SELECT dblink_disconnect('geo1');
 END;
 $$;
 
-SELECT dblink_disconnect('geo1');
+
 
 
 
