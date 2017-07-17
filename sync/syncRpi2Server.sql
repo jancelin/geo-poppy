@@ -56,6 +56,9 @@ CREATE TABLE sync.synchro
   
 );
 
+--FUNCTION synchronis: lors de l'ajout d'une ligne tbl synchro ( juste choix de la connexion dblink (id de la tbl login)),
+-- la synchronistaion des données se lance vers le central,
+-- enfin un ts est intégré ensuite dans la table synchro pour pister la synchro.
 DROP FUNCTION IF EXISTS sync.synchronis() CASCADE;
 CREATE OR REPLACE FUNCTION sync.synchronis() RETURNS TRIGGER AS $$
 BEGIN
