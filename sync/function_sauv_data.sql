@@ -21,7 +21,9 @@ CREATE TABLE sauv_data
   tbl character varying,
   action1 character varying,
   sauv json,
-  pk character varying
+  pk character varying,
+  sync integer DEFAULT 0,
+  sync_ts timestamp with time zone
 );
 --for delete table: DROP TABLE sauv_data
 
