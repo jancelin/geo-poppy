@@ -18,8 +18,8 @@ raise NOTICE 'connection: %',''||n||'';
 
 	FOR query IN
 	--get data and execute INSERT INTO in remote server
-	SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values ('''
-	|| '''moi_a'''||''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');
+	SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values 
+        ('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');
         UPDATE sauv_data SET sync = 1, sync_ts = now() WHERE ts = '''||ts||''';'
 	FROM sauv_data
 	WHERE sauv_data.sync = 0
