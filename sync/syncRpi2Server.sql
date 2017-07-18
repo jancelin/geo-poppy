@@ -48,40 +48,36 @@ END;
 $$ LANGUAGE plpgsql VOLATILE;
 --COST 100 
 --ROWS 1000;
-ALTER FUNCTION sync.synchronis()
+ALTER FUNCTION sync.rpi2server()
   OWNER TO docker;
 
 -----------------------------------------------------
 -----------------------------------------------------
---create sync_table synchro
+---create sync_table synchro
 CREATE TABLE sync.synchro
 (
   id serial,
   ts timestamp with time zone, --TIME OF SYNCHRO
   id_login integer --get dblink remote server param
-  
-  
 );
 
---FUNCTION synchronis: lors de l'ajout d'une ligne tbl synchro ( juste choix de la connexion dblink (id de la tbl login)),
--- la synchronistaion des données se lance vers le central,
--- enfin un ts est intégré ensuite dans la table synchro pour pister la synchro.
+--FUNCTION synchronis: lors de l'ajout d'une ligne (choix de la connexion dblink), la synchronistaion des données se lance vers le central,
+-- Un ts est intégré ensuite dans la table synchro pour pister la synchro
 DROP FUNCTION IF EXISTS sync.synchronis() CASCADE;
 CREATE OR REPLACE FUNCTION sync.synchronis() RETURNS TRIGGER AS $$
 BEGIN
 	IF (TG_OP = 'INSERT') THEN
 		PERFORM sync.rpi2server(l.nom , l.ip,l.port,l.utilisateur,l.mdp,l.dbname)
 		FROM (SELECT * FROM sync.login where id = NEW.id_login ) as l; 
-		UPDATE sync.synchro SET id = NEW.id, ts = now(), id_login =NEW.id_login  where id = NEW.id;
+		UPDATE sync.synchro SET id = NEW.id, ts = now(), id_login =NEW.id_login, rpi2server= 'OK'  where id = NEW.id; 
 		RETURN NEW;
 	END IF;
 	RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER synchronis_trig
-AFTER INSERT ON sync.synchro
-FOR EACH ROW EXECUTE PROCEDURE sync.synchronis();
+ALTER FUNCTION sync.synchronis()
+  OWNER TO docker;
 
 
 --INSERT INTO sync.synchro (id_login) values ( 3);
