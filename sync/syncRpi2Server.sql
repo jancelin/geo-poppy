@@ -12,40 +12,44 @@ DECLARE
 query text;
 ii int;
 BEGIN
-		--connect dblink remote server and verify if same connection alive
-		IF dblink_get_connections() is NULL
-		THEN
-			PERFORM dblink_connect(''||n||'','host='||h||' port='||p||' user='||u||' password='||pw||' dbname='||db||'') ;
-			raise NOTICE 'connection: %',''||n||'';
-		ELSE
-			PERFORM dblink_disconnect(''||n||'');
-			PERFORM dblink_connect(''||n||'','host='||h||' port='||p||' user='||u||' password='||pw||' dbname='||db||'');
-			raise NOTICE 'connection: %',''||n||'';
-		END IF;
-		--get number of rows to sync
-		SELECT count(ts) from sauv_data WHERE sauv_data.sync = 0 INTO count_data_in;
-		--get data and execute INSERT INTO in remote server
-		--update sync column in sauv_data to 1 (penser à rajouter le schema sync)
-		FOR query IN
-			SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values 
-			('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');
-			UPDATE sauv_data SET sync = 1, sync_ts = now() WHERE ts = '''||ts||''';'
-			FROM sauv_data
-			WHERE sauv_data.sync = 0
-		LOOP
-			EXECUTE query;
-			RAISE NOTICE 'ACTION:  %',query;	--messages logs
-		END LOOP;
-		--get number of rows sync
-		GET DIAGNOSTICS ii = ROW_COUNT;
-		SELECT ii INTO count_data_out;
-		--disconnect dblink remote server
+	--connect dblink remote server and verify if same connection alive
+	IF dblink_get_connections() is NULL
+	THEN
+		PERFORM dblink_connect(''||n||'','host='||h||' port='||p||' user='||u||' password='||pw||' dbname='||db||'') ;
+		raise NOTICE 'connection: %',''||n||'';
+	ELSE
 		PERFORM dblink_disconnect(''||n||'');
-		raise NOTICE 'déconnection: %',''||n||'';
+		PERFORM dblink_connect(''||n||'','host='||h||' port='||p||' user='||u||' password='||pw||' dbname='||db||'');
+		raise NOTICE 'connection: %',''||n||'';
+	END IF;
+	--get number of rows to sync
+	SELECT count(ts) from sauv_data WHERE sauv_data.sync = 0 INTO count_data_in;
+	RAISE NOTICE 'count_data_in : %', count_data_in;
+	--get data and execute INSERT INTO in remote server
+	--update sync column in sauv_data to 1 (penser à rajouter le schema sync)
+	FOR query IN
+		SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values 
+		('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');
+		UPDATE sauv_data SET sync = 1, sync_ts = now() WHERE ts = '''||ts||''';'
+		FROM sauv_data
+		WHERE sauv_data.sync = 0
+	LOOP
+		EXECUTE query;
+		RAISE NOTICE 'ACTION:  %',query;	--messages logs
+	END LOOP;
+	--get number of rows sync
+	GET DIAGNOSTICS ii = ROW_COUNT;
+	SELECT ii INTO count_data_out;
+	RAISE NOTICE 'count_data_out : %', count_data_out;
+	--disconnect dblink remote server
+	PERFORM dblink_disconnect(''||n||'');
+	raise NOTICE 'déconnection: %',''||n||'';
 END;
-$$ LANGUAGE plpgsql VOLATILE
+$$ LANGUAGE plpgsql VOLATILE;
 --COST 100 
 --ROWS 1000;
+ALTER FUNCTION sync.synchronis()
+  OWNER TO docker;
 
 -----------------------------------------------------
 -----------------------------------------------------
