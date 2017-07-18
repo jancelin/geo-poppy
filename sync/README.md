@@ -27,7 +27,7 @@ Il garde la modifications et les métadonnées sur cette modification :
 
 Initialiser l'environnement : créer la table **sauv_data**, les triggers et les vues afférentes. 
 
-1. Exécuter **function_sauv_data.sql** sur votre base de données terrain (sur un ou plusieur GeoPoppy)
+1. Exécuter **sync_geopoppy.sql** sur votre base de données terrain (sur un ou plusieur GeoPoppy)
 2. Exécuter  **sync_server.sql** qui crée 3 vues et 3 fonctions (sur le serveur central):  
     - **sync.replay** contient les lignes qui seront finalement intégrées dans la base de données serveur
     - **sync.no_replay** contient les lignes qui ne seront pas jouées du fait de l'édition multiple d'une même entité par le même utilisateur (contrôle sur integrateur).
