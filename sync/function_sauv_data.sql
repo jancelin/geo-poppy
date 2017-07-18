@@ -13,7 +13,7 @@ COMMENT ON SCHEMA sync
   IS 'sync schema for multi bases synchro';
 
 --Create audit table to store all modifications of database
-CREATE TABLE sauv_data
+CREATE TABLE sync.sauv_data
 (
   integrateur character varying,
   ts timestamp with time zone,
@@ -44,18 +44,18 @@ CREATE TABLE sync.login
 
 ------------------------------------------------------
 -- Create function: sauv_data() to store on sauv_data table all db tables modifications
-CREATE OR REPLACE FUNCTION sauv_data() RETURNS TRIGGER AS $sauv$
+CREATE OR REPLACE FUNCTION sync.sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
 	IF (TG_OP = 'DELETE') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'DELETE',
+        INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'DELETE',
 	json_build_array(OLD.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
         RETURN OLD;
     	ELSIF (TG_OP = 'UPDATE') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'UPDATE',
+        INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'UPDATE',
 	json_build_array(NEW.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
         RETURN NEW;
     	ELSIF (TG_OP = 'INSERT') THEN
-        INSERT INTO sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT',
+        INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT',
 	json_build_array(NEW.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
         RETURN NEW;
     	END IF;
@@ -85,7 +85,7 @@ BEGIN
 	    FROM
 		information_schema.tables
 	    WHERE
-		table_schema NOT IN ('pg_catalog', 'information_schema')
+		table_schema NOT IN ('pg_catalog', 'information_schema', 'sync')
 		AND table_schema NOT LIKE 'pg_toast%'
 		AND table_name NOT IN (SELECT viewname FROM pg_views WHERE schemaname NOT IN('information_schema','pg_catalog'))
 		AND table_name != 'sauv_data'
