@@ -3,11 +3,16 @@
 --Maintainer: Julien Ancelin
 --Diffusé sous licence open-source AGPL
 -----------------------------------------------------
+--Notice:
+--INSERT INTO sync.login (nom,ip,port,utilisateur,mdp,dbname) values ('geopoppy1','0.0.0.0',5434,'geomatik','geomatik','framboise_entomo');
+--insert data on table
+--INSERT INTO sync.synchro (id_login) values (1);
+
 -----Création schema sync-----
 /*
 Ce schema contiendra une table et des vues pour la gestion votre synchronisation
 */
-DROP SCHEMA IF EXISTS sync CASCADE;
+--DROP SCHEMA IF EXISTS sync CASCADE;
 CREATE SCHEMA IF NOT EXISTS sync AUTHORIZATION postgres;
 COMMENT ON SCHEMA sync
   IS 'sync schema for multi bases synchro';
@@ -29,7 +34,7 @@ CREATE TABLE sync.sauv_data
 
 
 --create login table to store remote server dblink parameter
-CREATE EXTENSION chkpass; --http://docs.postgresql.fr/9.5/chkpass.html
+--CREATE EXTENSION chkpass; --http://docs.postgresql.fr/9.5/chkpass.html
 
 --dblink config
 CREATE TABLE sync.login
@@ -47,7 +52,8 @@ CREATE TABLE sync.synchro
 (
   id serial,
   ts timestamp with time zone, --TIME OF SYNCHRO
-  id_login integer --get dblink remote server param
+  id_login integer, --get dblink remote server param
+  rpi2server character varying
 );
 
 ------------------------------------------------------
@@ -84,7 +90,7 @@ BEGIN
 	SELECT
 	    'CREATE TRIGGER sauv AFTER INSERT OR DELETE OR UPDATE ON ' 
 	    || tbl_name.tab_name
-	    || ' FOR EACH ROW EXECUTE PROCEDURE sauv_data();'AS trigger_creation_query
+	    || ' FOR EACH ROW EXECUTE PROCEDURE sync.sauv_data();'AS trigger_creation_query
 	    --'DROP TRIGGER sauv ON ' 
 	    --|| tbl_name.tab_name
 	    --||';' AS trigger_creation_query
@@ -103,13 +109,14 @@ BEGIN
 	  EXECUTE query;
 	END LOOP;
 END;
-
+$$;
 
 --Function to synchronize rpi db to server db
 --exemple: select sync.rpi2server('nom_connexion','ip','host','port','user','password','database');
 
 DROP FUNCTION IF EXISTS sync.rpi2server();
-CREATE OR REPLACE FUNCTION sync.rpi2server(n text, h text, p integer, u text, pw text, db text, OUT count_data_in int, OUT count_data_out int) AS $$
+CREATE OR REPLACE FUNCTION sync.rpi2server(n text, h text, p integer, u text, pw text, db text, OUT count_data_in int, OUT count_data_out int) AS
+$BODY$
 DECLARE
 query text;
 ii int;
@@ -125,16 +132,16 @@ BEGIN
 		raise NOTICE 'connection: %',''||n||'';
 	END IF;
 	--get number of rows to sync
-	SELECT count(ts) from sauv_data WHERE sauv_data.sync = 0 INTO count_data_in;
+	SELECT count(ts) from sync.sauv_data WHERE sauv_data.sync = 0 INTO count_data_in;
 	RAISE NOTICE 'count_data_in : %', count_data_in;
 	--get data and execute INSERT INTO in remote server
 	--update sync column in sauv_data to 1 (penser à rajouter le schema sync)
 	FOR query IN
 		SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values 
 		('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');
-		UPDATE sauv_data SET sync = 1, sync_ts = now() WHERE ts = '''||ts||''';'
-		FROM sauv_data
-		WHERE sauv_data.sync = 0
+		UPDATE sync.sauv_data SET sync = 1, sync_ts = now() WHERE ts = '''||ts||''';'
+		FROM sync.sauv_data
+		WHERE sync.sauv_data.sync = 0
 	LOOP
 		EXECUTE query;
 		RAISE NOTICE 'ACTION:  %',query;	--messages logs
@@ -147,12 +154,13 @@ BEGIN
 	PERFORM dblink_disconnect(''||n||'');
 	raise NOTICE 'déconnection: %',''||n||'';
 END;
-$$ LANGUAGE plpgsql VOLATILE;
+$BODY$
+LANGUAGE plpgsql VOLATILE;
 --COST 100 
 --ROWS 1000;
 ALTER FUNCTION sync.rpi2server(text, text, integer, text, text, text)
 OWNER TO docker;
-$$;
+
 
 --FUNCTION synchronis: lors de l'ajout d'une ligne (choix de la connexion dblink), la synchronistaion des données se lance vers le central,
 -- Un ts est intégré ensuite dans la table synchro pour pister la synchro
@@ -169,9 +177,10 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE TRIGGER synchronis_trig
+AFTER INSERT ON sync.synchro
+FOR EACH ROW EXECUTE PROCEDURE sync.synchronis();
+
 ALTER FUNCTION sync.synchronis()
   OWNER TO docker;
-
-
---INSERT INTO sync.synchro (id_login) values ( 3);
 
