@@ -31,6 +31,7 @@ CREATE TABLE sync.sauv_data
 --create login table to store remote server dblink parameter
 CREATE EXTENSION chkpass; --http://docs.postgresql.fr/9.5/chkpass.html
 
+--dblink config
 CREATE TABLE sync.login
 (
   id serial,
@@ -40,6 +41,13 @@ CREATE TABLE sync.login
   utilisateur character varying,
   mdp character varying,
   dbname character varying
+);
+--list of synchro remote server + add a ligne and do a synchro (with trigger sync.synchronis())
+CREATE TABLE sync.synchro
+(
+  id serial,
+  ts timestamp with time zone, --TIME OF SYNCHRO
+  id_login integer --get dblink remote server param
 );
 
 ------------------------------------------------------
