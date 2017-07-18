@@ -48,7 +48,7 @@ END;
 $$ LANGUAGE plpgsql VOLATILE;
 --COST 100 
 --ROWS 1000;
-ALTER FUNCTION sync.rpi2server()
+ALTER FUNCTION sync.rpi2server(text, text, integer, text, text, text)
   OWNER TO docker;
 
 -----------------------------------------------------
