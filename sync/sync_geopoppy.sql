@@ -139,7 +139,7 @@ BEGIN
 	FOR query IN
 		SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values 
 		('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');
-		UPDATE sync.sauv_data SET sync = 1, sync_ts = now() WHERE ts = '''||ts||''';'
+		UPDATE sync.sauv_data SET sync = 1, sync_ts = now();'
 		FROM sync.sauv_data
 		WHERE sync.sauv_data.sync = 0
 	LOOP
