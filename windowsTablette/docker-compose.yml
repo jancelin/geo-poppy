@@ -1,6 +1,13 @@
 version: '3'
 services:
-
+  portainer:
+    image: portainer/portainer:windows-amd64
+    restart: on-failure
+    volumes:
+      - c:/Users/disa/dockerData/portainer:/data
+    ports:
+      - 9000:9000
+      
   lizmap:
     image: jancelin/docker-lizmap:3.1.1-0.1
     restart: on-failure
