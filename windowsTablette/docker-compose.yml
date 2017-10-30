@@ -1,43 +1,57 @@
 version: '3'
 services:
-  portainer:
-    image: portainer/portainer:windows-amd64
-    restart: on-failure
-    volumes:
-      - c:/Users/disa/dockerData/portainer:/data
-    ports:
-      - 9000:9000
       
   lizmap:
-    image: jancelin/docker-lizmap:3.1.1-0.1
+    image: jancelin/docker-lizmap:3.1.4
     restart: on-failure
     depends_on:
      - qgiserver
+     - redis
     ports:
      - 80:80
      - 443:443
     volumes:
-     - c:/Users/disa/dockerData/lizmap/project:/home:ro
-     - c:/Users/disa/dockerData/lizmap/var:/var/www/websig/lizmap/var
-     - c:/Users/disa/dockerData/lizmap/tmp:/tmp
+     - c:\Users\disa\dockerData\lizmap\project:/home:ro
+     - c:\Users\disa\dockerData\lizmap\var:/var/www/websig/lizmap/var
     links:
      - qgiserver:qgiserver
+     - redis:redis
      
   qgiserver:
     image: jancelin/qgis-server:2.14LTR-wfsOutputExtension
     restart: always
     volumes:
-      - c:/Users/disa/dockerData/lizmap/project:/home
+      - c:\Users\disa\dockerData\lizmap\project:/home
     expose:
       - 80
+      
+  redis:
+    image: redis:alpine
+    volumes:
+      - c:\Users\disa\dockerData\lizmap\redis:/data
+    expose:
+      - 6379
 
   postgis:
-    image: kartoza/postgis:9.5-2.2
+    #image: kartoza/postgis:9.5-2.2
+    image: jancelin/postgisgeo
+    #build: 
+      #context: c:\Users\disa\dockerData\postgres\install
+      #dockerfile: Dockerfile 
     restart: on-failure
     ports:
       - 5432:5432
-    volumes:
-      - c:/Users/disa/dockerData/postgres:/var/lib/postgresql
+    expose:
+      - 5432
+    #volumes:
+      #- c:\Users\disa\dockerData\postgres:/var/lib/postgresql
     environment:
-      - ALLOW_IP_RANGE=<0.0.0.0/0>
+      - ALLOW_IP_RANGE=0.0.0.0/0
       
+  pgadmin4:
+    image: chorss/docker-pgadmin4
+    restart: on-failure
+    ports:
+      - 5050:5050
+    volumes:
+      - c:\Users\disa\dockerData\pgadmin4:/data
