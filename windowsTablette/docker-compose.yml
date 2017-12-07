@@ -1,6 +1,6 @@
 version: '3'
 services:
-      
+
   lizmap:
     image: jancelin/docker-lizmap:testing
     restart: on-failure
@@ -13,26 +13,13 @@ services:
     volumes:
      - c:\Users\disa\dockerData\lizmap\project:/home:ro
      - c:\Users\disa\dockerData\lizmap\var:/var/www/websig/lizmap/var
-    links:
-     - qgiserver:qgiserver
-     - redis:redis
-     
-  lizmap1:
-    image: jancelin/docker-lizmap:latest
-    restart: on-failure
     depends_on:
-     - qgiserver
-     - redis
-    ports:
-     - 81:80
-     - 444:443
-    volumes:
-     - c:\Users\disa\dockerData\lizmap\project:/home:ro
-     - c:\Users\disa\dockerData\lizmap\var:/var/www/websig/lizmap/var
+      - postgis
+      - qgiserver
+      - redis
     links:
      - qgiserver:qgiserver
      - redis:redis
-     
      
   qgiserver:
     image: jancelin/qgis-server:2.18-wfsOutputExtension
