@@ -2,7 +2,7 @@ version: '3'
 services:
 
   lizmap:
-    image: jancelin/docker-lizmap:testing
+    image: jancelin/docker-lizmap:latest
     restart: on-failure
     depends_on:
      - qgiserver
@@ -56,5 +56,22 @@ services:
       - 5050:5050
     volumes:
       - /home/disa/dockerData/pgadmin4:/data
+      
+  portainer:
+    image: portainer/portainer
+    restart: always
+    ports:
+     - 9000:9000
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /home/disa/dockerData/portainer:/data
 
+  cloud:
+    image: coderaiser/cloudcmd
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ~:/root
+      - /home/disa/dockerData:/mnt/fs
 
