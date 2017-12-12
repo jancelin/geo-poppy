@@ -1,0 +1,60 @@
+version: '3'
+services:
+
+  lizmap:
+    image: jancelin/docker-lizmap:testing
+    restart: on-failure
+    depends_on:
+     - qgiserver
+     - redis
+    ports:
+     - 80:80
+     - 443:443
+    volumes:
+     - /home/disa/dockerData/lizmap/project:/home:ro
+     - /home/disa/dockerData/lizmap/var:/var/www/websig/lizmap/var
+    depends_on:
+      - postgis
+      - qgiserver
+      - redis
+    links:
+     - qgiserver:qgiserver
+     - redis:redis
+     
+  qgiserver:
+    image: jancelin/qgis-server:2.18-wfsOutputExtension
+    restart: on-failure
+    volumes:
+      - /home/disa/dockerData/lizmap/project:/home
+    expose:
+      - 80
+      
+  redis:
+    image: redis:alpine
+    restart: on-failure
+    volumes:
+      - /home/disa/dockerData/lizmap/redis:/data
+    expose:
+      - 6379
+
+  postgis:
+    image: kartoza/postgis:9.5-2.2
+    restart: on-failure
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    volumes:
+      - /home/disa/dockerData/postgres:/var/lib/postgresql
+    environment:
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      
+  pgadmin4:
+    image: chorss/docker-pgadmin4
+    restart: on-failure
+    ports:
+      - 5050:5050
+    volumes:
+      - /home/disa/dockerData/pgadmin4:/data
+
+
