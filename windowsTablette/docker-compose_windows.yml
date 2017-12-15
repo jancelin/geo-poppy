@@ -2,7 +2,7 @@ version: '3'
 services:
 
   lizmap:
-    image: jancelin/docker-lizmap:testing
+    image: jancelin/docker-lizmap:master
     restart: on-failure
     depends_on:
      - qgiserver
