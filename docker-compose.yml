@@ -2,7 +2,7 @@ version: '2'
 services:
 #---WEBSIG-------------------------------------
   lizmap:
-    image: jancelin/geopoppy:lizmap-3.1.1
+    image: jancelin/geopoppy:lizmap-master
     restart: always
     ports:
      - 80:80
