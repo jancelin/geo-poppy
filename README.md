@@ -3,7 +3,7 @@
 
 ![geo-poppy](https://github.com/jancelin/geo-poppy/blob/master/docs/images/1.png?raw=true)
 
-BY: Jordane Ancelin 
+Crédit photo: Jordane Ancelin 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
 
 ___________________________________________________________________________________
