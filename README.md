@@ -24,6 +24,9 @@ ________________________________________________________________________________
 
 ![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859301/e5f0d6d6-053f-11e5-94ec-e6d9361f1a35.png)
 
+BY: Jordane Ancelin 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+
 * Ce projet est monté sur linux Debian avec Docker pour les containers logiciels. J'ai fait le choix de partir sur l'image créée par Hypriot (http://blog.hypriot.com/) qui intègre directement les deux tout en étant léger :
 
 
