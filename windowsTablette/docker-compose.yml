@@ -37,7 +37,6 @@ services:
       - 6379
 
   postgis:
-#    image: kartoza/postgis:9.5-2.2
     image: jancelin/postgisgeo
     restart: on-failure
     ports:
