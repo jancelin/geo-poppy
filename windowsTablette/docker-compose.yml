@@ -7,7 +7,7 @@ services:
      - 80:80
      - 443:443
     volumes:
-     - project:/home:ro
+     - project:/home
      - var:/var/www/websig/lizmap/var
     depends_on:
       - postgis
