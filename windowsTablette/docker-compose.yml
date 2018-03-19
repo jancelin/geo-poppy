@@ -11,8 +11,8 @@ services:
      - 80:80
      - 443:443
     volumes:
-     - /home/disa/dockerData/lizmap/project:/home:ro
-     - /home/disa/dockerData/lizmap/var:/var/www/websig/lizmap/var
+     - /home/dockerData/lizmap/project:/home:ro
+     - /home/dockerData/lizmap/var:/var/www/websig/lizmap/var
     depends_on:
       - postgis
       - qgiserver
@@ -25,7 +25,7 @@ services:
     image: jancelin/qgis-server:2.18LTR
     restart: on-failure
     volumes:
-      - /home/disa/dockerData/lizmap/project:/home
+      - /home/dockerData/lizmap/project:/home
     expose:
       - 80
       
@@ -33,7 +33,7 @@ services:
     image: redis:alpine
     restart: on-failure
     volumes:
-      - /home/disa/dockerData/lizmap/redis:/data
+      - /home/dockerData/lizmap/redis:/data
     expose:
       - 6379
 
@@ -46,7 +46,7 @@ services:
     expose:
       - 5432
     volumes:
-      - /home/disa/dockerData/postgres:/var/lib/postgresql
+      - /home/dockerData/postgres:/var/lib/postgresql
     environment:
       - ALLOW_IP_RANGE=0.0.0.0/0
       
@@ -56,7 +56,7 @@ services:
     ports:
       - 5050:5050
     volumes:
-      - /home/disa/dockerData/pgadmin4:/data
+      - /home/dockerData/pgadmin4:/data
       
   portainer:
     image: portainer/portainer
@@ -65,7 +65,7 @@ services:
      - 9000:9000
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
-     - /home/disa/dockerData/portainer:/data
+     - /home/dockerData/portainer:/data
 
   cloud:
     image: coderaiser/cloudcmd
@@ -74,5 +74,5 @@ services:
       - 8000:8000
     volumes:
       - ~:/root
-      - /home/disa/dockerData:/mnt/fs
+      - /home/dockerData:/mnt/fs
 
