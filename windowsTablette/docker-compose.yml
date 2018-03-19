@@ -75,16 +75,10 @@ services:
       - project:/mnt/fs
 volumes:
    portainer:
-     external:true
    pgadmin4:
-     external:true
    postgres:
-     external:true
    redis:
-     external:true
    var:
-     external:true
    project:
-     external:true
    
 
