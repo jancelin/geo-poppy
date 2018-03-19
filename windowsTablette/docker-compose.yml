@@ -68,7 +68,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ~:/root
+#      - ~:/root
       - project:/mnt/fs
      
 volumes:
