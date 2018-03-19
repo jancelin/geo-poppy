@@ -64,15 +64,7 @@ services:
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - portainer:/data
-
-  cloud:
-    image: coderaiser/cloudcmd
-    restart: always
-    ports:
-      - 8000:8000
-    volumes:
-      - ~:/root
-      - project:/mnt/fs
+     
 volumes:
    portainer:
    pgadmin4:
