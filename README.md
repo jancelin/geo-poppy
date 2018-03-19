@@ -1,5 +1,5 @@
 
-[![Try in PWD](https://cdn.rawgit.com/play-with-docker/stacks/cff22438/assets/images/button.png)](http://play-with-docker.com?stack=https://github.com/jancelin/geo-poppy/tree/master/windowsTablette)
+[![Try in PWD](https://cdn.rawgit.com/play-with-docker/stacks/cff22438/assets/images/button.png)](http://play-with-docker.com?stack=https://github.com/jancelin/geo-poppy/blob/master/windowsTablette/docker-compose.yml)
 
 ![Installation sur Raspberry pi 3](https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md)
 
