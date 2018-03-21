@@ -68,7 +68,7 @@ services:
      - portainer:/data
      
   cloud:
-    image: coderaiser/cloudcmd
+    image: coderaiser/cloudcmd:latest-alpine
     restart: always
     ports:
       - 8000:8000
