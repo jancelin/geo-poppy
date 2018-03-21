@@ -49,6 +49,8 @@ services:
       - POSTGRES_USER=docker
       - POSTGRES_DBNAME=geopoppy
       - POSTGRES_DUMP=geopoppy.sql
+    volumes:
+      - postgres:/var/lib/postgresql
       
   pgadmin4:
     image: chorss/docker-pgadmin4
