@@ -34,16 +34,21 @@ services:
       - 6379
 
   postgis:
-    image: jancelin/postgisgeo
-    restart: on-failure
+    image: kartoza/postgis:10.0-2.4
     ports:
       - 5432:5432
     expose:
       - 5432
-    volumes:
-      - postgres:/var/lib/postgresql
+    command: >
+      bash -c "wget -P /home https://raw.githubusercontent.com/jancelin/docker-postgis/master/start-postgis.sh &&
+               wget -P /home https://github.com/jancelin/docker-postgis/raw/master/geopoppy.sql &&
+               chmod +x /home/start-postgis.sh &&
+               sh /home/start-postgis.sh"
     environment:
       - ALLOW_IP_RANGE=0.0.0.0/0
+      - POSTGRES_USER=docker
+      - POSTGRES_DBNAME=geopoppy
+      - POSTGRES_DUMP=geopoppy.sql
       
   pgadmin4:
     image: chorss/docker-pgadmin4
