@@ -1,3 +1,5 @@
+# play with HYPRIOT-OS-64bits : https://github.com/DieterReuter/image-builder-rpi64/releases/
+# Flash microSD with etcher: https://etcher.io/
 version: '3.2'
 services:
   lizmap:
