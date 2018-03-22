@@ -1,0 +1,80 @@
+version: '3.2'
+services:
+  lizmap:
+    image: jancelin/geopoppy:lizmap-master-arm64
+    restart: on-failure
+    ports:
+     - 80:80
+     - 443:443
+    volumes:
+     - project:/home
+     - var:/var/www/websig/lizmap/var
+    depends_on:
+      - postgis
+      - qgiserver
+      - redis
+    links:
+     - qgiserver:qgiserver
+     - redis:redis
+     
+  qgiserver:
+    image: jancelin/geopoppy:2.18LTR-arm64
+    restart: on-failure
+    volumes:
+      - project:/home
+    expose:
+      - 80
+      
+  redis:
+    image: redis:alpine
+    restart: on-failure
+    volumes:
+      - redis:/data
+    expose:
+      - 6379
+
+  postgis:
+    image: jancelin/geopoppy:postgres10-2.4-arm64
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    entrypoint: >
+      bash -c "wget -N -P / https://raw.githubusercontent.com/jancelin/docker-postgis/master/setup-database.sh &&
+               wget -N -P /home https://github.com/jancelin/docker-postgis/raw/master/geopoppy.sql &&
+               /docker-entrypoint.sh"
+    environment:
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - POSTGRES_USER=docker
+      - POSTGRES_DBNAME=geopoppy
+      - POSTGRES_DUMP=geopoppy.sql
+    volumes:
+      - postgres:/var/lib/postgresql
+      
+  portainer:
+    image: portainer/portainer:linux-arm64
+    restart: always
+    ports:
+     - 9000:9000
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - portainer:/data
+     
+  cloud:
+    image: valentinalexeev/rpi-cloudcmd
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+#      - ~:/root
+      - project:/mnt/fs
+     
+volumes:
+   portainer:
+   pgadmin4:
+   postgres:
+   redis:
+   var:
+   project:
+   
+
