@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  lizmap:
+    build:
+      context: https://github.com/jancelin/docker-lizmap.git#master:/
+
+  qgiserver:
+    build:
+      context: https://github.com/jancelin/docker-qgis-server.git#LTR:/
+      dockerfile: Dockerfile.raspberry
+
+  postgis:
+    build:
+      context: https://github.com/jancelin/docker-postgis-rpi.git#10.0-2.4:/
