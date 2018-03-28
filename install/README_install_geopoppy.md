@@ -8,12 +8,14 @@
 
 * Insérer la carte Micro SD dans le PC
 
-* télécharger l'OS Hypriot 32bits: Raspbian + Docker (http://blog.hypriot.com/downloads/) ou 64bits https://github.com/DieterReuter/image-builder-rpi64/releases/
+* télécharger l'OS Hypriot 64bits https://github.com/DieterReuter/image-builder-rpi64/releases/ 
+
+  ou 32bits: Raspbian + Docker (http://blog.hypriot.com/downloads/)
 
 * Flasher raspbian jessie sur une Micro SD avec ETCHER: https://etcher.io/
-* insère la sd dans le raspberry
+* insèrer la sd dans le raspberry
 * connecter l'ethernet
-* allume.
+* brancher
 * connection en ssh:
 
 ```
@@ -31,14 +33,6 @@ ssh pirate@"ton ip"
 
 * install GeoPoppy:
 
-32bits:
-
-```
-sudo -s
-
-curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy_32bits.sh | sh
-
-```
 64bits:
 
 ```
@@ -48,7 +42,16 @@ curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/a
 
 ```
 
-* c'est presque fini, un message à la fin (env 15 min):
+32bits:
+
+```
+sudo -s
+
+curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy_32bits.sh | sh
+
+```
+
+* chargement des images logiciels  (env 15 min):
 
 * enfin redémarrer le raspberry pour activer le wifi direct
 ```
