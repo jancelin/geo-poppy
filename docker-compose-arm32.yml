@@ -54,7 +54,7 @@ services:
       - postgres:/var/lib/postgresql
       
   portainer:
-    image: portainer/portainer:linux-arm32
+    image: portainer/portainer:linux-arm
     restart: always
     ports:
      - 9000:9000
