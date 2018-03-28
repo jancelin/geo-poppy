@@ -28,7 +28,7 @@ services:
       - 80
       
   redis:
-    image: redis:alpine
+    image: hypriot/rpi-redis
     restart: on-failure
     volumes:
       - redis:/data
