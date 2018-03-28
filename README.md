@@ -21,7 +21,7 @@ Les Matériels retenus pour faire fonctionner les services webSIG sont :
 
 > Il y a de la place et ça va vite. Prix env 16€
 
-* Un sense Hat: qui permet de faire quelques commandes de base sur le raspberry sans allumer une console : https://github.com/jancelin/geo-poppy/blob/master/sense-hat/command.md
+* En option un sense Hat: qui permet de faire quelques commandes de base sur le raspberry sans allumer une console : https://github.com/jancelin/geo-poppy/blob/master/sense-hat/command.md
 
 ________________________________________________________________________________
 
@@ -30,8 +30,7 @@ ________________________________________________________________________________
 ![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/7859301/e5f0d6d6-053f-11e5-94ec-e6d9361f1a35.png)
 
 
-* Ce projet est monté sur linux Debian avec Docker pour les containers logiciels. J'ai fait le choix de partir sur l'image créée par Hypriot (http://blog.hypriot.com/) qui intègre directement les deux tout en étant léger :
-
+* Ce projet est monté sur linux Debian avec Docker pour les containers logiciels. L'image créée par Hypriot intègre directement les deux:
 
 **http://blog.hypriot.com/downloads/**
 
@@ -42,8 +41,9 @@ ________________________________________________________________________________
 **https://github.com/jancelin/docker-postgis-rpi**
 
 
-* Le serveur websig est basé sur Qgis Qgis-server (http://www.qgis.org/fr/site/) et Lizmap (http://www.3liz.com/lizmap.html). J'ai fabriqué une image docker contenant les deux :
+* Le serveur websig est basé sur Qgis Qgis-server (http://www.qgis.org/fr/site/) et Lizmap (http://www.3liz.com/lizmap.html). J
 
+**https://github.com/jancelin/docker-qgis-server**
 
 **https://github.com/jancelin/docker-lizmap**
 
@@ -53,8 +53,7 @@ Comment le fabriquer ?
 
 ![geo-poppy](https://cloud.githubusercontent.com/assets/6421175/12889497/6c3a926e-ce7f-11e5-8391-de6b205307e2.png)
 
-Nouvelle version: 
-Méthode rapide seulement pour Rasberry Pi 3 
+Méthode rapide pour Rasberry Pi 3 
 
 ***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
 
