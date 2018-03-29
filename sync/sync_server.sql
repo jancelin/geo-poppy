@@ -230,17 +230,17 @@ SELECT x.q FROM (												--Keep only the replay req
 	WHEN action1 = 'UPDATE' THEN 										--Writes the data update procedure
 		'INSERT INTO '||rp.schema_bd||'.'||rp.tbl
 		||' SELECT * FROM json_populate_recordset(null::'||schema_bd||'.'||tbl||','''||sauv||''')'	--json
-		||' ON CONFLICT ('||rp.pk||') DO UPDATE set ('||f.f||') = (EXCLUDED.'||f.g||');'	 		-- list of fields
-		||' UPDATE sync.sauv_data SET replay = TRUE WHERE ts = '''||rp.ts||''';'				--check TRUE on sync.sauv_data when replay
+		||' ON CONFLICT ('||rp.pk||') DO UPDATE set ('||f.f||') = (EXCLUDED.'||f.g||');'	 	-- list of fields
+		||' UPDATE sync.sauv_data SET replay = TRUE WHERE ts = '''||rp.ts||''';'			--check TRUE on sync.sauv_data when replay
 
 	WHEN action1 = 'DELETE' THEN 										--Writes the data delete procedure
 		'DELETE FROM '||rp.schema_bd||'.'||rp.tbl
-		||' WHERE '||rp.pk||'='|| 
-		((json_array_elements(rp.sauv)->>pk)::TEXT::NUMERIC)||';'					--old id pk
-		||' UPDATE sync.sauv_data SET replay = TRUE WHERE ts = '''||rp.ts||''';'				--check TRUE on sync.sauv_data when replay
+		||' WHERE '||rp.pk||'='||i.i||';'								--old id pk
+		||' UPDATE sync.sauv_data SET replay = TRUE WHERE ts = '''||rp.ts||''';'			--check TRUE on sync.sauv_data when replay
 	END q
 	, rp.ts													--rp.ts for order by timestamp
-  FROM 	sync.replay  rp, 												--CALL the replay view
+  FROM 	sync.replay  rp, 										 	--CALL the replay view
+	(SELECT  (json_array_elements(replay.sauv)->> replay.pk)::NUMERIC i from sync.replay) as i,             --entity ID
 	(select e.ts, string_agg(e.json, ',') f,								--list of fields for upsert update
 	 string_agg(e.json,',EXCLUDED.') g 									--list of fileds for upsert update + EXCLUDED.
 	 from (select ts, json_object_keys(d.json) json								--list fields on json
