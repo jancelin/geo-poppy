@@ -45,7 +45,7 @@ CREATE TABLE sync.login
   port integer,
   utilisateur character varying,
   mdp character varying,
-  dbname character varying
+  dbname character varying,
   CONSTRAINT pk_login PRIMARY KEY (id)
 );
 --list of synchro remote server + add a ligne and do a synchro (with trigger sync.synchronis())
@@ -54,7 +54,7 @@ CREATE TABLE sync.synchro
   id serial,
   ts timestamp with time zone, --TIME OF SYNCHRO
   id_login integer, --get dblink remote server param
-  rpi2server character varying
+  rpi2server character varying,
   CONSTRAINT pk_synchro PRIMARY KEY (id)
 );
 
