@@ -12,7 +12,7 @@
 
   ou OS Hypriot 32bits: http://blog.hypriot.com/downloads/
 
-* Flasher raspbian jessie sur une Micro SD avec ETCHER: https://etcher.io/
+* Flasher raspbian  sur une Micro SD avec ETCHER: https://etcher.io/
 * insèrer la sd dans le raspberry
 * connecter l'ethernet
 * brancher
