@@ -1,5 +1,15 @@
 #!/bin/bash
 
+### BEGIN INIT INFO
+# Provides:          scriptname
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start daemon at boot time
+# Description:       Enable service provided by daemon.
+### END INIT INFO
+
 # Author: Erik Kristensen
 # Email: erik@erikkristensen.com
 # License: MIT
@@ -14,10 +24,9 @@
 
 #BEFORE:
 # 
-# sudo chmod +x ./check_docker.sh 
-# mv ./check_docker.sh /etc/init.d/.
-# systemctl daemon-reload
-# sudo update-rc.d check_docker.sh defaults
+# sudo nano /etc/init.d/check_docker
+# sudo chmod +x /etc/init.d/check_docker
+# sudo update-rc.d check_docker defaults 80 
 
 
 sleep 60
