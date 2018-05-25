@@ -58,10 +58,6 @@ Méthode rapide pour Rasberry Pi 3
 ***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
 
 
-Installation détaillée sur:
-
-***https://github.com/jancelin/geo-poppy/wiki***
-
 ____________________________________________________________________________
 
 Julien ANCELIN / UE INRA de Saint Laurent de la Prée
