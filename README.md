@@ -2,7 +2,7 @@
 
 [![Try in PWD](https://cdn.rawgit.com/play-with-docker/stacks/cff22438/assets/images/button.png)](http://play-with-docker.com?stack=https://raw.githubusercontent.com/jancelin/geo-poppy/master/windowsTablette/docker-compose.yml)
 
-**![Installation sur Raspberry pi 3](https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md)**
+**![Lien vers la procédure d'installation sur Raspberry pi 3](https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md)**
 
 ![geo-poppy](https://github.com/jancelin/geo-poppy/blob/master/docs/images/1.png?raw=true)
 
