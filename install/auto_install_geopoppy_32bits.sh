@@ -6,6 +6,7 @@
 wget --no-check-certificate -P /home/pirate https://raw.githubusercontent.com/jancelin/rpi_wifi_direct/master/raspberry_pi3/install_wifi_direct_rpi3.sh; chmod +x /home/pirate/install_wifi_direct_rpi3.sh; bash -x /home/pirate/install_wifi_direct_rpi3.sh &&
 wget --no-check-certificate -O /home/pirate/docker-compose.yml https://raw.githubusercontent.com/jancelin/geo-poppy/master/docker-compose-arm32.yml &&
 docker-compose up -d &&
+echo "ok"
 sleep 30
 echo " "
 echo "* Redémarrer le raspberry pour l'activation du wifi : sudo reboot"
