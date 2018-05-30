@@ -17,8 +17,8 @@ sed -i -e "$x s/^ /#/" docker-compose.yml&&
 x=$((x+1))
 sed -i -e "$x s/^ /#/" docker-compose.yml&&
 x=$((x+1))
+sed -i -e "$x s/^ /#/" docker-compose.yml&&
 
-sed -i -e "$x s/^ /#/" docker-compose.yml
 echo " "
 echo "* Redémarrer le raspberry pour l'activation du wifi : sudo reboot"
 echo " "
