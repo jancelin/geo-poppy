@@ -8,16 +8,12 @@ wget --no-check-certificate -O /home/pirate/docker-compose.yml https://raw.githu
 docker-compose up -d &&
 sleep 30
 
-
-x=$(awk '/entrypoint:/ { print NR}' docker-compose.yml)&&
-echo 'x'
-sed -i -e "$x s/^ /#/" docker-compose.yml&&
-x=$((x+1))
-sed -i -e "$x s/^ /#/" docker-compose.yml&&
-x=$((x+1))
-sed -i -e "$x s/^ /#/" docker-compose.yml&&
-x=$((x+1))
-sed -i -e "$x s/^ /#/" docker-compose.yml&&
+fLine=$(awk '/entrypoint:/ { print NR}' docker-compose.yml)&&
+endLine=$((fLine+3))&&
+for i in `seq $fLine  $endLine `
+do
+	sed -i -e "$i s/^ /#/" docker-compose.yml
+done
 
 echo " "
 echo "* Redémarrer le raspberry pour l'activation du wifi : sudo reboot"
