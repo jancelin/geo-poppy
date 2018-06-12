@@ -19,7 +19,7 @@
 # sudo update-rc.d check_docker defaults 80 
 
 #set -x
-#sleep 60
+sleep 40
 LIST=$(docker ps -aq)
 for CONTAINER in $LIST
 do
