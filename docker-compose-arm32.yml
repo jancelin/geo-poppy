@@ -4,7 +4,7 @@
 version: '3.2'
 services:
   lizmap:
-    image: jancelin/geopoppy:lizmap-master-arm32
+    image: jancelin/geopoppy:lizmap-master-arm32_1
     restart: on-failure
     ports:
      - 80:80
@@ -21,7 +21,7 @@ services:
      - redis:redis
      
   qgiserver:
-    image: jancelin/geopoppy:qgis2.18LTR-arm32
+    image: jancelin/geopoppy:qgis2.18LTR-arm32_1
     restart: on-failure
     volumes:
       - project:/home
@@ -37,7 +37,7 @@ services:
       - 6379
 
   postgis:
-    image: jancelin/geopoppy:postgres10-2.4-arm32
+    image: jancelin/geopoppy:postgres10-2.4-arm32_1
     ports:
       - 5432:5432
     expose:
