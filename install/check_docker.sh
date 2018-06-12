@@ -1,5 +1,13 @@
 #!/bin/bash
-
+### BEGIN INIT INFO
+# Provides: check_docker.sh #Le nom de votre script
+# Required-Start:    $remote_fs $syslog #Je ne sais pas du tout ce que c'est
+# Required-Stop:     $remote_fs $syslog #Même problème
+# Default-Start:     2 3 4 5 #J'ai rien compris sur ces niveaux
+# Default-Stop:      0 1 6 #J'ai simplement compris que c'est les niveaux qui restent
+# Short-Description: refabriquer les services si il sont en exit àprès un reboot
+# Description: # Une description complète ici
+### END INIT INFO
 # Author: Erik Kristensen
 # Email: erik@erikkristensen.com
 # License: MIT
