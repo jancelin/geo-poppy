@@ -1,13 +1,14 @@
 #!/bin/bash
 ### BEGIN INIT INFO
 # Provides:          chech_docker
-# Required-Start:    $local_fs $network
-# Required-Stop:     $local_fs
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Short-Description: Description courte
 # Description:       Description longue
 ### END INIT INFO
+
 
 # Author: Erik Kristensen
 # Email: erik@erikkristensen.com
