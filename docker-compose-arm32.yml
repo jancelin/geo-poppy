@@ -21,7 +21,8 @@ services:
      - redis:redis
      
   qgiserver:
-    image: jancelin/geopoppy:qgis2.18LTR-arm32_1
+    image: jancelin/geopoppy:qgis-server2.14LTR-0.2
+#image: jancelin/geopoppy:qgis2.18LTR-arm32_1
     restart: on-failure
     volumes:
       - project:/home
