@@ -22,7 +22,7 @@ done
 #check docker-compose service, if one down: docker-compose down & docker-compose up -d
 wget --no-check-certificate -O /etc/init.d/check_docker.sh https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/check_docker.sh &&
 chmod +x /etc/init.d/check_docker.sh &&
-update-rc.d check_docker.sh defaults &&
+sudo systemctl enable check_docker.sh &&
 sh /etc/init.d/check_docker.sh &&
 
 echo " "
