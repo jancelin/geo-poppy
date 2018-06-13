@@ -1,15 +1,4 @@
 #!/bin/bash
-### BEGIN INIT INFO
-# Provides:          chech_docker
-# Required-Start:    $remote_fs $syslog
-# Required-Stop:     $remote_fs $syslog
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Description courte
-# Description:       Description longue
-### END INIT INFO
-
-
 # Author: Erik Kristensen
 # Email: erik@erikkristensen.com
 # License: MIT
@@ -20,7 +9,10 @@
 #
 # List all container in a docker-compose 
 # and If one or more is exit, it do a docker-compose down and up
-
+### pour installer mettre le fichier dans un répertoire ex: /home/pirate/check_docker.sh
+### rendre executable: chmod +x /home/pirate/check_docker.sh
+### rajouter avant le exit0 dans /etc/rc.local : /home/pirate/check_docker.sh
+### ou le lancer à la main, attention il y a un sleep de 40 secondes: /home/pirate/check_docker.sh
 
 #set -x
 sleep 40
