@@ -9,8 +9,10 @@
 #
 # List all container in a docker-compose 
 # and If one or more is exit, it do a docker-compose down and up
+### INSTALLATION
 ### pour installer mettre le fichier dans un répertoire ex: /home/pirate/check_docker.sh
 ### rendre executable: chmod +x /home/pirate/check_docker.sh
+### editer le rc.local pour lancer le script au demarage: sudo nano /etc/rc.local
 ### rajouter avant le exit0 dans /etc/rc.local : /home/pirate/check_docker.sh
 ### ou le lancer à la main, attention il y a un sleep de 40 secondes: /home/pirate/check_docker.sh
 
