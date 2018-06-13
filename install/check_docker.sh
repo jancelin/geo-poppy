@@ -26,8 +26,8 @@ do
 
   if [ "$RUNNING" = "false" ]; then
     echo "CRITICAL - $CONTAINER is not running."
-    docker-compose down --remove-orphans &&
-    docker-compose up -d
+    docker-compose -f /home/pirate/docker-compose.yml down --remove-orphans &&
+    docker-compose -f /home/pirate/docker-compose.yml up -d
     exit
   fi
 
