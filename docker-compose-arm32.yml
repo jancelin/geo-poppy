@@ -39,7 +39,7 @@ services:
 
   postgis:
     image: jancelin/geopoppy:postgres10-2.4-arm32_1
-    restart: always
+#    restart: always
     ports:
       - 5432:5432
     expose:
