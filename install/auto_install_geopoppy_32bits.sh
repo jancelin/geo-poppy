@@ -20,11 +20,9 @@ do
 done
 
 #check docker-compose service, if one down: docker-compose down & docker-compose up -d
-wget --no-check-certificate -O /etc/init.d/check_docker https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/check_docker.sh &&
-sudo chmod 755 /etc/init.d/check_docker &&
-sudo systemctl enable check_docker &&
-sudo update-rc.d check_docker defaults &&
-/etc/init.d/check_docker start &&
+wget --no-check-certificate -O /home/pirate/check_docker.sh https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/check_docker.sh &&
+sudo chmod 755 /home/pirate/check_docker.sh &&
+sudo /home/pirate/check_docker.sh &&
 
 echo " "
 echo "* Redémarrer le raspberry pour l'activation du wifi : sudo reboot"
