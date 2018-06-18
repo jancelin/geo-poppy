@@ -18,6 +18,12 @@ do
 	sed -i -e "$i s/^ /#/" docker-compose.yml
 done
 
+#check docker-compose service, if one down: docker-compose down & docker-compose up -d
+wget --no-check-certificate -N -O /home/pirate/check_docker.sh https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/check_docker.sh &&
+sudo chmod +x /home/pirate/check_docker.sh &&
+sudo wget --no-check-certificate -N -O /etc/systemd/system/Cdocker.service https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/Cdocker.service &&
+sudo systemctl enable Cdocker.service &&
+
 echo " "
 echo "* Redémarrer le raspberry pour l'activation du wifi : sudo reboot"
 echo " "
