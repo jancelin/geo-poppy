@@ -41,6 +41,15 @@ CREATE TABLE sync.sauv_data
   no_replay integer               --1= donnée multi-edité fonction: sync.no_replay() , 2= donnée exclus conflit d'edition: sync.resolve_conflict()
 );
 
+--list of replay in db + add a ligne and do a replay data (with trigger sync.doreplay())
+CREATE TABLE sync.doreplay
+(
+  id serial,
+  ts timestamp with time zone DEFAULT now(), --TIME OF SYNCHRO
+  checking character varying, --working?
+  CONSTRAINT pk_doreplay PRIMARY KEY (id)
+);
+
 -----Création de la vue ts_excluded-----
 /*
 La Vue des timestamp des entités multi-éditées qui ne devrons pas pas être rejouer dans la base centrale
@@ -262,3 +271,25 @@ $BODY$
 LANGUAGE plpgsql VOLATILE
   COST 100
   ROWS 1000;
+
+---lancement de l'injection de données sur le central après un insert dans la table sync.doreplay
+DROP FUNCTION IF EXISTS sync.sync();
+CREATE OR REPLACE FUNCTION sync.sync() RETURNS TRIGGER AS 
+$BODY$
+BEGIN	
+IF (TG_OP = 'INSERT') THEN
+	PERFORM sync.no_replay();
+        PERFORM sync.replay();
+	UPDATE sync.doreplay SET id =NEW.id, ts=NEW.ts, checking = 'OK' WHERE id=NEW.id ;
+	RETURN NEW;
+END IF;
+RETURN NEW;
+END;
+$BODY$
+ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER doreplay
+  AFTER INSERT
+  ON sync.doreplay
+  FOR EACH ROW
+EXECUTE PROCEDURE sync.sync();
