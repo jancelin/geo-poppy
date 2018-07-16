@@ -55,7 +55,7 @@ CREATE TABLE sync.login
 CREATE TABLE sync.synchro
 (
   id serial,
-  ts timestamp with time zone, --TIME OF SYNCHRO
+  ts timestamp with time zone  DEFAULT now(), --TIME OF SYNCHRO
   id_login integer, --get dblink remote server param
   rpi2server character varying,
   CONSTRAINT pk_synchro PRIMARY KEY (id)
