@@ -8,6 +8,9 @@
 --insert data on table
 --INSERT INTO sync.synchro (id_login) values (1);
 
+---Creation extension dblink
+CREATE  EXTENSION IF NOT EXISTS dblink;
+
 -----Création schema sync-----
 /*
 Ce schema contiendra une table et des vues pour la gestion votre synchronisation
