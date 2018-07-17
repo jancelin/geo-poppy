@@ -30,7 +30,7 @@ CREATE TABLE sync.sauv_data
   action1 character varying,
   sauv json,
   pk character varying,
-  fk json
+  fk json,
   sync integer DEFAULT 0,
   sync_ts timestamp with time zone
 );
