@@ -141,6 +141,7 @@ tbl = OLD.tbl,
 action1 = OLD.action1,
 sauv = OLD.sauv,
 pk = OLD.pk,
+fk = OLD.fk,
 replay = TRUE,
 no_replay = 2 --2 est l'identifiant des conflits supprimés
 where ts = OLD.ts;
