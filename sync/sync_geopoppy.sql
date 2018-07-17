@@ -30,6 +30,7 @@ CREATE TABLE sync.sauv_data
   action1 character varying,
   sauv json,
   pk character varying,
+  fk json
   sync integer DEFAULT 0,
   sync_ts timestamp with time zone
 );
@@ -70,21 +71,34 @@ BEGIN
 	json_build_array(OLD.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
 				 where tc.table_name= TG_TABLE_NAME and
 				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
-				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1); --search pk
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1), --search Pk
+	select json_agg(fk.n) from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				where tc.table_name= TG_TABLE_NAME and
+				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
+				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk h Fk
         RETURN OLD;
     	ELSIF (TG_OP = 'UPDATE') THEN
         INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'UPDATE',
 	json_build_array(NEW.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
 				 where tc.table_name= TG_TABLE_NAME and
 				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
-				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1);
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1),--search Pk
+	select json_agg(fk.n) from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				where tc.table_name= TG_TABLE_NAME and
+				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
+				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk 
         RETURN NEW;
     	ELSIF (TG_OP = 'INSERT') THEN
         INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT',
 	json_build_array(NEW.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
 				 where tc.table_name= TG_TABLE_NAME and
 				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
-				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1);
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1),--search Pk
+	select json_agg(fk.n) from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				where tc.table_name= TG_TABLE_NAME and
+				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
+				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk 
+				 
         RETURN NEW;
     	END IF;
     	RETURN NULL; -- le résultat est ignoré car il s'agit d'un trigger AFTER
