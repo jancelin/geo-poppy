@@ -72,7 +72,7 @@ BEGIN
 				 where tc.table_name= TG_TABLE_NAME and
 				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
 				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1), --search Pk
-	json_agg(fk.n) from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+	COALESCE(json_agg(fk.n),'[]') from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
 				where tc.table_name= TG_TABLE_NAME and
 				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
 				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk h Fk
@@ -83,7 +83,7 @@ BEGIN
 				 where tc.table_name= TG_TABLE_NAME and
 				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
 				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1),--search Pk
-	json_agg(fk.n) from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+	COALESCE(json_agg(fk.n),'[]') from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
 				where tc.table_name= TG_TABLE_NAME and
 				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
 				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk 
@@ -94,7 +94,7 @@ BEGIN
 				 where tc.table_name= TG_TABLE_NAME and
 				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
 				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1),--search Pk
-	json_agg(fk.n) from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+	COALESCE(json_agg(fk.n),'[]') from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
 				where tc.table_name= TG_TABLE_NAME and
 				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
 				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk 
@@ -166,7 +166,7 @@ BEGIN
 	--update sync column in sauv_data to 1 (penser à rajouter le schema sync)
 	FOR query IN
 		SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values 
-		('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');
+		('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''','''''|| fk ||''''')'');
 		UPDATE sync.sauv_data SET sync = 1, sync_ts = now();'
 		FROM sync.sauv_data
 		WHERE sync.sauv_data.sync = 0
