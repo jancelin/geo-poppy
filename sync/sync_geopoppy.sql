@@ -67,15 +67,24 @@ CREATE OR REPLACE FUNCTION sync.sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
 	IF (TG_OP = 'DELETE') THEN
         INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'DELETE',
-	json_build_array(OLD.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
+	json_build_array(OLD.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				 where tc.table_name= TG_TABLE_NAME and
+				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1); --search pk
         RETURN OLD;
     	ELSIF (TG_OP = 'UPDATE') THEN
         INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'UPDATE',
-	json_build_array(NEW.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
+	json_build_array(NEW.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				 where tc.table_name= TG_TABLE_NAME and
+				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1);
         RETURN NEW;
     	ELSIF (TG_OP = 'INSERT') THEN
         INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT',
-	json_build_array(NEW.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
+	json_build_array(NEW.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				 where tc.table_name= TG_TABLE_NAME and
+				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1);
         RETURN NEW;
     	END IF;
     	RETURN NULL; -- le résultat est ignoré car il s'agit d'un trigger AFTER
