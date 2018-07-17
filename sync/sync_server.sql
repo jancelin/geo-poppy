@@ -37,6 +37,7 @@ CREATE TABLE sync.sauv_data
   action1 character varying,      --action sur la donnée: INSERT UPDATE ou DELETE
   sauv json,                      --chaine de donnée en json (champ:valeur,...)
   pk character varying,           --clef primaire de la table
+  fk json,                        --clefs étrangères
   replay boolean DEFAULT false,   --La donnée a t'elle été rejoué dans la base
   no_replay integer               --1= donnée multi-edité fonction: sync.no_replay() , 2= donnée exclus conflit d'edition: sync.resolve_conflict()
 );
