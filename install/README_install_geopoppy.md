@@ -4,7 +4,6 @@
 
 
 
-* préparer la SD sous Linux
 
 * Insérer la carte Micro SD dans le PC
 
