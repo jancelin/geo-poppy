@@ -7,9 +7,7 @@
 
 * Insérer la carte Micro SD dans le PC
 
-* télécharger l'OS Hypriot 64bits: https://github.com/DieterReuter/image-builder-rpi64/releases/ 
-
-  ou OS Hypriot 32bits: http://blog.hypriot.com/downloads/
+* télécharger l'OS Hypriot 32bits: http://blog.hypriot.com/downloads/
 
 * Flasher raspbian  sur une Micro SD avec ETCHER: https://etcher.io/
 * insèrer la sd dans le raspberry
