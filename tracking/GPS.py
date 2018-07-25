@@ -83,7 +83,7 @@ while True:
             cus_date = datetime.strptime(gpsData['fix_date'], "%d%m%Y").date()                
             
             # Data to insert 
-            os.system("docker exec -u postgres pi_postgis_1 psql tamatatracking -c " +
+            os.system("docker exec -u postgres pirate_postgis_1 psql geopoppy -c " +
                 "\"insert into trame ( jour, heure, latitude, longitude, geom ) " + 
                 "values ( current_date ,'"+ gpsData['fix_time']+"',"+str(gpsData['decimal_latitude'])+","+ str(gpsData['decimal_longitude'])+",st_setsrid( st_makepoint( "+ str( gpsData['decimal_longitude']) +","+ str(gpsData['decimal_latitude']) +" ), 4326 ) );\" ")
             time.sleep( SLEEP )
