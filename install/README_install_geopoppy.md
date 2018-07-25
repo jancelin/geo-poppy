@@ -42,15 +42,6 @@ curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/a
 
 ```
 
-64bits:
-
-```
-sudo -s
-
-curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy_64bits.sh | sh
-
-```
-
 * chargement des images logiciels  (env 15 min):
 
 * enfin redémarrer le raspberry pour activer le wifi direct
