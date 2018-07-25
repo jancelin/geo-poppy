@@ -1,7 +1,7 @@
 create table trame (
 id serial,
 jour date,
-heure timestamp without time zone,
+heure numeric,
 latitude numeric,
 longitude numeric,
 geom geometry(Point,4326),
