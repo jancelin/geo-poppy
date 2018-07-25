@@ -93,7 +93,7 @@ while True:
             
             # Data to insert 
             cur = conn.cursor()
-            cur.executemany("""INSERT INTO bar(jour, heure, latitude, longitude, geom) VALUES (current_date ,gpsData['fix_time'],str(gpsData['decimal_latitude']), str(gpsData['decimal_longitude']),st_setsrid( st_makepoint( str( gpsData['decimal_longitude']), str(gpsData['decimal_latitude']) ), 4326 )""")
+            cur.execute("""INSERT INTO bar(jour, heure, latitude, longitude, geom) VALUES (current_date ,gpsData['fix_time'],str(gpsData['decimal_latitude']), str(gpsData['decimal_longitude']),st_setsrid( st_makepoint( str( gpsData['decimal_longitude']), str(gpsData['decimal_latitude']) ), 4326 )""")
             
             
             #os.system("docker exec -u postgres pirate_postgis_1 psql geopoppy -c " +
