@@ -33,14 +33,6 @@ ssh pirate@"ton ip"
 
 * install GeoPoppy:
 
-64bits:
-
-```
-sudo -s
-
-curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy_64bits.sh | sh
-
-```
 
 32bits:
 
@@ -48,6 +40,15 @@ curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/a
 sudo -s
 
 curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy_32bits.sh | sh
+
+```
+
+64bits:
+
+```
+sudo -s
+
+curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy_64bits.sh | sh
 
 ```
 

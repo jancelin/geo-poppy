@@ -142,7 +142,7 @@ def pushed_push(event):
 		sense.clear()
 	
 animation = [geopoppy, geopoppy1, geopoppy2]
-t_end = time.time() + 30
+t_end = time.time() + 60
 while time.time() < t_end:
     for image in animation:
         sense.set_pixels(image)

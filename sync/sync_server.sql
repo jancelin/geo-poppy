@@ -37,8 +37,18 @@ CREATE TABLE sync.sauv_data
   action1 character varying,      --action sur la donnée: INSERT UPDATE ou DELETE
   sauv json,                      --chaine de donnée en json (champ:valeur,...)
   pk character varying,           --clef primaire de la table
+  fk json,                        --clefs étrangères
   replay boolean DEFAULT false,   --La donnée a t'elle été rejoué dans la base
   no_replay integer               --1= donnée multi-edité fonction: sync.no_replay() , 2= donnée exclus conflit d'edition: sync.resolve_conflict()
+);
+
+--list of replay in db + add a ligne and do a replay data (with trigger sync.doreplay())
+CREATE TABLE sync.doreplay
+(
+  id serial,
+  ts timestamp with time zone DEFAULT now(), --TIME OF SYNCHRO
+  checking character varying, --working?
+  CONSTRAINT pk_doreplay PRIMARY KEY (id)
 );
 
 -----Création de la vue ts_excluded-----
@@ -131,6 +141,7 @@ tbl = OLD.tbl,
 action1 = OLD.action1,
 sauv = OLD.sauv,
 pk = OLD.pk,
+--fk = OLD.fk,
 replay = TRUE,
 no_replay = 2 --2 est l'identifiant des conflits supprimés
 where ts = OLD.ts;
@@ -262,3 +273,87 @@ $BODY$
 LANGUAGE plpgsql VOLATILE
   COST 100
   ROWS 1000;
+  
+----------------------------------------------------------------------------
+--For disable trigger sauv before  replay() function
+--select * from sync.disable_sauv_trigger();
+CREATE OR REPLACE FUNCTION sync.disable_sauv_trigger(OUT result text) AS $$
+DECLARE
+query text;
+BEGIN
+FOR query IN
+SELECT
+	    'ALTER TABLE  ' 
+	    || tbl_name.tab_name
+	    || ' DISABLE TRIGGER sauv;'AS trigger_creation_query
+	FROM (
+	    SELECT
+		quote_ident(table_schema) || '.' || quote_ident(table_name) as tab_name
+	    FROM
+		information_schema.tables
+	    WHERE
+		table_schema NOT IN ('pg_catalog', 'information_schema', 'sync', 'topology')
+		AND table_schema NOT LIKE 'pg_toast%'
+		AND table_name NOT IN (SELECT viewname FROM pg_views WHERE schemaname NOT IN('information_schema','pg_catalog'))
+) AS tbl_name
+	LOOP
+	  EXECUTE query;
+	END LOOP;
+RAISE NOTICE 'DISABLE: %', result;
+END;
+$$
+LANGUAGE plpgsql VOLATILE;
+
+--For enable trigger sauv before  replay() function
+--SELECT * FROM sync.enable_sauv_trigger();
+CREATE OR REPLACE FUNCTION sync.enable_sauv_trigger(OUT result text) AS $$
+DECLARE
+query text;
+BEGIN
+FOR query IN
+SELECT
+	    'ALTER TABLE  ' 
+	    || tbl_name.tab_name
+	    || ' ENABLE TRIGGER sauv;'AS trigger_creation_query
+	FROM (
+	    SELECT
+		quote_ident(table_schema) || '.' || quote_ident(table_name) as tab_name
+	    FROM
+		information_schema.tables
+	    WHERE
+		table_schema NOT IN ('pg_catalog', 'information_schema', 'sync', 'topology')
+		AND table_schema NOT LIKE 'pg_toast%'
+		AND table_name NOT IN (SELECT viewname FROM pg_views WHERE schemaname NOT IN('information_schema','pg_catalog'))
+) AS tbl_name
+	LOOP
+	  EXECUTE query;
+	END LOOP;
+RAISE NOTICE 'DISABLE: %', result;
+END;
+$$
+LANGUAGE plpgsql VOLATILE;
+----------------------------------------------------------------------------
+
+---lancement de l'injection de données sur le central après un insert dans la table sync.doreplay
+DROP FUNCTION IF EXISTS sync.sync();
+CREATE OR REPLACE FUNCTION sync.sync() RETURNS TRIGGER AS 
+$BODY$
+BEGIN	
+IF (TG_OP = 'INSERT') THEN
+        PERFORM sync.disable_sauv_trigger();
+	PERFORM sync.no_replay();
+        PERFORM sync.replay();
+	UPDATE sync.doreplay SET id =NEW.id, ts=NEW.ts, checking = 'OK' WHERE id=NEW.id ;
+        PERFORM sync.enable_sauv_trigger();
+	RETURN NEW;
+END IF;
+RETURN NEW;
+END;
+$BODY$
+ LANGUAGE 'plpgsql';
+
+CREATE TRIGGER doreplay
+  AFTER INSERT
+  ON sync.doreplay
+  FOR EACH ROW
+EXECUTE PROCEDURE sync.sync();
