@@ -1,3 +1,2 @@
 ###### Requirements without Version Specifiers ######
 pyserial
-serial
