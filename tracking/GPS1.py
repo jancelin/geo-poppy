@@ -14,7 +14,7 @@ SLEEP = 10
 
 # Try to connect
 try:
-    conn=psycopg2.connect("host='postgis' port='5432' dbname='geopoppy' user='docker' password='docker'")
+    conn=psycopg2.connect("host='172.24.1.1' port='5432' dbname='geopoppy' user='docker' password='docker'")
 except:
     print "I am unable to connect to the database."
 
