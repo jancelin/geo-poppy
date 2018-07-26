@@ -89,6 +89,7 @@ while True:
             if DEBUG is True: 
                 print "Writing into database..." 
             
+            print "Début de l'insertion"
             cus_date = datetime.strptime(gpsData['fix_date'], "%d%m%Y").date()                
             
             # Data to insert 
