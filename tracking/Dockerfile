@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY GPS1.py ./
 WORKDIR /
-CMD [ "python", "/usr/src/app/GPS1.py" ]
+#CMD [ "python", "/usr/src/app/GPS1.py" ]
