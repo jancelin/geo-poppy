@@ -1,3 +1,5 @@
+####!!!!  cp usb.sh gps1.py dans /home/pirate/gps
+
 docker run -it --privileged -v /dev:/dev -v /home/pirate/gps:/usr/src/app python:2 bash
 
 pip install pyserial psycopg2
