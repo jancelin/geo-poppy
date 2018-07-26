@@ -93,7 +93,7 @@ while True:
             
             # Data to insert 
             cur = conn.cursor()
-            sql = """ INSERT INTO trame (jour, heure, latitude, longitude, geom) VALUES (current_date, %s, %s, %s, st_setsrid(st_makepoint(%s,%s), 4326) ) """
+            sql = """ INSERT INTO trame (jour, heure, latitude, longitude, geom) VALUES (current_date, %s, %s, %s, st_setsrid(st_makepoint(%s,%s), 4326) ); """
 
             cur.execute(sql, (gpsData['fix_time'], str(gpsData['decimal_latitude']),str(gpsData['decimal_longitude']), str(gpsData['decimal_longitude']), str(gpsData['decimal_latitude']) )
             #cur.execute("""INSERT INTO trame (jour, heure, latitude, longitude, geom) VALUES (current_date ,gpsData['fix_time'],str(gpsData['decimal_latitude']), str(gpsData['decimal_longitude']),st_setsrid( st_makepoint( str( gpsData['decimal_longitude']), str(gpsData['decimal_latitude']) ), 4326 ))""")
