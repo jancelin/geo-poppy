@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+
+###Pensez à créer la table dans la base géopoppy: https://github.com/jancelin/geo-poppy/blob/dev/tracking/trame.sql
+
+ gps:
+    #image: gps_gps
+    build:
+      context: https://github.com/jancelin/geo-poppy.git#dev:/tracking
+    volumes:
+      - /dev:/dev
+    privileged: true
+
