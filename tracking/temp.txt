@@ -1,0 +1,8 @@
+docker run -it --privileged -v /dev:/dev -v /home/pirate/gps:/usr/src/app python:2 bash
+
+pip install pyserial psycopg2
+#stty -F /dev/ttyUSB1 4800
+#cat /dev/ttyUSB1
+#mkdir /usr/src/app
+cd /usr/src/app
+python gps1.py
