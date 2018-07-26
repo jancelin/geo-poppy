@@ -21,7 +21,7 @@ except:
 
 # Set up serial:
 ser = serial.Serial(
-    port='/dev/ttyUSB0',\
+    port='/dev/ttyUSB1',\
     baudrate=4800,\
     parity=serial.PARITY_NONE,\
     stopbits=serial.STOPBITS_ONE,\
