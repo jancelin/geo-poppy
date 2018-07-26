@@ -30,7 +30,7 @@ except:
 
 # Set up serial:
 ser = serial.Serial(
-    port=get_var('USB'),\ #point to /dev/ttyUSB*
+    port=get_var('USB'),\
     baudrate=4800,\
     parity=serial.PARITY_NONE,\
     stopbits=serial.STOPBITS_ONE,\
