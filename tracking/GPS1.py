@@ -14,7 +14,7 @@ DEBUG = False
 SLEEP = 10
 # trouver chemin vers usb gps
 def get_var(varname): 
-    CMD = 'echo $(source usb.sh; echo $%s)' % varname
+    CMD = 'echo $(source ./usb.sh; echo $%s)' % varname
     p = subprocess.Popen(CMD, stdout=subprocess.PIPE, shell=True, executable='/bin/bash')
     return p.stdout.readlines()[0].strip()
 
