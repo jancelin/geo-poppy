@@ -4,6 +4,7 @@ import os
 import sys
 import psycopg2
 import psycopg2.extras
+import subprocess
 
 from datetime import datetime
 
@@ -11,17 +12,25 @@ firstFixFlag = False # this will go true after the first GPS fix.
 firstFixDate = ""
 DEBUG = False
 SLEEP = 10
+# trouver chemin vers usb gps
+def get_var(varname): 
+    CMD = 'echo $(source usb.sh; echo $%s)' % varname
+    p = subprocess.Popen(CMD, stdout=subprocess.PIPE, shell=True, executable='/bin/bash')
+    return p.stdout.readlines()[0].strip()
 
 # Try to connect
 try:
     conn=psycopg2.connect("host='172.24.1.1' port='5432' dbname='geopoppy' user='docker' password='docker'")
+    print get_var('USB') #get ttyUSB
+    print "Connection DB OK"
+    subprocess.call(['stty', '-F',get_var('USB'), '4800']) #do /dev/ttyUSB* on 4800
 except:
     print "I am unable to connect to the database."
 
 
 # Set up serial:
 ser = serial.Serial(
-    port='/dev/ttyUSB1',\
+    port=get_var('USB'),\ #point to /dev/ttyUSB*
     baudrate=4800,\
     parity=serial.PARITY_NONE,\
     stopbits=serial.STOPBITS_ONE,\
