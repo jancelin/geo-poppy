@@ -13,14 +13,14 @@ https://github.com/jancelin/geo-poppy/blob/dev/tracking/docker-compose.yml
 
 * lancer le container quand vous souhaitez effectué un tracking de position:
 ```
-docker-compose up -d gps
+docker-compose up -d tracking
 ```
 
 * pour arrêter le tracking:
-``
+```
 docker-compose stop tracking
 ```
 
-> il est possible de gérer le démarage arrêt directement dans portainer: http://172.24.1.1:9000
+> il est possible de gérer le démarage/arrêt directement dans portainer: http://172.24.1.1:9000
 
-* les données sont enregistrés toute les 10 secondes, disponible dans la base postgresql geopoppy via Qgis ou lizmap
+* les données sont enregistrés toute les 10 secondes, disponibles dans la base postgresql geopoppy, table trame via Qgis ou lizmap
