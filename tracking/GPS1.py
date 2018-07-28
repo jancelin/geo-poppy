@@ -1,3 +1,4 @@
+#script d'origine: https://raspberry-pi.developpez.com/cours-tutoriels/projets-rpi-zero/traceur-gps/
 import time
 import serial
 import os
