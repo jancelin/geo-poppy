@@ -20,5 +20,7 @@ docker-compose up -d gps
 ``
 docker-compose stop tracking
 ```
+
 > il est possible de gérer le démarage arrêt directement dans portainer: http://172.24.1.1:9000
 
+* les données sont enregistrés toute les 10 secondes, disponible dans la base postgresql geopoppy via Qgis ou lizmap
