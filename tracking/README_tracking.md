@@ -1,5 +1,5 @@
 
-** Tracking pour GéoPoppy permet, en branchant une antenne GNSS sur le raspberry, de relever des données de localisation directement en base de données. **
+**Tracking pour GéoPoppy permet, en branchant une antenne GNSS sur le raspberry, de relever des données de localisation directement en base de données.**
 
 Etapes:
 
