@@ -1,3 +1,5 @@
+![tracking](https://user-images.githubusercontent.com/6421175/43358010-359039b2-928b-11e8-882a-184e9f812be1.png)
+
 
 **Tracking pour GéoPoppy permet, en branchant une antenne GNSS sur le raspberry, de relever toutes les 10 secondes la localisation directement dans la base de données.**
 
