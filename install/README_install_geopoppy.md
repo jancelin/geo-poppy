@@ -4,13 +4,10 @@
 
 
 
-* préparer la SD sous Linux
 
 * Insérer la carte Micro SD dans le PC
 
-* télécharger l'OS Hypriot 64bits: https://github.com/DieterReuter/image-builder-rpi64/releases/ 
-
-  ou OS Hypriot 32bits: http://blog.hypriot.com/downloads/
+* télécharger l'OS Hypriot 32bits: http://blog.hypriot.com/downloads/
 
 * Flasher raspbian  sur une Micro SD avec ETCHER: https://etcher.io/
 * insèrer la sd dans le raspberry
@@ -40,15 +37,6 @@ ssh pirate@"ton ip"
 sudo -s
 
 curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy_32bits.sh | sh
-
-```
-
-64bits:
-
-```
-sudo -s
-
-curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/auto_install_geopoppy_64bits.sh | sh
 
 ```
 
