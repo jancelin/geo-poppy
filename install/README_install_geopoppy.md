@@ -9,11 +9,11 @@
 
 * télécharger l'OS Hypriot 32bits: http://blog.hypriot.com/downloads/
 
-* Flasher raspbian  sur une Micro SD avec ETCHER: https://etcher.io/
-* insèrer la sd dans le raspberry
-* connecter l'ethernet
-* brancher
-* connection en ssh:
+* Flasher raspbian sur une Micro SD avec ETCHER: https://etcher.io/
+* Insèrer la carte SD dans le Raspberry Pi
+* Connecter l'ethernet du Raspberry Pi
+* Brancher l'alimentation électrique du Raspberry Pi
+* Connection en ssh:
 
 ```
 ssh pirate@black-pearl.local
@@ -28,7 +28,7 @@ ssh pirate@"ton ip"
 
 ----------------------
 
-* install GeoPoppy:
+* Installation de GeoPoppy:
 
 
 32bits:
@@ -40,9 +40,9 @@ curl -fsSL https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/a
 
 ```
 
-* chargement des images logiciels  (env 15 min):
+* Chargement des images logicielles  (environ 15 minutes)
 
-* enfin redémarrer le raspberry pour activer le wifi direct
+* Enfin, redémarrer le raspberry pour activer le wifi direct
 ```
 sudo reboot
 ```
