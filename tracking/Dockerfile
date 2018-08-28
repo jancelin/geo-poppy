@@ -5,6 +5,9 @@ WORKDIR /usr/src/app
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY GPS1.py ./
+
+ADD GPS1.py ./
+ADD usb.sh ./
+
 WORKDIR /
 CMD [ "python", "/usr/src/app/GPS1.py" ]

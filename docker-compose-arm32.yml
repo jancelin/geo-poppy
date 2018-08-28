@@ -21,7 +21,8 @@ services:
      - redis:redis
      
   qgiserver:
-    image: jancelin/geopoppy:qgis2.18LTR-arm32
+    image: jancelin/geopoppy:qgis-server2.14LTR-0.2
+#image: jancelin/geopoppy:qgis2.18LTR-arm32_1
     restart: on-failure
     volumes:
       - project:/home
@@ -37,7 +38,8 @@ services:
       - 6379
 
   postgis:
-    image: jancelin/geopoppy:postgres10-2.4-arm32
+    image: jancelin/geopoppy:postgres10-2.4-arm32_1
+#    restart: always
     ports:
       - 5432:5432
     expose:

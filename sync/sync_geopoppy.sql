@@ -8,6 +8,9 @@
 --insert data on table
 --INSERT INTO sync.synchro (id_login) values (1);
 
+---Creation extension dblink
+CREATE  EXTENSION IF NOT EXISTS dblink;
+
 -----Création schema sync-----
 /*
 Ce schema contiendra une table et des vues pour la gestion votre synchronisation
@@ -27,6 +30,7 @@ CREATE TABLE sync.sauv_data
   action1 character varying,
   sauv json,
   pk character varying,
+  fk json,
   sync integer DEFAULT 0,
   sync_ts timestamp with time zone
 );
@@ -52,7 +56,7 @@ CREATE TABLE sync.login
 CREATE TABLE sync.synchro
 (
   id serial,
-  ts timestamp with time zone, --TIME OF SYNCHRO
+  ts timestamp with time zone  DEFAULT now(), --TIME OF SYNCHRO
   id_login integer, --get dblink remote server param
   rpi2server character varying,
   CONSTRAINT pk_synchro PRIMARY KEY (id)
@@ -64,15 +68,37 @@ CREATE OR REPLACE FUNCTION sync.sauv_data() RETURNS TRIGGER AS $sauv$
 BEGIN	
 	IF (TG_OP = 'DELETE') THEN
         INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'DELETE',
-	json_build_array(OLD.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
+	json_build_array(OLD.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				 where tc.table_name= TG_TABLE_NAME and
+				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1), --search Pk
+	COALESCE(json_agg(fk.n),'[]') from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				where tc.table_name= TG_TABLE_NAME and
+				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
+				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk h Fk
         RETURN OLD;
     	ELSIF (TG_OP = 'UPDATE') THEN
         INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'UPDATE',
-	json_build_array(NEW.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
+	json_build_array(NEW.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				 where tc.table_name= TG_TABLE_NAME and
+				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1),--search Pk
+	COALESCE(json_agg(fk.n),'[]') from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				where tc.table_name= TG_TABLE_NAME and
+				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
+				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk 
         RETURN NEW;
     	ELSIF (TG_OP = 'INSERT') THEN
         INSERT INTO sync.sauv_data SELECT session_user, now(), TG_TABLE_SCHEMA, TG_TABLE_NAME ,'INSERT',
-	json_build_array(NEW.*),(select kc.column_name from information_schema.key_column_usage kc where kc.table_name=TG_TABLE_NAME AND kc.position_in_unique_constraint is null);
+	json_build_array(NEW.*),(select kc.column_name from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				 where tc.table_name= TG_TABLE_NAME and
+				 tc.constraint_type = 'PRIMARY KEY' and kc.table_name = tc.table_name 
+				 and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name order by 1),--search Pk
+	COALESCE(json_agg(fk.n),'[]') from (select kc.column_name n from information_schema.table_constraints tc,information_schema.key_column_usage kc
+				where tc.table_name= TG_TABLE_NAME and
+				tc.constraint_type = 'FOREIGN KEY' and kc.table_name = tc.table_name 
+				and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name group by kc.column_name)fk; --search Fk 
+				 
         RETURN NEW;
     	END IF;
     	RETURN NULL; -- le résultat est ignoré car il s'agit d'un trigger AFTER
@@ -140,7 +166,7 @@ BEGIN
 	--update sync column in sauv_data to 1 (penser à rajouter le schema sync)
 	FOR query IN
 		SELECT 'SELECT dblink_exec('''||n||''',''INSERT INTO sync.sauv_data values 
-		('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''')'');
+		('''''||n||''''','''''||ts||''''','''''||schema_bd||''''','''''||tbl||''''','''''||action1||''''','''''||sauv||''''','''''|| pk ||''''','''''|| fk ||''''')'');
 		UPDATE sync.sauv_data SET sync = 1, sync_ts = now();'
 		FROM sync.sauv_data
 		WHERE sync.sauv_data.sync = 0
