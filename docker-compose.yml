@@ -1,0 +1,78 @@
+# Rename to docker-compose.yml
+# play with HYPRIOT-OS-32bits : https://blog.hypriot.com/downloads/
+# Flash microSD with etcher: https://etcher.io/
+version: '3.2'
+services:
+  lizmap:
+    image: jancelin/geopoppy:release_3_2_arm32
+    restart: on-failure
+    ports:
+     - 80:80
+     - 443:443
+    volumes:
+     - project:/home
+     - var:/var/www/websig/lizmap/var
+    depends_on:
+      - postgis
+      - qgiserver
+      - redis
+    links:
+     - qgiserver:qgiserver
+     - redis:redis
+     
+  qgiserver:
+    image: jancelin/geopoppy:qgis-server2.14LTR-0.2
+#image: jancelin/geopoppy:qgis2.18LTR-arm32_1
+    restart: on-failure
+    volumes:
+      - project:/home
+    expose:
+      - 80
+      
+  redis:
+    image: hypriot/rpi-redis
+    restart: on-failure
+    volumes:
+      - redis:/data
+    expose:
+      - 6379
+
+  postgis:
+    image: jancelin/geopoppy:postgres10-2.4-arm32_1
+#    restart: always
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    environment:
+      - ALLOW_IP_RANGE=0.0.0.0/0
+      - POSTGRES_USER=docker
+      - POSTGRES_DBNAME=geopoppy
+      - POSTGRES_DUMP=geopoppy.sql
+    volumes:
+      - postgres:/var/lib/postgresql
+      
+  portainer:
+    image: portainer/portainer:linux-arm
+    restart: always
+    ports:
+     - 9000:9000
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - portainer:/data
+     
+  cloud:
+    image: valentinalexeev/rpi-cloudcmd
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+#      - ~:/root
+      - project:/mnt/fs
+     
+volumes:
+   portainer:
+   postgres:
+   redis:
+   var:
+project:
