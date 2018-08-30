@@ -4,7 +4,7 @@
 version: '3.2'
 services:
   lizmap:
-    image: jancelin/geopoppy:release_3_2_arm32
+    image: jancelin/geopoppy:release_3_2_arm32_1
     restart: on-failure
     ports:
      - 80:80
