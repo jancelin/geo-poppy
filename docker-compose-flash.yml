@@ -44,6 +44,9 @@ services:
       - 5432:5432
     expose:
       - 5432
+    entrypoint: >
+      bash -c "cp  /home/setup-database.sh / &&
+               /docker-entrypoint.sh"
     environment:
       - ALLOW_IP_RANGE=0.0.0.0/0
       - POSTGRES_USER=docker
@@ -51,6 +54,7 @@ services:
       - POSTGRES_DUMP=geopoppy.sql
     volumes:
       - postgres:/var/lib/postgresql
+      - /home/pirate:/home
       
   portainer:
     image: portainer/portainer:linux-arm
