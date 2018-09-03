@@ -1,4 +1,5 @@
 #script d'origine: https://raspberry-pi.developpez.com/cours-tutoriels/projets-rpi-zero/traceur-gps/
+import datetime
 import time
 import serial
 import os
@@ -11,7 +12,7 @@ from datetime import datetime
 
 firstFixFlag = False # this will go true after the first GPS fix.
 firstFixDate = ""
-DEBUG = False
+DEBUG = True
 SLEEP = 10
 # trouver chemin vers usb gps
 def get_var(varname): 
@@ -99,11 +100,11 @@ while True:
             if DEBUG is True: 
                 print "Writing into database..." 
             
-            cus_date = datetime.strptime(gpsData['fix_date'], "%d%m%Y").date()                
+            #cus_date = datetime.strptime(gpsData['fix_date'], "%d%m%Y").date()                
             
             # Data to insert 
             cur = conn.cursor()
-            sql = "INSERT INTO trame (jour, heure, latitude, longitude, geom) VALUES (current_date, %s, %s, %s, st_setsrid(st_makepoint(%s,%s), 4326) );"
-            cur.execute(sql, (gpsData['fix_time'], str(gpsData['decimal_latitude']),str(gpsData['decimal_longitude']), str(gpsData['decimal_longitude']), str(gpsData['decimal_latitude']) ))
+            sql = "INSERT INTO trame (jour, heure, latitude, longitude, geom) VALUES (%s, %s, %s, %s, st_setsrid(st_makepoint(%s,%s), 4326) );"
+            cur.execute(sql, (str(gpsData['fix_date']),gpsData['fix_time'], str(gpsData['decimal_latitude']),str(gpsData['decimal_longitude']), str(gpsData['decimal_longitude']), str(gpsData['decimal_latitude']) ))
             conn.commit()
             time.sleep( SLEEP )
