@@ -5,7 +5,7 @@ heure numeric,
 latitude numeric,
 longitude numeric,
 geom geometry(Point,4326),
-Constraint pk_tramle PRIMARY KEY (id)
+Constraint pk_trame PRIMARY KEY (id)
 );
 
 CREATE INDEX index_trame_geom
