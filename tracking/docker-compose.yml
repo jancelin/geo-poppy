@@ -6,7 +6,8 @@ services:
  tracking:
     #image: gps_gps
     build:
-      context: https://github.com/jancelin/geo-poppy.git#dev:/tracking
+      context: https://github.com/jancelin/geo-poppy.git#master:/tracking
+    restart: "no"
     volumes:
       - /dev:/dev
     privileged: true

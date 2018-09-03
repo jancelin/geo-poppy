@@ -1,10 +1,13 @@
+
 **GeoPoppy est un outil numérique OpenSource LowCost pour l'acquisition et la consultation de données géolocalisées**
+
 
 ![geo-poppy](https://raw.githubusercontent.com/jancelin/geo-poppy/master/docs/images/geopoppy_2.png)
 
 [![Try in PWD](https://cdn.rawgit.com/play-with-docker/stacks/cff22438/assets/images/button.png)](http://play-with-docker.com?stack=https://raw.githubusercontent.com/jancelin/geo-poppy/master/windowsTablette/docker-compose.yml)
 
 **![Lien vers la procédure d'installation sur Raspberry pi 3](https://github.com/jancelin/geo-poppy/wiki/2.-Installation)**
+
 
 ![geo-poppy](https://github.com/jancelin/geo-poppy/blob/master/docs/images/1.png?raw=true)
 
