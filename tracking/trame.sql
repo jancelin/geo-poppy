@@ -1,6 +1,6 @@
 create table trame (
 id serial,
-jour date,
+jour numeric,
 heure numeric,
 latitude numeric,
 longitude numeric,
