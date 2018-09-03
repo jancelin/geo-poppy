@@ -10,4 +10,4 @@ ADD GPS1.py ./
 ADD usb.sh ./
 
 WORKDIR /
-CMD [ "python", "-u", "/usr/src/app/GPS1.py" ]
+CMD [ "python","-u","/usr/src/app/GPS1.py" ]
