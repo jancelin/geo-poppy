@@ -56,6 +56,13 @@ services:
       - postgres:/var/lib/postgresql
       - /home/pirate:/home
       
+  tracking:
+    image: jancelin/geopoppy:tracking_1_0
+    restart: "no"
+    volumes:
+      - /dev:/dev
+    privileged: true
+ 
   portainer:
     image: portainer/portainer:linux-arm
     restart: always
