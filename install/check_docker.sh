@@ -4,17 +4,21 @@
 # License: MIT
 # Nagios Usage: check_nrpe!check_docker_container!_container_id_
 
-# Modified by Julien ANCELIN for docker-compose
-# Usage: ./check_docker.sh 
-#
-# List all container in a docker-compose 
-# and If one or more is exit, it do a docker-compose down and up
-### INSTALLATION
+# Modified by Julien ANCELIN for docker-compose 
+# List all container in a docker-compose and If one or more is exit then it restart all container.
+
+### INSTALLATION AUTO > need internet
+# wget --no-check-certificate -N -O /home/pirate/check_docker.sh https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/check_docker.sh
+# sudo chmod +x /home/pirate/check_docker.sh
+# sudo wget --no-check-certificate -N -O /etc/systemd/system/Cdocker.service https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/Cdocker.service
+# sudo systemctl enable Cdocker.service
+
+### INSTALLATION MANUELLE
 ### pour installer mettre le fichier dans un répertoire ex: /home/pirate/check_docker.sh
 ### rendre executable: chmod +x /home/pirate/check_docker.sh
-### editer le rc.local pour lancer le script au demarage: sudo nano /etc/rc.local
-### rajouter avant le exit0 dans /etc/rc.local : /home/pirate/check_docker.sh
-### ou le lancer à la main, attention il y a un sleep de 40 secondes: /home/pirate/check_docker.sh
+### Rajouter le fichier Cdocker.service (https://raw.githubusercontent.com/jancelin/geo-poppy/master/install/Cdocker.service) dans /etc/systemd/system/
+### Activer le service au démarrage du raspberry: sudo systemctl enable Cdocker.service
+### Et si besoin il est possible de le lancer à la main pour vérifier son fonctonnement (attention il y a un sleep de 40 secondes): sudo systemctl start Cdocker.service
 
 #set -x
 sleep 40
