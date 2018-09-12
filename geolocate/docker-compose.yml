@@ -1,0 +1,12 @@
+version: '3.2'
+services:
+
+ location:
+    build:
+      context: ./
+    restart: "no"
+    volumes:
+      - /dev:/dev
+    ports:
+      - 1979:1950
+    privileged: true
