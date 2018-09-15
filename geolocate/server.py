@@ -15,6 +15,6 @@ class MyTCPServerHandler(SocketServer.BaseRequestHandler):
             except Exception, e:
                 print "Exception wile receiving message: ", e
 
-server = SocketServer.TCPServer(("", 1979), MyTCPServerHandler)
+server = SocketServer.TCPServer(("", 1950), MyTCPServerHandler)
 print '=== WE ARE LIVE ==='
 server.serve_forever()
