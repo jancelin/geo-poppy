@@ -6,6 +6,8 @@ import commands
 
 class MyTCPServerHandler(SocketServer.BaseRequestHandler):
         
+    json_file = '/usr/src/app/data.json'     
+
     def handle(self):
         # Get the JSON data...return the ESSIDS (their respective MAC addresses and the signal strength)
         #self.data = json.loads(self.request.recv(1024).strip())
