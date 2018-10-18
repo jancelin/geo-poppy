@@ -1,52 +1,56 @@
 # Rename to docker-compose.yml
 # play with HYPRIOT-OS-32bits : https://blog.hypriot.com/downloads/
 # Flash microSD with etcher: https://etcher.io/
+# MAINTAINER Julien Ancelin <julien.ancelin@inra.fr>
 version: '3.2'
 services:
+
   lizmap:
-    image: jancelin/geopoppy:release_3_2_arm32_1
+    image: jancelin/geopoppy:lizmap_rpi3_3.2rc6
     restart: on-failure
     ports:
      - 80:80
      - 443:443
     volumes:
-     - project:/home
-     - var:/var/www/websig/lizmap/var
-    depends_on:
-      - postgis
-      - qgiserver
-      - redis
-    links:
-     - qgiserver:qgiserver
-     - redis:redis
-     
-  qgiserver:
-    image: jancelin/geopoppy:qgis-server2.14LTR-0.2
-#image: jancelin/geopoppy:qgis2.18LTR-arm32_1
-    restart: on-failure
+     - ${PWD}/geopoppy/qgis/geopoppy:/geopoppy
+     - ${PWD}/geopoppy/var:/var/www/websig/lizmap/var     
+  map:
+    image: jancelin/geopoppy:qgis3server
+    environment:
+      PGSERVICEFILE: /srv/etc/pg_service.conf
+      QGSRV_CACHE_ROOTDIR: /srv/projects
+      QGSRV_CACHE_SIZE: '20'
+      QGSRV_LOGGING_LEVEL: DEBUG
+      QGSRV_USER: 1000:1000
+      ROUTER_HOST: map
     volumes:
-      - project:/home
+      - ${PWD}/geopoppy/qgis:/srv/projects
+      - ${PWD}/geopoppy/etc:/srv/etc:ro
+      - ${PWD}/geopoppy/wps-data:/srv/data
+    restart: unless-stopped
     expose:
-      - 80
-      
+      - 8080
+    ports:
+      - 8081:8080
   redis:
-    image: hypriot/rpi-redis
-    restart: on-failure
+    image: redis:4
+    restart: unless-stopped
+  cloud:
+    image: valentinalexeev/rpi-cloudcmd
+    restart: always
+    ports:
+      - 8000:8000
     volumes:
-      - redis:/data
-    expose:
-      - 6379
-
+      - ${PWD}/geopoppy:/mnt/fs  
   postgis:
     image: jancelin/geopoppy:postgres10-2.4-arm32_1
-#    restart: always
+    restart: unless-stopped
     ports:
       - 5432:5432
     expose:
       - 5432
     entrypoint: >
-      bash -c "wget -N -P / https://raw.githubusercontent.com/jancelin/docker-postgis/master/setup-database.sh &&
-               wget -N -P /home https://github.com/jancelin/docker-postgis/raw/master/geopoppy.sql &&
+      bash -c "cp  /home/setup-database.sh / &&
                /docker-entrypoint.sh"
     environment:
       - ALLOW_IP_RANGE=0.0.0.0/0
@@ -54,31 +58,14 @@ services:
       - POSTGRES_DBNAME=geopoppy
       - POSTGRES_DUMP=geopoppy.sql
     volumes:
-      - postgres:/var/lib/postgresql
+      - ${PWD}/geopoppy/postgresql:/var/lib/postgresql
+      - /home/pirate:/home
+  tracking:
+    image: jancelin/geopoppy:tracking_1_0
+#    build:
+#      context: https://github.com/jancelin/geo-poppy.git#dev:/tracking
+    restart: "no"
+    volumes:
+      - /dev:/dev
+    privileged: true
       
-  portainer:
-    image: portainer/portainer:linux-arm
-    restart: always
-    ports:
-     - 9000:9000
-    volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-     - portainer:/data
-     
-  cloud:
-    image: valentinalexeev/rpi-cloudcmd
-    restart: always
-    ports:
-      - 8000:8000
-    volumes:
-#      - ~:/root
-      - project:/mnt/fs
-     
-volumes:
-   portainer:
-   postgres:
-   redis:
-   var:
-   project:
-   
-
