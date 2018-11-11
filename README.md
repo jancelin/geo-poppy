@@ -56,12 +56,11 @@ ______________________________________________________________________
 
 Comment le fabriquer ?
 
-![geo-poppy](https://raw.githubusercontent.com/jancelin/geo-poppy/master/docs/images/geopoppy_schema_2.png)
+![geo-poppy](https://raw.githubusercontent.com/jancelin/geo-poppy/master/docs/images/geopoppy_schema_1.png)
 
 Méthode rapide pour Rasberry Pi 3
 
-***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
-
+***https://github.com/jancelin/geo-poppy/wiki/2.-Installation***
 
 ____________________________________________________________________________
 
