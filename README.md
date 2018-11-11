@@ -26,7 +26,6 @@ Les Matériels retenus pour faire fonctionner les services webSIG sont :
 
 > Il y a de la place et ça va vite. Prix env 16€
 
-* En option un sense Hat: qui permet de faire quelques commandes de base sur le raspberry sans allumer une console : https://github.com/jancelin/geo-poppy/blob/master/sense-hat/command.md
 
 ________________________________________________________________________________
 
@@ -54,13 +53,8 @@ ________________________________________________________________________________
 
 ______________________________________________________________________
 
-Comment le fabriquer ?
 
 ![geo-poppy](https://raw.githubusercontent.com/jancelin/geo-poppy/master/docs/images/geopoppy_schema_2.png)
-
-Méthode rapide pour Rasberry Pi 3
-
-***https://github.com/jancelin/geo-poppy/blob/master/install/README_install_geopoppy.md***
 
 
 ____________________________________________________________________________
