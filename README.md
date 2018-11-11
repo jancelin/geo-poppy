@@ -30,6 +30,13 @@ Les Matériels retenus pour faire fonctionner les services webSIG sont :
 
 ________________________________________________________________________________
 
+**CommentComment le fabriquer ?**
+ 
+ ![geoPoppy](https://raw.githubusercontent.com/jancelin/geo-poppy/master/docs/images/geopoppy_schema_1.png) Méthode rapide pour Rasberry Pi 3 
+ 
+ ***https://github.com/jancelin/geo-poppy/wiki/2.-Installation*** __________________________________________________________
+__________________ 
+
 **Programmes:**
 
 ![geo-poppy](https://raw.githubusercontent.com/jancelin/geo-poppy/master/docs/images/docker_container.png)
@@ -52,15 +59,6 @@ ________________________________________________________________________________
 
 **https://github.com/jancelin/docker-lizmap**
 
-______________________________________________________________________
-
-Comment le fabriquer ?
-
-![geo-poppy](https://raw.githubusercontent.com/jancelin/geo-poppy/master/docs/images/geopoppy_schema_1.png)
-
-Méthode rapide pour Rasberry Pi 3
-
-***https://github.com/jancelin/geo-poppy/wiki/2.-Installation***
 
 ____________________________________________________________________________
 
