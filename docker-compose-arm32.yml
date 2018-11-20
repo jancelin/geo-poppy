@@ -4,16 +4,37 @@
 # MAINTAINER Julien Ancelin <julien.ancelin@inra.fr>
 version: '3.2'
 services:
-
-  lizmap:
-    image: jancelin/geopoppy:lizmap_rpi3_3.2rc6
-    restart: on-failure
-    ports:
-     - 80:80
-     - 443:443
+  web:
+    image: nginx:1
     volumes:
-     - ${PWD}/geopoppy/qgis/geopoppy:/geopoppy
-     - ${PWD}/geopoppy/var:/var/www/websig/lizmap/var     
+      - ${PWD}/geopoppy/etc/nginx.conf:/etc/nginx/nginx.conf
+      - ${PWD}/geopoppy/var/log/nginx:/var/log/nginx
+      - ${PWD}/geopoppy:/srv/lizmap
+    ports:
+      - 80:80
+    restart: unless-stopped
+  lizmap:
+    image: jancelin/geopoppy:rpi_lizmap_client_3-2rc6_32
+    command: 
+      - php-fpm
+    environment:
+      LIZMAP_WPS_URL: http://wps:8080/ # According to your configuration
+      LIZMAP_CACHESTORAGETYPE: redis   
+      LIZMAP_CACHEREDISDB: '1'
+      LIZMAP_USER: '1010'
+      LIZMAP_WMSSERVERURL: http://map:8080/ows/
+      LIZMAP_CACHEREDISHOST: redis
+      LIZMAP_HOME: /srv/lizmap
+    expose:
+      - 9000
+    volumes:
+      - ${PWD}/geopoppy/qgis:/srv/projects
+      - ${PWD}/geopoppy/var/lizmap-theme-config:/www/lizmap/var/lizmap-theme-config
+      - ${PWD}/geopoppy/var/lizmap-config:/www/lizmap/var/config
+      - ${PWD}/geopoppy/var/lizmap-db:/www/lizmap/var/db
+      - ${PWD}/geopoppy/www:/www/lizmap/www
+      - ${PWD}/geopoppy/var/log/lizmap:/www/lizmap/var/log
+    restart: unless-stopped
   map:
     image: jancelin/geopoppy:qgis3server
     environment:
@@ -31,7 +52,7 @@ services:
     expose:
       - 8080
     ports:
-      - 8081:8080
+      - 8080:8080
   redis:
     image: redis:4
     volumes:
