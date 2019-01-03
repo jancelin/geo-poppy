@@ -1,38 +1,51 @@
+
 version: '3.2'
 services:
   lizmap:
-    image: jancelin/docker-lizmap:3.1.11
-    restart: on-failure
-    ports:
-     - 80:80
-     - 443:443
+    image: 3liz/lizmap-web-client
+    environment:
+      LIZMAP_CACHEREDISDB: '1'
+      LIZMAP_CACHEREDISHOST: redis
+      LIZMAP_CACHESTORAGETYPE: redis
+      LIZMAP_HOME: /srv/lizmap
+      LIZMAP_USER: 1001
+      LIZMAP_WMSSERVERURL: http://map:8080/ows/
     volumes:
-     - project:/home
-     - var:/var/www/websig/lizmap/var
-    depends_on:
-      - postgis
-      - qgiserver
-      - redis
-    links:
-     - qgiserver:qgiserver
-     - redis:redis
-     
-  qgiserver:
-    image: jancelin/qgis-server:2.18LTR
-    restart: on-failure
+      - ${PWD}/geopoppy/instances:/srv/projects
+      - ${PWD}/geopoppy/var/lizmap-theme-config:/www/lizmap/var/lizmap-theme-config
+      - ${PWD}/geopoppy/var/lizmap-config:/www/lizmap/var/config
+      - ${PWD}/geopoppy/var/lizmap-db:/www/lizmap/var/db
+      - ${PWD}/geopoppy/www:/www/lizmap/www
+      - ${PWD}/geopoppy/www/var/log:/www/lizmap/var/log
+    command:
+      - php-fpm
+    restart: unless-stopped
+  map:
+    image: 3liz/qgis-map-server
+    environment:
+      PGSERVICEFILE: /srv/etc/pg_service.conf
+      QGSRV_CACHE_ROOTDIR: /srv/projects
+      QGSRV_CACHE_SIZE: '20'
+      QGSRV_LOGGING_LEVEL: DEBUG
+      QGSRV_USER: 1001:1001
+      ROUTER_HOST: map
     volumes:
-      - project:/home
-    expose:
-      - 80
-      
+      - ${PWD}/geopoppy/instances:/srv/projects
+      - ${PWD}/geopoppy/etc:/srv/etc:ro
+      - ${PWD}/geopoppy/wps-data:/srv/data
+    restart: unless-stopped
   redis:
-    image: redis:alpine
-    restart: on-failure
+    image: redis:4
+  web:
+    image: nginx:1
     volumes:
-      - redis:/data
-    expose:
-      - 6379
+      - ${PWD}/geopoppy/etc/nginx.conf:/etc/nginx/nginx.conf
+      - ${PWD}/geopoppy/var/log/nginx:/var/log/nginx
+      - ${PWD}/geopoppy:/srv/lizmap
+    ports:
+      - 80:80
 
+    
   postgis:
     image: kartoza/postgis:10.0-2.4
     ports:
@@ -49,15 +62,8 @@ services:
       - POSTGRES_DBNAME=geopoppy
       - POSTGRES_DUMP=geopoppy.sql
     volumes:
-      - postgres:/var/lib/postgresql
-      
-  pgadmin4:
-    image: chorss/docker-pgadmin4
-    restart: on-failure
-    ports:
-      - 5050:5050
-    volumes:
-      - pgadmin4:/data
+      - ${PWD}/geopoppy/postgresql:/var/lib/postgresql
+      - ${PWD}/geopoppy/backup_postgresql:/home
       
   portainer:
     image: portainer/portainer
@@ -66,7 +72,7 @@ services:
      - 9000:9000
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
-     - portainer:/data
+     - ${PWD}/geopoppy/portainer:/data
      
   cloud:
     image: coderaiser/cloudcmd:latest-alpine
@@ -74,15 +80,5 @@ services:
     ports:
       - 8000:8000
     volumes:
-#      - ~:/root
-      - project:/mnt/fs
+      - ${PWD}/geopoppy:/mnt/fs  
      
-volumes:
-   portainer:
-   pgadmin4:
-   postgres:
-   redis:
-   var:
-   project:
-   
-
