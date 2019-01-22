@@ -6,7 +6,7 @@ version: '3.2'
 services:
   lizmap:
     image: jancelin/geopoppy:lizmap_rpi3_3.2rc6
-    restart: on-failure
+    restart: always
     ports:
      - 80:80
      - 443:443
@@ -26,7 +26,7 @@ services:
       - ${PWD}/geopoppy/qgis:/srv/projects
       - ${PWD}/geopoppy/etc:/srv/etc:ro
       - ${PWD}/geopoppy/wps-data:/srv/data
-    restart: unless-stopped
+    restart: always
     expose:
       - 8080
     ports:
@@ -35,7 +35,7 @@ services:
     image: redis:4
     volumes:
       - ${PWD}/geopoppy/redis:/data
-    restart: unless-stopped
+    restart: always
   cloud:
     image: valentinalexeev/rpi-cloudcmd
     restart: always
