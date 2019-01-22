@@ -7,7 +7,7 @@ services:
 
   lizmap:
     image: jancelin/geopoppy:lizmap_rpi3_3.2rc6
-    restart: on-failure
+    restart: always
     ports:
      - 80:80
      - 443:443
@@ -27,7 +27,7 @@ services:
       - ${PWD}/geopoppy/qgis:/srv/projects
       - ${PWD}/geopoppy/etc:/srv/etc:ro
       - ${PWD}/geopoppy/wps-data:/srv/data
-    restart: unless-stopped
+    restart: always
     expose:
       - 8080
     ports:
@@ -46,20 +46,20 @@ services:
       - ${PWD}/geopoppy:/mnt/fs  
   postgis:
     image: jancelin/geopoppy:postgres10-2.4-arm32_1
-    restart: unless-stopped
+    restart: always
     ports:
       - 5432:5432
     expose:
       - 5432
-    entrypoint: >
-      bash -c "wget -N -P / https://raw.githubusercontent.com/jancelin/docker-postgis/master/setup-database.sh &&
-               wget -N -P /home https://github.com/jancelin/docker-postgis/raw/master/geopoppy.sql &&
-               /docker-entrypoint.sh"
+#    entrypoint: >
+#      bash -c "wget -N -P / https://raw.githubusercontent.com/jancelin/docker-postgis/master/setup-database.sh &&
+#               wget -N -P /home https://github.com/jancelin/docker-postgis/raw/master/geopoppy.sql &&
+#               /docker-entrypoint.sh"
     environment:
       - ALLOW_IP_RANGE=0.0.0.0/0
       - POSTGRES_USER=docker
       - POSTGRES_DBNAME=geopoppy
-      - POSTGRES_DUMP=geopoppy.sql
+#      - POSTGRES_DUMP=geopoppy.sql
     volumes:
       - ${PWD}/geopoppy/postgresql:/var/lib/postgresql
       - /home/pirate:/home
