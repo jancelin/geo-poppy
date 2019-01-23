@@ -21,7 +21,7 @@
 ### Et si besoin il est possible de le lancer à la main pour vérifier son fonctonnement (attention il y a un sleep de 40 secondes): sudo systemctl start Cdocker.service
 
 #set -x
-sleep 40
+sleep 60
 LIST=$(docker ps -aq)
 for CONTAINER in $LIST
 do
