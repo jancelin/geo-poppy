@@ -11,8 +11,8 @@ services:
      - 80:80
      - 443:443
     volumes:
-     - ${PWD}/geopoppy/qgis/geopoppy:/geopoppy
-     - ${PWD}/geopoppy/var:/var/www/websig/lizmap/var     
+     - /home/pirate/geopoppy/qgis/geopoppy:/geopoppy
+     - /home/pirate/geopoppy/var:/var/www/websig/lizmap/var     
   map:
     image: jancelin/geopoppy:qgis3server
     environment:
@@ -23,9 +23,9 @@ services:
       QGSRV_USER: 1000:1000
       ROUTER_HOST: map
     volumes:
-      - ${PWD}/geopoppy/qgis:/srv/projects
-      - ${PWD}/geopoppy/etc:/srv/etc:ro
-      - ${PWD}/geopoppy/wps-data:/srv/data
+      - /home/pirate/geopoppy/qgis:/srv/projects
+      - /home/pirate/geopoppy/etc:/srv/etc:ro
+      - /home/pirate/geopoppy/wps-data:/srv/data
     restart: always
     expose:
       - 8080
@@ -34,7 +34,7 @@ services:
   redis:
     image: redis:4
     volumes:
-      - ${PWD}/geopoppy/redis:/data
+      - home/pirate/geopoppy/redis:/data
     restart: always
   cloud:
     image: valentinalexeev/rpi-cloudcmd
@@ -42,7 +42,7 @@ services:
     ports:
       - 8000:8000
     volumes:
-      - ${PWD}/geopoppy:/mnt/fs  
+      - /home/pirate/geopoppy:/mnt/fs  
   postgis:
     image: jancelin/geopoppy:postgres10-2.4-arm32_1
     restart: unless-stopped
@@ -59,7 +59,7 @@ services:
       - POSTGRES_DBNAME=geopoppy
       - POSTGRES_DUMP=geopoppy.sql
     volumes:
-      - ${PWD}/geopoppy/postgresql:/var/lib/postgresql
+      - /home/pirate/geopoppy/postgresql:/var/lib/postgresql
       - /home/pirate:/home
   tracking:
     image: jancelin/geopoppy:tracking_1_0
@@ -76,4 +76,4 @@ services:
      - 9000:9000
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
-     - ${PWD}/geopoppy/portainer:/data
+     - /home/pirate/geopoppy/portainer:/data
