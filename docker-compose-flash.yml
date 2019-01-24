@@ -34,7 +34,7 @@ services:
   redis:
     image: redis:4
     volumes:
-      - home/pirate/geopoppy/redis:/data
+      - /home/pirate/geopoppy/redis:/data
     restart: always
   cloud:
     image: valentinalexeev/rpi-cloudcmd
