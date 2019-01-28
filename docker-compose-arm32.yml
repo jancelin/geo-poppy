@@ -6,7 +6,7 @@ version: '3.2'
 services:
 
   lizmap:
-    image: jancelin/geopoppy:lizmap_rpi3_3.2rc6
+    image: jancelin/geopoppy:lizmap_rpi_3.2.1
     restart: always
     ports:
      - 80:80
