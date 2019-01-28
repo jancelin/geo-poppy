@@ -75,8 +75,8 @@ services:
       - 8000:8000
     volumes:
 #      - ~:/root
-      - project:/mnt/fs
-      - pgadmin4:/mnt/fs/pg
+      - project:/mnt/fs/qgis
+      - pgadmin4:/mnt/fs/postgres
      
 volumes:
    portainer:
