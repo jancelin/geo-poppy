@@ -1,31 +1,31 @@
 version: '3.2'
 services:
   lizmap:
-    image: jancelin/docker-lizmap:3.2rc6
+    image: jancelin/docker-lizmap:3.2rc4
     restart: on-failure
     ports:
      - 80:80
      - 443:443
     volumes:
-     - project:/home
-     - var:/var/www/websig/lizmap/var
+     - /home/sig/qgis:/home
+     - /home/sig/var:/var/www/websig/lizmap/var
     depends_on:
       - postgis
       - qgiserver
-      - redis
+      - redisD
     links:
      - qgiserver:qgiserver
-     - redis:redis
+     - redisD:redisD
      
   qgiserver:
     image: jancelin/qgis-server:2.18LTR
     restart: on-failure
     volumes:
-      - project:/home
+      - /home/sig/qgis:/home
     expose:
       - 80
       
-  redis:
+  redisD:
     image: redis:alpine
     restart: on-failure
     volumes:
@@ -49,7 +49,7 @@ services:
       - POSTGRES_DBNAME=geopoppy
       - POSTGRES_DUMP=geopoppy.sql
     volumes:
-      - postgres:/var/lib/postgresql
+      - /home/sig/postgres:/var/lib/postgresql
       
   pgadmin4:
     image: chorss/docker-pgadmin4
@@ -57,7 +57,7 @@ services:
     ports:
       - 5050:5050
     volumes:
-      - pgadmin4:/data
+      - /home/sig/postgres:/data
       
   portainer:
     image: portainer/portainer
@@ -75,15 +75,10 @@ services:
       - 8000:8000
     volumes:
 #      - ~:/root
-      - project:/mnt/fs
-      - pgadmin4:/mnt/fs/postgres
+      - /home/sig:/mnt/fs
      
 volumes:
    portainer:
-   pgadmin4:
-   postgres:
    redis:
-   var:
-   project:
    
 
