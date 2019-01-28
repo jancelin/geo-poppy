@@ -2,7 +2,7 @@ version: '3.2'
 services:
   lizmap:
     image: jancelin/docker-lizmap:3.2rc4
-    restart: on-failure
+    restart: always
     ports:
      - 80:80
      - 443:443
@@ -19,7 +19,7 @@ services:
      
   qgiserver:
     image: jancelin/qgis-server:2.18LTR
-    restart: on-failure
+    restart: always
     volumes:
       - /home/sig/qgis:/home
     expose:
@@ -27,7 +27,7 @@ services:
       
   redisD:
     image: redis:alpine
-    restart: on-failure
+    restart: always
     volumes:
       - redis:/data
     expose:
@@ -50,10 +50,11 @@ services:
       - POSTGRES_DUMP=geopoppy.sql
     volumes:
       - /home/sig/postgres:/var/lib/postgresql
+    restart: always
       
   pgadmin4:
     image: chorss/docker-pgadmin4
-    restart: on-failure
+    restart: always
     ports:
       - 5050:5050
     volumes:
