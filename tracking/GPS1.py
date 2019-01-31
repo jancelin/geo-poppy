@@ -105,5 +105,4 @@ while True:
             sql = "INSERT INTO trame (jour,heure, latitude, longitude, geom) VALUES (%s, %s, %s, %s, st_setsrid(st_makepoint(%s,%s), 4326) );"
             cur.execute(sql,(datetime.strptime(gpsData['fix_date'],'%d%m%y'),gpsData['fix_time'],str(gpsData['decimal_latitude']),str(gpsData['decimal_longitude']), str(gpsData['decimal_longitude']), str(gpsData['decimal_latitude']) ))
             conn.commit()
-            time.sleep( SLEEP )
 
