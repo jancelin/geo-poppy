@@ -17,7 +17,8 @@ services:
      - qgiserver:qgiserver
      - redisD:redisD
     entrypoint: >
-      bash -c "apt-get install -y wget &&
+      bash -c "apt-get update &&
+               apt-get install -y wget &&
                wget https://cartman.sig.inra.fr/geopoppy/data/geopoppy.zip &&
                unzip geopoppy.zip -d /home &&
                /start.sh"
