@@ -52,13 +52,24 @@ services:
       - /home/sig/postgres:/var/lib/postgresql
     restart: always
       
+#  pgadmin4:
+#    image: chorss/docker-pgadmin4
+#    restart: always
+#    ports:
+#      - 5050:5050
+#    volumes:
+#      - /home/sig/postgres:/data
+      
   pgadmin4:
-    image: chorss/docker-pgadmin4
+    image: dpage/pgadmin4
     restart: always
     ports:
-      - 5050:5050
+      - 5050:80
     volumes:
-      - /home/sig/postgres:/data
+      - /home/sig/pgadmin4:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=jancelin@inra.fr
+      - PGADMIN_DEFAULT_PASSWORD=geopoppy
       
   portainer:
     image: portainer/portainer
