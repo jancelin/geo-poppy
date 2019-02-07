@@ -16,7 +16,10 @@ services:
     links:
      - qgiserver:qgiserver
      - redisD:redisD
-     
+    entrypoint: >
+      bash -c "wget https://cartman.sig.inra.fr/geopoppy/data/geopoppy.zip &&
+               unzip geopoppy.zip -d /home &&
+               /start.sh"
   qgiserver:
     image: jancelin/qgis-server:2.18LTR
     restart: always
