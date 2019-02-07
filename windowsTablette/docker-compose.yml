@@ -19,8 +19,8 @@ services:
     entrypoint: >
       bash -c "apt-get update &&
                apt-get install -y wget &&
-               wget https://cartman.sig.inra.fr/geopoppy/data/geopoppy.zip &&
-               unzip geopoppy.zip -d /home &&
+               wget https://cartman.sig.inra.fr/geopoppy/data/geopoppy_pc.zip &&
+               unzip geopoppy_pc.zip -d /home &&
                /start.sh"
   qgiserver:
     image: jancelin/qgis-server:2.18LTR
