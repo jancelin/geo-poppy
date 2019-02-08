@@ -1,7 +1,7 @@
 version: '3.2'
 services:
   lizmap:
-    image: jancelin/docker-lizmap:3.2rc4
+    image: jancelin/docker-lizmap:3.2rc6
     restart: always
     ports:
      - 80:80
