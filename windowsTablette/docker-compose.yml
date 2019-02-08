@@ -19,6 +19,7 @@ services:
     entrypoint: >
       bash -c "apt-get update &&
                apt-get install -y wget &&
+               wget -N -P /var/www/websig/lizmap/var/config/ https://cartman.sig.inra.fr/geopoppy/data/lizmapConfig.ini.php
                wget https://cartman.sig.inra.fr/geopoppy/data/geopoppy_pc.zip &&
                unzip geopoppy_pc.zip -d /home &&
                /start.sh"
