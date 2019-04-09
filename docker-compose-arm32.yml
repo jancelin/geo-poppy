@@ -17,8 +17,8 @@ services:
       - 443:443
     restart: unless-stopped
   lizmap:
-    image: jancelin/geopoppy:rpi_lizmap_client_master
-#    image:  3liz/raspberry3-lizmap-web-client:3.2.2
+#    image: jancelin/geopoppy:rpi_lizmap_client_master
+    image:  3liz/raspberry3-lizmap-web-client:3.2R
 #    image: jancelin/geopoppy:rpi_lizmap_client_3.2.2
     command: 
       - php-fpm
