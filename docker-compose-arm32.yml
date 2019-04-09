@@ -30,6 +30,8 @@ services:
       LIZMAP_WMSSERVERURL: http://map:8080/ows/
       LIZMAP_CACHEREDISHOST: redis
       LIZMAP_HOME: /srv/lizmap
+      PHP_INI: \r post_max_size = 50M \n
+               max_upload_file_size = 10M
     expose:
       - 9000
     volumes:
