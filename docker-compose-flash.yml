@@ -16,6 +16,8 @@ services:
       - 80:80
       - 443:443
     restart: unless-stopped
+    depends_on:
+      - lizmap
   lizmap:
 #    image: jancelin/geopoppy:rpi_lizmap_client_master
     image:  jancelin/geopoppy:rpi_lizmap_client_3.2R
@@ -41,6 +43,9 @@ services:
       - /home/pirate/geopoppy/www:/www/lizmap/www
       - /home/pirate/geopoppy/var/log/lizmap:/www/lizmap/var/log
     restart: unless-stopped
+    depends_on:
+      - postgis
+      - map
   map:
     image: jancelin/geopoppy:qgiserver_3.4.6-raspberry3
     environment:
