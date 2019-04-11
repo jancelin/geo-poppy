@@ -102,11 +102,11 @@ services:
     volumes:
       - /dev:/dev
     privileged: true
-  portainer:
-    image: portainer/portainer:linux-arm
-    restart: always
-    ports:
-     - 9000:9000
-    volumes:
-     - /var/run/docker.sock:/var/run/docker.sock
-     - /home/pirate/geopoppy/portainer:/data
+#  portainer:
+#    image: portainer/portainer:linux-arm
+#    restart: always
+#    ports:
+#     - 9000:9000
+#    volumes:
+#     - /var/run/docker.sock:/var/run/docker.sock
+#     - /home/pirate/geopoppy/portainer:/data
