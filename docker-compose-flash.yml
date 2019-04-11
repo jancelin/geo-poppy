@@ -94,14 +94,14 @@ services:
     volumes:
       - /home/pirate/geopoppy/postgresql:/var/lib/postgresql
       - /home/pirate:/home
-  tracking:
-    image: jancelin/geopoppy:tracking_1_0
-#    build:
-#      context: https://github.com/jancelin/geo-poppy.git#dev:/tracking
-    restart: "no"
-    volumes:
-      - /dev:/dev
-    privileged: true
+#  tracking:
+#    image: jancelin/geopoppy:tracking_1_0
+##    build:
+##      context: https://github.com/jancelin/geo-poppy.git#dev:/tracking
+#    restart: "no"
+#    volumes:
+#      - /dev:/dev
+#    privileged: true
 #  portainer:
 #    image: portainer/portainer:linux-arm
 #    restart: always
