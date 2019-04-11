@@ -90,7 +90,7 @@ services:
       - ALLOW_IP_RANGE=0.0.0.0/0
       - POSTGRES_USER=docker
       - POSTGRES_DBNAME=geopoppy
-      - POSTGRES_DUMP=geopoppy.sql
+      - POSTGRES_DUMP=geopoppy.tar
     volumes:
       - /home/pirate/geopoppy/postgresql:/var/lib/postgresql
       - /home/pirate:/home
