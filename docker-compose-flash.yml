@@ -30,7 +30,7 @@ services:
       LIZMAP_CACHEREDISHOST: redis
       LIZMAP_HOME: /srv/lizmap
       PHP_INI: \r post_max_size = 50M \n
-               max_uploadfilesize = 10M
+               upload_max_filesize = 10M
     expose:
       - 9000
     volumes:
