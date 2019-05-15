@@ -146,3 +146,22 @@ services:
 #    volumes:
 #     - /var/run/docker.sock:/var/run/docker.sock
 #     - /home/pirate/geopoppy/portainer:/data
+  qgis:
+    image: jancelin/geopoppy:qgiserver2.18
+    restart: always
+    hostname: qgis-server
+    environment:
+    # set to '' if you plan on hosting 
+    # multiple projects on this server an
+    # then add map=<path to project> to your GET
+    # requests
+      - QGIS_PROJECT_FILE=/project/geopoppy2.qgs
+    # 0 = highest level, shows all messages
+    # 5 = very quiet
+      - QGIS_SERVER_LOG_LEVEL=0
+    volumes:
+      - /home/pirate/geopoppy/qgis/geopoppy:/project
+    expose:
+      - 80
+    ports:
+      - 8082:80
