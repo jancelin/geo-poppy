@@ -72,7 +72,7 @@ services:
     ports:
       - 8081:8080
   wps:
-    image: 3liz/qgis-raspberry3-wps:final-3_4_6-master
+    image: 3liz/qgis-raspberry3-wps:final-3_4_7-master
     environment:
       QYWPS_SERVER_PARALLELPROCESSES: '2'
       QYWPS_SERVER_LOGSTORAGE: REDIS
