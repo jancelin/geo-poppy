@@ -109,7 +109,7 @@ services:
       - 21:21
       - 60000-60099:60000-60099
     volumes:
-      - /home/pirate/geopoppy/qgis/geopoppy:/data
+      - /home/pirate/geopoppy:/data
     environment:
       USER_NAME: geopoppy
       USER_PASSWD: geopoppy
