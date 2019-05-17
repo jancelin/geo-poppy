@@ -134,6 +134,7 @@ services:
     volumes:
       - /home/pirate/geopoppy/postgresql:/var/lib/postgresql
       - /home/pirate:/home
+      - /home/pirate/geopoppy/db_dump:/media
 #------------------------------------
 #  db:
 #    image: jancelin/geopoppy:rpi_postgres11-postgis2.5
