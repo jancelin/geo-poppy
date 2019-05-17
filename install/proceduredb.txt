@@ -1,0 +1,9 @@
+Save:
+docker exec pirate_postgis_1 sh -c "PGPASSWORD=docker  pg_dump --inserts --format=t --host=localhost --port=5432 -U docker geopoppy > /media/geopoppy.tar"
+
+Restore:
+  SQL
+docker exec pirate_postgis_1 sh -c "PGPASSWORD=docker psql -h localhost -d geopoppy -U docker -p 5432 -a -w -f /media/your_file.sql"
+  tar
+docker exec pirate_postgis_1 sh -c "PGPASSWORD=docker createdb -O docker -T template_postgis your_dbname"
+docker exec pirate_postgis_1 sh -c "PGPASSWORD=docker pg_restore -d your_dbname /media/your.tar"
