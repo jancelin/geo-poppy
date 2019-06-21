@@ -23,7 +23,7 @@ services:
       - php-fpm
     environment:
       LIZMAP_WPS_URL: http://wps:8080/
-      LIZMAP_CACHESTORAGETYPE: redis   
+      LIZMAP_CACHESTORAGETYPE: sqlite   
       LIZMAP_CACHEREDISDB: '1'
       LIZMAP_USER: '1010'
       LIZMAP_WMSSERVERURL: http://map:8080/ows/
@@ -40,6 +40,7 @@ services:
       - /home/pirate/geopoppy/var/lizmap-db:/www/lizmap/var/db
       - /home/pirate/geopoppy/www:/www/lizmap/www
       - /home/pirate/geopoppy/var/log/lizmap:/www/lizmap/var/log
+      - /home/pirate/geopoppy/qgiscache:/tmp
     restart: unless-stopped
     depends_on:
       - postgis
