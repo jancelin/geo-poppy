@@ -18,7 +18,7 @@ services:
       - lizmap
   lizmap:
 #    image: jancelin/geopoppy:rpi_lizmap_client_3.2.3
-    image: 3liz/raspberry3-lizmap-web-client:3.2.3
+    image: 3liz/raspberry3-lizmap-web-client:3.3.0
     command: 
       - php-fpm
     environment:
@@ -48,7 +48,7 @@ services:
       - wps
   map:
 #    image: jancelin/geopoppy:final-3_4_6-master_patchGL_03
-    image: 3liz/qgis-raspberry3-server:final-3_4_7-master
+    image: 3liz/qgis-raspberry3-server:final-3_4_14-
     environment:
       PGSERVICEFILE: /srv/etc/pg_service.conf
       QGSRV_CACHE_ROOTDIR: /srv/projects
@@ -73,7 +73,7 @@ services:
     ports:
       - 8081:8080
   wps:
-    image: 3liz/qgis-raspberry3-wps:final-3_4_7-master
+    image: 3liz/qgis-raspberry3-wps:final-3_4_14-
     environment:
       QYWPS_SERVER_PARALLELPROCESSES: '2'
       QYWPS_SERVER_LOGSTORAGE: REDIS
