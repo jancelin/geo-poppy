@@ -30,7 +30,7 @@ Table de centralisation des données terrain à synchroniser
 
 CREATE TABLE sync.sauv_data
 (
-  integrateur character varying,  --nom dblink https://github.com/jancelin/geo-poppy/blob/master/sync/W/test_replay_with_dump.sql
+  integrateur character varying,  --compte user
   ts timestamp with time zone,    --timestamp de la donnée (servira de pk de la table)
   schema_bd character varying,    --nom du schema de la donnée
   tbl character varying,          --table de la donnée
@@ -48,6 +48,7 @@ CREATE TABLE sync.doreplay
   id serial,
   ts timestamp with time zone DEFAULT now(), --TIME OF SYNCHRO
   checking character varying, --working?
+  integrateur character varying,  --compte user
   CONSTRAINT pk_doreplay PRIMARY KEY (id)
 );
 
@@ -223,7 +224,7 @@ Execution de la fonction : select sync.replay();
 */
 
 DROP FUNCTION IF EXISTS sync.replay();
-CREATE OR REPLACE FUNCTION sync.replay() RETURNS table(f1 boolean) AS
+CREATE OR REPLACE FUNCTION sync.replay(users varchar) RETURNS table(f1 boolean) AS
 $BODY$
 DECLARE
 req text;
@@ -260,7 +261,7 @@ SELECT x.q FROM (												--Keep only the replay req
 	       from sync.replay) d 
 	     ) e
 	 group by e.ts) f 											--CALL list of fields
-  WHERE rp.ts = f.ts AND rp.replay = FALSE
+  WHERE rp.ts = f.ts AND rp.replay = FALSE AND integrateur = users
   ORDER BY rp.ts ASC
 ) x
 	LOOP
@@ -342,8 +343,8 @@ BEGIN
 IF (TG_OP = 'INSERT') THEN
         --PERFORM sync.disable_sauv_trigger();
 	PERFORM sync.no_replay();
-        PERFORM sync.replay();
-	UPDATE sync.doreplay SET id =NEW.id, ts=NEW.ts, checking = 'OK' WHERE id=NEW.id ;
+        PERFORM sync.replay(NEW.integrateur);
+	UPDATE sync.doreplay SET id =NEW.id, ts=NEW.ts, integrateur=NEW.integrateur, checking = 'OK' WHERE id=NEW.id ;
         --PERFORM sync.enable_sauv_trigger();
 	RETURN NEW;
 END IF;
@@ -357,3 +358,20 @@ CREATE TRIGGER doreplay
   ON sync.doreplay
   FOR EACH ROW
 EXECUTE PROCEDURE sync.sync();
+
+-----------------------
+
+DROP VIEW sync.replay_infos;
+CREATE OR REPLACE VIEW sync.replay_infos AS
+SELECT
+CASE 
+WHEN  r.integrateur is null THEN ''
+ELSE r.integrateur
+END,
+CASE
+WHEN count(r) = 1 THEN 'VOUS AVEZ 1 DONNEE SYNCHRONISEE PRETE POUR L INJECTION'
+ELSE 'VOUS AVEZ '|| count(r.*) || ' DONNEES SYNCHRONISEES PRETES POUR L INJECTION'
+END AS infos,
+st_setsrid(st_makepoint(100,-11), 4326) AS geom
+FROM sync.replay r
+Group by r.integrateur;
