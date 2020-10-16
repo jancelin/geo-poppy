@@ -235,7 +235,7 @@ SELECT x.q FROM (												--Keep only the replay req
 	CASE													--Choice of action
 	WHEN action1 = 'INSERT' THEN 										--Writes the data insert procedure 
 		'INSERT INTO '||rp.schema_bd||'.'||rp.tbl
-		||' SELECT * FROM json_populate_recordset(null::'||rp.schema_bd ||'.'||rp.tbl||','''||rp.sauv||''')'--json
+		||' SELECT * FROM json_populate_recordset(null::'||rp.schema_bd ||'.'||rp.tbl||','''||rp.sauv||''')'    --json
 		||' ON CONFLICT ('||rp.pk||') DO UPDATE set '||rp.pk||'=DEFAULT;'					--new id pk
 		||' UPDATE sync.sauv_data SET replay = TRUE WHERE ts = '''||rp.ts||''';'				--check TRUE on sync.sauv_data when replay
 
@@ -369,8 +369,8 @@ WHEN  r.integrateur is null THEN ''
 ELSE r.integrateur
 END,
 CASE
-WHEN count(r) = 1 THEN 'VOUS AVEZ 1 DONNEE SYNCHRONISEE PRETE POUR L INJECTION'
-ELSE 'VOUS AVEZ '|| count(r.*) || ' DONNEES SYNCHRONISEES PRETES POUR L INJECTION'
+WHEN count(r) = 1 THEN 'VOUS AVEZ 1 DONNEE SYNCHRONISEE PRETE A INJECTER DANS LA BDD'
+ELSE 'VOUS AVEZ '|| count(r.*) || ' DONNEES SYNCHRONISEES PRETES A INJECTER DANS LA BDD'
 END AS infos,
 st_setsrid(st_makepoint(100,-11), 4326) AS geom
 FROM sync.replay r
