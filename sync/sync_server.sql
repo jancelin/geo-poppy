@@ -340,11 +340,11 @@ CREATE OR REPLACE FUNCTION sync.sync() RETURNS TRIGGER AS
 $BODY$
 BEGIN	
 IF (TG_OP = 'INSERT') THEN
-        PERFORM sync.disable_sauv_trigger();
+        --PERFORM sync.disable_sauv_trigger();
 	PERFORM sync.no_replay();
         PERFORM sync.replay();
 	UPDATE sync.doreplay SET id =NEW.id, ts=NEW.ts, checking = 'OK' WHERE id=NEW.id ;
-        PERFORM sync.enable_sauv_trigger();
+        --PERFORM sync.enable_sauv_trigger();
 	RETURN NEW;
 END IF;
 RETURN NEW;
