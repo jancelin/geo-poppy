@@ -211,4 +211,16 @@ FOR EACH ROW EXECUTE PROCEDURE sync.synchronis();
 
 ALTER FUNCTION sync.synchronis()
   OWNER TO docker;
-
+--------------
+--autosync (select sync.autosync(id_login)) injecte les données sur le central si des données son à synchroniser			       
+DROP FUNCTION IF EXISTS sync.auto_replay(integer);
+CREATE OR REPLACE FUNCTION sync.auto_replay(id_users int) RETURNS void AS $$
+DECLARE
+BEGIN
+	
+		if (SELECT count(sd.sync) FROM sync.sauv_data sd WHERE sd.sync != 1) >= 1 then 
+			INSERT INTO sync.synchro (ts,id_login) VALUES (now(),id_users);
+		end if;
+END;
+$$
+LANGUAGE 'plpgsql';
