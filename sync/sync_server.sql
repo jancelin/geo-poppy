@@ -40,6 +40,7 @@ CREATE TABLE sync.sauv_data
   fk json,                        --clefs étrangères
   replay boolean DEFAULT false,   --La donnée a t'elle été rejoué dans la base
   no_replay integer               --1= donnée multi-edité fonction: sync.no_replay() , 2= donnée exclus conflit d'edition: sync.resolve_conflict()
+  id_destination                  --id de la table de destination (bug même id si plusieurs data!!!! à vérifier)
 );
 
 --list of replay in db + add a ligne and do a replay data (with trigger sync.doreplay())
@@ -234,11 +235,11 @@ SELECT x.q FROM (												--Keep only the replay req
   SELECT distinct												--for grouping
 	CASE													--Choice of action
 	WHEN action1 = 'INSERT' THEN 										--Writes the data insert procedure 
-		'INSERT INTO '||rp.schema_bd||'.'||rp.tbl
+		'with _insert as (INSERT INTO '||rp.schema_bd||'.'||rp.tbl
 		||' SELECT * FROM json_populate_recordset(null::'||rp.schema_bd ||'.'||rp.tbl||','''||rp.sauv||''')'    --json
-		||' ON CONFLICT ('||rp.pk||') DO UPDATE set '||rp.pk||'=DEFAULT;'					--new id pk
-		||' UPDATE sync.sauv_data SET replay = TRUE WHERE ts = '''||rp.ts||''';'				--check TRUE on sync.sauv_data when replay
-
+		||' ON CONFLICT ('||rp.pk||') DO UPDATE set '||rp.pk||'=DEFAULT RETURNING '||rp.pk||')'					--new id pk
+		||' UPDATE sync.sauv_data SET (replay,id_destination ) = ( TRUE, (select '||rp.pk||' from _insert) ) WHERE ts = '''||rp.ts||''';'				--check TRUE on sync.sauv_data when replay
+	
 	WHEN action1 = 'UPDATE' THEN 										--Writes the data update procedure
 		'INSERT INTO '||rp.schema_bd||'.'||rp.tbl
 		||' SELECT * FROM json_populate_recordset(null::'||schema_bd||'.'||tbl||','''||sauv||''')'	--json
