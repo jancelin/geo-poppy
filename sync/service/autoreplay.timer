@@ -1,0 +1,10 @@
+[Unit]
+Description=inject data to central
+
+[Timer]
+OnCalendar=*-*-* *:*:0/15
+AccuracySec=1s
+Persistent=true
+
+[Install]
+WantedBy=timers.target
