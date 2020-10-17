@@ -1,0 +1,9 @@
+[Unit]
+Description=inject data to central
+
+[Service]
+Type=oneshot
+ExecStart=sh /home/pi/auto_replay.sh
+
+[Install]
+WantedBy=multi-user.target
