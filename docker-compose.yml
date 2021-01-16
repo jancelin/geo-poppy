@@ -52,6 +52,7 @@ services:
     environment:
       PGSERVICEFILE: /srv/etc/pg_service.conf
       QGSRV_CACHE_ROOTDIR: /srv/projects
+      QGSRV_SERVER_PARALLEL_RENDERING: '1'
       QGSRV_SERVER_WORKERS: 4
       QGSRV_CACHE_SIZE: '20'
       QGSRV_LOGGING_LEVEL: DEBUG
